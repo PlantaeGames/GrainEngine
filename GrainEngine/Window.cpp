@@ -10,18 +10,16 @@ Window::Window(const wchar_t* name,
 	if (tempName == nullptr)
 	{
 		// error
-		// todo: replace std cpp exceptions with mine own ones.
-		throw std::exception("ERROR: Unable to allocate memory.");
+		throw Error("ERROR: Unable to allocate memory.");
 	}
 	errno_t result = 0;
 	result = wcscpy_s(tempName, (rsize_t) lengthOfNameString + 1, name);
 	if (result != 0)
 	{
 		// error
-		// todo: replace the std exceptions with mine own ones.
-		char errorMessageBuffer[256] = { 0 };
-		strerror_s(errorMessageBuffer, 256, result);
-		throw std::exception("ERROR: Unable to copy string.");
+		//char errorMessageBuffer[256] = { 0 };
+		//strerror_s(errorMessageBuffer, 256, result);
+		throw Error("ERROR: Unable to copy string.");
 	}
 	Name = tempName;
 
@@ -35,8 +33,7 @@ Window::Window(const wchar_t* name,
 	if (classId == 0)
 	{
 		// error
-		// todo: replace std cpp exceptions with mine own ones.
-		throw std::exception("ERROR: Unable to register window class.");
+		throw Error("ERROR: Unable to register window class.");
 	}
 	ClassId = classId;
 
@@ -47,8 +44,7 @@ Window::Window(const wchar_t* name,
 	if (GetModuleHandleExW(0, nullptr, &hModule) == false)
 	{
 		// error
-		// todo: replace the std exceptions with mine own
-		throw std::exception("ERROR: Unable to retrive module handle.");
+		throw Error("ERROR: Unable to retrive module handle.");
 	}
 	HWND hWnd = CreateWindowExW(0,
 		name,
@@ -59,13 +55,12 @@ Window::Window(const wchar_t* name,
 	if (hWnd == nullptr)
 	{
 		// error
-		// todo: replace the std exceptions with mine own ones.
-		throw std::exception("ERROR: Failed to Create Window.");
+		throw Error("ERROR: Failed to Create Window.");
 	}
 	Handle = hWnd;
 }
 
-bool Window::PeekAndDispatchMessage(MSG* pMsg)
+bool Window::PeekAndDispatchMessage(MSG* pMsg) const noexcept
 {
 	PeekMessageW(pMsg, nullptr, 0, 0, PM_REMOVE);
 	TranslateMessage(pMsg);
@@ -74,12 +69,12 @@ bool Window::PeekAndDispatchMessage(MSG* pMsg)
 	return pMsg->message != WM_QUIT;
 }
 
-void Window::Show()
+void Window::Show() const noexcept
 {
 	ShowWindow(Handle, SW_SHOW);
 }
 
-void Window::Hide()
+void Window::Hide() const noexcept
 {
 	ShowWindow(Handle, SW_HIDE);
 }

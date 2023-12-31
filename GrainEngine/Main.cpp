@@ -4,6 +4,7 @@ size_t Main()
 {
 	Window mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, WindowProc);
 	mainWindow.Show();
+
 	MSG msg = { 0 };
 	while (mainWindow.PeekAndDispatchMessage(&msg))
 	{

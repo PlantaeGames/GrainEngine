@@ -5,6 +5,8 @@
 
 #include <windows.h>
 
+#include "Error.h"
+
 /// <summary>
 /// Representing a window to be used with renderer.
 /// </summary>
@@ -32,15 +34,15 @@ public:
 	/// </summary>
 	/// <param name="pMsg">Pointer to MSG structure to hold current message.</param>
 	/// <returns>If the quit is requested or not.</returns>
-	bool PeekAndDispatchMessage(MSG* pMsg);
+	bool PeekAndDispatchMessage(MSG* pMsg) const noexcept;
 	/// <summary>
 	/// Changes the window state to visible.
 	/// </summary>
-	void Show();
+	void Show() const noexcept;
 	/// <summary>
 	/// Changes the window state to hidden.
 	/// </summary>
-	void Hide();
+	void Hide() const noexcept;
 	/// <summary>
 	/// Default Destrcutor of the window.
 	/// </summary>
