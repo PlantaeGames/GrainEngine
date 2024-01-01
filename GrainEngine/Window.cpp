@@ -6,7 +6,7 @@ Window::Window(const wchar_t* name,
 {
 	// storing window and class name
 	unsigned int lengthOfNameString = (unsigned int)wcslen(name);
-	wchar_t* tempName = (wchar_t*) malloc((size_t) lengthOfNameString * sizeof(wchar_t) + 2);
+	wchar_t* tempName = new wchar_t[lengthOfNameString * sizeof(wchar_t) + 2];
 	if (tempName == nullptr)
 	{
 		// error
@@ -88,7 +88,7 @@ Window::Window(const Window& oldInstance)
 {
 	// copying name
 	size_t lengthOfName = wcslen(oldInstance._name);
-	wchar_t* nameCopyLocation = (wchar_t*) malloc(lengthOfName * sizeof(wchar_t) + 2);
+	wchar_t* nameCopyLocation = new wchar_t[lengthOfName * sizeof(wchar_t) + 2];
 	if (nameCopyLocation == nullptr)
 	{
 		// error
@@ -136,8 +136,19 @@ Window::Window(const Window& oldInstance)
 	_handle = hWnd;
 }
 
-Window& Window::operator=(Window& rightHandSide)
+Window& Window::operator=(Window& rhs)
 {
-	*this = rightHandSide;
+	Window tempCopy(rhs);
+
+	Swap(tempCopy);
 	return *this;
+}
+
+void Window::Swap(Window& other) noexcept
+{
+	using std::swap;
+
+	swap(_name, other._name);
+	swap(_classId, other._classId);
+	swap(_handle, other._handle);
 }

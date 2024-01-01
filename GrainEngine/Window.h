@@ -58,10 +58,16 @@ public:
 	/// </summary>
 	~Window();
 	/// <summary>
-	/// Right Assignment operator for window object.
+	/// Assignment operator.
 	/// </summary>
-	/// <param name="rightHandSide">The object on the right side of the operator.</param>
-	/// <returns></returns>
-	Window& operator=(Window& rightHandSide);
+	/// <param name="rhs">Assign to.</param>
+	/// <returns>Assigned value.</returns>
+	Window& operator=(Window& rhs);
+private:
+	/// <summary>
+	/// Swaps it with other object.
+	/// </summary>
+	/// <param name="other">The object to swap to.</param>
+	void Swap(Window& other) noexcept;
 };
 

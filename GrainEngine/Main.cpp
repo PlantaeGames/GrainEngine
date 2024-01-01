@@ -22,12 +22,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		return 0;
 	}
 
-	switch (msg)
-	{
-	default:
-		break;
-	}
-
 	return DefWindowProcW(hWnd, msg, wParam, lParam);
 }
 
