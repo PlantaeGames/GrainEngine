@@ -1,6 +1,6 @@
 #include "Random.h"
 
-Random::Random() : _randomEngineKey(), _randomEngine(_randomEngineKey)
+Random::Random() : _randomEngine(_randomEngineKey())
 {
 }
 

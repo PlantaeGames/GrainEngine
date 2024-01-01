@@ -5,6 +5,17 @@ size_t Main()
 	Window mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, WindowProc);
 	mainWindow.Show();
 
+	Random random = Random();
+	Stopwatch stopwatch = Stopwatch();
+
+	stopwatch.Start();
+	for (int i = 0; i < 10000000; i++)
+	{
+		int t = random.NextInt(0, 100);
+	}
+
+	float time = stopwatch.Stop();
+
 	MSG msg = { 0 };
 	while (mainWindow.PeekAndDispatchMessage(&msg))
 	{

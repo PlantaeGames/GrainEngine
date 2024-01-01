@@ -6,6 +6,8 @@
 #include <windows.h>
 
 #include "Error.h"
+#include "Random.h"
+#include "Stopwatch.h"
 
 #define WINDOW_CREATION_ERROR "Failed to create window."
 #define WINDOW_CLASS_REGISTRATION_ERROR "Failed to register window."
