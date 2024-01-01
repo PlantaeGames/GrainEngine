@@ -16,10 +16,15 @@ size_t Main()
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	if (msg == WM_CLOSE)
+	{
+		PostQuitMessage(UI_EXITCODE);
+		return 0;
+	}
+
 	switch (msg)
 	{
-	case WM_CLOSE:
-		PostQuitMessage(UI_EXITCODE);
+	default:
 		break;
 	}
 

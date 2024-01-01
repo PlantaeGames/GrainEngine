@@ -7,15 +7,20 @@
 
 #include "Error.h"
 
+#define WINDOW_CREATION_ERROR "Failed to create window."
+#define WINDOW_CLASS_REGISTRATION_ERROR "Failed to register window."
+#define WINDOW_GET_MODULE_HANDLE_ERROR "Failed to get handle to window."
+#define WINDOW_GET_RECT_ERROR "Failed to get rect of the window."
+
 /// <summary>
 /// Representing a window to be used with renderer.
 /// </summary>
 class Window
 {
 private:
-	const wchar_t* Name = nullptr;
-	ATOM ClassId;
-	HWND Handle = nullptr;
+	const wchar_t* _name = nullptr;
+	ATOM _classId = 0;
+	HWND _handle = nullptr;
 public:
 	/// <summary>
 	/// Default Window constructor.
@@ -29,6 +34,11 @@ public:
 	Window(const wchar_t* name, 
 		unsigned int x, unsigned int y, unsigned int width, unsigned int height,
 		WNDPROC wndProc);
+	/// <summary>
+	/// Copy constructor for the window object.
+	/// </summary>
+	/// <param name="oldInstance">Reference to the instance to be copied.</param>
+	Window(const Window& oldInstance);
 	/// <summary>
 	/// Obtains a message from queue, translate and dispatches to the message handler.
 	/// </summary>
@@ -47,5 +57,11 @@ public:
 	/// Default Destrcutor of the window.
 	/// </summary>
 	~Window();
+	/// <summary>
+	/// Right Assignment operator for window object.
+	/// </summary>
+	/// <param name="rightHandSide">The object on the right side of the operator.</param>
+	/// <returns></returns>
+	Window& operator=(Window& rightHandSide);
 };
 
