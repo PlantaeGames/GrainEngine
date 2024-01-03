@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+
 #include "Window.h"
 
 #define WINDOW_NAME L"GrainEngine"

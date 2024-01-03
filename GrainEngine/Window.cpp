@@ -6,20 +6,20 @@ Window::Window(const wchar_t* name,
 {
 	// storing window and class name
 	unsigned int lengthOfNameString = (unsigned int)wcslen(name);
+	assert(lengthOfNameString > 0);
+
 	wchar_t* tempName = new wchar_t[lengthOfNameString * sizeof(wchar_t) + 2];
 	if (tempName == nullptr)
 	{
 		// error
-		throw Error(MEMORY_ALLOCATION_ERROR);
+		THROW_ERROR(MEMORY_ALLOCATION_ERROR);
 	}
 	errno_t result = 0;
 	result = wcscpy_s(tempName, (rsize_t) lengthOfNameString + 1, name);
 	if (result != 0)
 	{
 		// error
-		//char errorMessageBuffer[256] = { 0 };
-		//strerror_s(errorMessageBuffer, 256, result);
-		throw Error(MEMORY_COPY_ERROR);
+		THROW_ERROR(MEMORY_COPY_ERROR);
 	}
 	_name = tempName;
 
@@ -33,7 +33,7 @@ Window::Window(const wchar_t* name,
 	if (classId == 0)
 	{
 		// error
-		throw Error(WINDOW_CLASS_REGISTRATION_ERROR);
+		THROW_ERROR(WINDOW_CLASS_REGISTRATION_ERROR);
 	}
 	_classId = classId;
 
@@ -44,7 +44,7 @@ Window::Window(const wchar_t* name,
 	if (GetModuleHandleExW(0, nullptr, &hModule) == false)
 	{
 		// error
-		throw Error(WINDOW_GET_MODULE_HANDLE_ERROR);
+		THROW_ERROR(WINDOW_GET_MODULE_HANDLE_ERROR);
 	}
 	HWND hWnd = CreateWindowExW(0,
 		name,
@@ -55,7 +55,7 @@ Window::Window(const wchar_t* name,
 	if (hWnd == nullptr)
 	{
 		// error
-		throw Error(WINDOW_CREATION_ERROR);
+		THROW_ERROR(WINDOW_CREATION_ERROR);
 	}
 	_handle = hWnd;
 }
@@ -79,9 +79,13 @@ void Window::Hide() const noexcept
 	ShowWindow(_handle, SW_HIDE);
 }
 
-Window::~Window()
+Window::~Window() noexcept
 {
-	delete[] _name;
+	HINSTANCE hModule = nullptr;
+	GetModuleHandleExW(0, nullptr, &hModule);
+	UnregisterClassW(_name, hModule);
+
+	delete _name;
 }
 
 Window::Window(const Window& oldInstance)
@@ -92,14 +96,14 @@ Window::Window(const Window& oldInstance)
 	if (nameCopyLocation == nullptr)
 	{
 		// error
-		throw Error(MEMORY_ALLOCATION_ERROR);
+		THROW_ERROR(MEMORY_ALLOCATION_ERROR);
 	}
 	errno_t result = 0;
 	result = wcscpy_s(nameCopyLocation, lengthOfName + 1, oldInstance._name);
 	if (result != 0)
 	{
 		// error
-		throw Error(MEMORY_COPY_ERROR);
+		THROW_ERROR(MEMORY_COPY_ERROR);
 	}
 	_name = nameCopyLocation;
 
@@ -111,7 +115,7 @@ Window::Window(const Window& oldInstance)
 	if (GetWindowRect(oldInstance._handle, &size) == false)
 	{
 		// error
-		throw Error(WINDOW_GET_RECT_ERROR);
+		THROW_ERROR(WINDOW_GET_RECT_ERROR);
 	}
 	unsigned int x = size.left;
 	unsigned int y = size.top;
@@ -120,7 +124,7 @@ Window::Window(const Window& oldInstance)
 	if (GetModuleHandleExW(0, nullptr, &hModule) == false)
 	{
 		// error
-		throw Error(WINDOW_GET_MODULE_HANDLE_ERROR);
+		THROW_ERROR(WINDOW_GET_MODULE_HANDLE_ERROR);
 	}
 	HWND hWnd = CreateWindowExW(0,
 		_name,
@@ -131,12 +135,12 @@ Window::Window(const Window& oldInstance)
 	if (hWnd == nullptr)
 	{
 		// error
-		throw Error(WINDOW_CREATION_ERROR);
+		THROW_ERROR(WINDOW_CREATION_ERROR);
 	}
 	_handle = hWnd;
 }
 
-Window& Window::operator=(Window& rhs)
+Window& Window::operator=(const Window& rhs)
 {
 	Window tempCopy(rhs);
 
@@ -151,4 +155,15 @@ void Window::Swap(Window& other) noexcept
 	swap(_name, other._name);
 	swap(_classId, other._classId);
 	swap(_handle, other._handle);
+}
+
+Window::Window(Window&& oldInstance) noexcept : Window::Window()
+{
+	Swap(oldInstance);
+}
+
+Window& Window::operator=(Window&& rhs) noexcept
+{
+	Swap(rhs);
+	return *this;
 }

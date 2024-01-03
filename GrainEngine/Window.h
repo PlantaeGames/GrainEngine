@@ -2,6 +2,8 @@
 
 #include <wchar.h>
 #include <stdexcept>
+#include <utility>
+#include <assert.h>
 
 #include <windows.h>
 
@@ -25,7 +27,7 @@ private:
 	HWND _handle = nullptr;
 public:
 	/// <summary>
-	/// Default Window constructor.
+	/// Window constructor.
 	/// </summary>
 	/// <param name="name">Name of the Window And class.</param>
 	/// <param name="x">X position of the window.</param>
@@ -41,6 +43,11 @@ public:
 	/// </summary>
 	/// <param name="oldInstance">Reference to the instance to be copied.</param>
 	Window(const Window& oldInstance);
+	/// <summary>
+	/// Move constructor for the window object.
+	/// </summary>
+	/// <param name="oldInstance">Object to be moved from.</param>
+	Window(Window&& oldInstance) noexcept;
 	/// <summary>
 	/// Obtains a message from queue, translate and dispatches to the message handler.
 	/// </summary>
@@ -58,14 +65,24 @@ public:
 	/// <summary>
 	/// Default Destrcutor of the window.
 	/// </summary>
-	~Window();
+	~Window() noexcept;
 	/// <summary>
-	/// Assignment operator.
+	/// Assignment operator for copying.
 	/// </summary>
 	/// <param name="rhs">Assign to.</param>
 	/// <returns>Assigned value.</returns>
-	Window& operator=(Window& rhs);
+	Window& operator=(const Window& rhs);
+	/// <summary>
+	/// Assignment operator for moving.
+	/// </summary>
+	/// <param name="rhs">Object to be moved from.</param>
+	/// <returns>Moved value.</returns>
+	Window& operator=(Window&& rhs) noexcept;
 private:
+	/// <summary>
+	/// Default compiler generated contructor.
+	/// </summary>
+	Window() = default;
 	/// <summary>
 	/// Swaps it with other object.
 	/// </summary>
