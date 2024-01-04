@@ -5,11 +5,8 @@ size_t Main()
 	MainWindow mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mainWindow.Show();
 
-	MainWindow test(L"Test", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-	test.Show();
-
 	MSG msg = { 0 };
-	while (test.PeekAndDispatchMessage(&msg))
+	while (mainWindow.PeekAndDispatchMessage(&msg))
 	{ 
 	}
 
