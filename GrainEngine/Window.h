@@ -13,7 +13,6 @@
 #define WINDOW_CLASS_REGISTRATION_ERROR "Failed to register window."
 #define WINDOW_GET_MODULE_HANDLE_ERROR "Failed to get handle to window."
 #define WINDOW_GET_RECT_ERROR "Failed to get rect of the window."
-#define WINDOW_SET_LONGPTR_ERROR "Failed to set window data."
 
 #define UI_EXITCODE 1
 
@@ -43,7 +42,7 @@ private:
 		HINSTANCE _hInstance = nullptr;
 	};
 
-private:
+protected:
 	const wchar_t* _name = nullptr;
 	HWND _handle = nullptr;
 public:
@@ -68,7 +67,6 @@ public:
 	/// </summary>
 	/// <param name="oldInstance">Object to be moved from.</param>
 	Window(Window&& oldInstance) noexcept;
-	void Create(unsigned int x, unsigned int y, unsigned int width, unsigned int height);
 	/// <summary>
 	/// Obtains a message from queue, translate and dispatches to the message handler.
 	/// </summary>
@@ -86,7 +84,7 @@ public:
 	/// <summary>
 	/// Default Destrcutor of the window.
 	/// </summary>
-	~Window() noexcept;
+	virtual ~Window() noexcept;
 	/// <summary>
 	/// Assignment operator for copying.
 	/// </summary>
@@ -99,18 +97,20 @@ public:
 	/// <param name="rhs">Object to be moved from.</param>
 	/// <returns>Moved value.</returns>
 	Window& operator=(Window&& rhs) noexcept;
+	/// <summary>
+	/// Swaps it with other object.
+	/// </summary>
+	///	<param name="other">The object to swap to.</param>
+	void Swap(Window& other) noexcept;
 private:
 	/// <summary>
 	/// Default compiler generated contructor.
 	/// </summary>
-	Window() = default;
-	LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	/// <summary>
-	/// Swaps it with other object.
-	/// </summary>
-	/// <param name="other">The object to swap to.</param>
-	void Swap(Window& other) noexcept;
+	void Create(unsigned int x, unsigned int y, unsigned int width, unsigned int height);
 	friend LRESULT WndProcInit(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	friend LRESULT WndProcStub(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+protected:
+	Window() = default;
+	virtual LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 };
 

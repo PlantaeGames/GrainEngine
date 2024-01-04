@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-#include "Window.h"
+#include "MainWindow.h"
 
 #define WINDOW_NAME L"GrainEngine"
 #define WINDOW_WIDTH 800

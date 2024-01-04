@@ -94,6 +94,7 @@ Window& Window::operator=(const Window& rhs)
 
 void Window::Swap(Window& other) noexcept
 {
+
 	using std::swap;
 
 	swap(_name, other._name);
@@ -136,7 +137,7 @@ void Window::Create(unsigned int x, unsigned int y, unsigned int width, unsigned
 	_handle = hWnd;
 }
 
-LRESULT Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT Window::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	if (msg == WM_CLOSE)
 	{
@@ -161,16 +162,8 @@ LRESULT CALLBACK WndProcInit(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		const auto* const createStruct = reinterpret_cast<CREATESTRUCTW*>(lParam);
 		auto* const window = static_cast<Window*>(createStruct->lpCreateParams);
 
-		LONG_PTR result = 0;
-		result = SetWindowLongPtrW(hWnd, GWLP_USERDATA, (LONG_PTR) window);
-		result = SetWindowLongPtrW(hWnd, GWLP_WNDPROC, (LONG_PTR) WndProcStub);
-
-		if (result == 0)
-		{
-			// error
-			THROW_ERROR(WINDOW_SET_LONGPTR_ERROR);
-		}
-
+		SetWindowLongPtrW(hWnd, GWLP_USERDATA, (LONG_PTR) window);
+		SetWindowLongPtrW(hWnd, GWLP_WNDPROC, (LONG_PTR) WndProcStub);
 		return window->WindowProc(hWnd, msg, wParam, lParam);
 	}
 
