@@ -8,13 +8,14 @@
 #include <windows.h>
 
 #include "Error.h"
-#include "Random.h"
-#include "Stopwatch.h"
 
 #define WINDOW_CREATION_ERROR "Failed to create window."
 #define WINDOW_CLASS_REGISTRATION_ERROR "Failed to register window."
 #define WINDOW_GET_MODULE_HANDLE_ERROR "Failed to get handle to window."
 #define WINDOW_GET_RECT_ERROR "Failed to get rect of the window."
+#define WINDOW_SET_LONGPTR_ERROR "Failed to set window data."
+
+#define UI_EXITCODE 1
 
 /// <summary>
 /// Representing a window to be used with renderer.
@@ -22,8 +23,28 @@
 class Window
 {
 private:
+	class WindowClass
+	{
+	public:
+		WindowClass(const WindowClass& otherInstance) = delete;
+		WindowClass(WindowClass&& oldInstance) noexcept = delete;
+		static const WindowClass& GetInstance() noexcept;
+		const wchar_t* GetName() const noexcept;
+		ATOM GetID() const noexcept;
+		WindowClass& operator= (const WindowClass& otherInstance) = delete;
+		WindowClass&& operator= (WindowClass&& oldInstance) = delete;
+	private:
+		WindowClass();
+		void Register();
+		~WindowClass() noexcept;
+	private:
+		const wchar_t* const _name = L"GrainEngine";
+		ATOM _id = 0;
+		HINSTANCE _hInstance = nullptr;
+	};
+
+private:
 	const wchar_t* _name = nullptr;
-	ATOM _classId = 0;
 	HWND _handle = nullptr;
 public:
 	/// <summary>
@@ -36,8 +57,7 @@ public:
 	/// <param name="height">Height of the client area.</param>
 	/// <param name="wndProc">Message handler for this window.</param>
 	Window(const wchar_t* name, 
-		unsigned int x, unsigned int y, unsigned int width, unsigned int height,
-		WNDPROC wndProc);
+		unsigned int x, unsigned int y, unsigned int width, unsigned int height);
 	/// <summary>
 	/// Copy constructor for the window object.
 	/// </summary>
@@ -48,6 +68,7 @@ public:
 	/// </summary>
 	/// <param name="oldInstance">Object to be moved from.</param>
 	Window(Window&& oldInstance) noexcept;
+	void Create(unsigned int x, unsigned int y, unsigned int width, unsigned int height);
 	/// <summary>
 	/// Obtains a message from queue, translate and dispatches to the message handler.
 	/// </summary>
@@ -83,10 +104,13 @@ private:
 	/// Default compiler generated contructor.
 	/// </summary>
 	Window() = default;
+	LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	/// <summary>
 	/// Swaps it with other object.
 	/// </summary>
 	/// <param name="other">The object to swap to.</param>
 	void Swap(Window& other) noexcept;
+	friend LRESULT WndProcInit(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	friend LRESULT WndProcStub(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 };
 

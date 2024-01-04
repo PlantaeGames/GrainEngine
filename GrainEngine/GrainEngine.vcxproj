@@ -153,14 +153,18 @@
   <ItemGroup>
     <ClInclude Include="Error.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Stopwatch.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Stopwatch.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

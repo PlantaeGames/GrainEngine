@@ -16,7 +16,7 @@
 /// <summary>
 /// Error showing pop up.
 /// </summary>
-class Error : std::runtime_error
+class Error : public std::runtime_error
 {
 private:
 	unsigned int _lineNumber = 0;
