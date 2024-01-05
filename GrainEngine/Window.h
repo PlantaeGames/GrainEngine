@@ -113,4 +113,3 @@ protected:
 	Window() = default;
 	virtual LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 };
-
