@@ -82,10 +82,6 @@ public:
 	/// </summary>
 	void Hide() const noexcept;
 	/// <summary>
-	/// Default Destrcutor of the window.
-	/// </summary>
-	virtual ~Window() noexcept;
-	/// <summary>
 	/// Assignment operator for copying.
 	/// </summary>
 	/// <param name="rhs">Assign to.</param>
@@ -97,11 +93,6 @@ public:
 	/// <param name="rhs">Object to be moved from.</param>
 	/// <returns>Moved value.</returns>
 	Window& operator=(Window&& rhs) noexcept;
-	/// <summary>
-	/// Swaps it with other object.
-	/// </summary>
-	///	<param name="other">The object to swap to.</param>
-	void Swap(Window& other) noexcept;
 private:
 	/// <summary>
 	/// Default compiler generated contructor.
@@ -111,5 +102,14 @@ private:
 	friend LRESULT WndProcStub(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 protected:
 	Window() = default;
+	/// <summary>
+	/// Default Destrcutor of the window.
+	/// </summary>
+	virtual ~Window() noexcept;
+	/// <summary>
+	/// Swaps it with other object.
+	/// </summary>
+	///	<param name="other">The object to swap to.</param>
+	virtual void Swap(Window& other) noexcept;
 	virtual LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 };

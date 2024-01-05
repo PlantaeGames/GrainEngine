@@ -3,6 +3,8 @@
 #include <Windows.h>
 
 #include "MainWindow.h"
+#include "Stopwatch.h"
+#include <string>
 
 #define WINDOW_NAME L"GrainEngine"
 #define WINDOW_WIDTH 800

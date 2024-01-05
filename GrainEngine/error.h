@@ -62,5 +62,6 @@ public:
 	/// <param name="rhs">The object to move from.</param>
 	/// <returns>Moved value.</returns>
 	Error& operator=(Error&& rhs) = delete;
+	static void Log(const char* message) noexcept;
 };
 

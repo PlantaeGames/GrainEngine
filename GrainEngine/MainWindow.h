@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "Keyboard.h"
 
 class MainWindow : public Window
 {
@@ -12,7 +13,11 @@ public:
 	MainWindow& operator= (const MainWindow& newInstance) = default;
 	MainWindow& operator= (MainWindow&& oldInstance) = default;
 	~MainWindow() noexcept override = default;
+
+	Keyboard& GetKeyboard() const noexcept;
 private:
 	MainWindow() = default;
 	LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept override;
+private:
+	mutable Keyboard keyboard;
 };

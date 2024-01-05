@@ -10,10 +10,16 @@ void Stopwatch::Start()
 	_start = _clock.now();
 }
 
-float Stopwatch::Stop()
+float Stopwatch::Lapse()
 {
 	_end = _clock.now();
 
 	std::chrono::duration<float> duration = _end - _start;
 	return duration.count();
+}
+
+void Stopwatch::Reset()
+{
+	_start = _clock.now();
+	_end = _start;
 }

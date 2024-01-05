@@ -56,6 +56,7 @@ Window::~Window() noexcept
 }
 
 Window::Window(const Window& oldInstance)
+	: Window()
 {
 	// copying name
 	size_t lengthOfName = wcslen(oldInstance._name);
@@ -94,14 +95,18 @@ Window& Window::operator=(const Window& rhs)
 
 void Window::Swap(Window& other) noexcept
 {
-
 	using std::swap;
+
+	// swapping state
+	SetWindowLongPtrW(other._handle, GWLP_USERDATA, (LONG_PTR) this);
+	SetWindowLongPtrW(_handle, GWLP_USERDATA, (LONG_PTR) &other);
 
 	swap(_name, other._name);
 	swap(_handle, other._handle);
 }
 
-Window::Window(Window&& oldInstance) noexcept : Window::Window()
+Window::Window(Window&& oldInstance) noexcept : 
+	Window()
 {
 	Swap(oldInstance);
 }
@@ -159,7 +164,7 @@ LRESULT CALLBACK WndProcInit(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	// attached to window class.
 	if (msg == WM_NCCREATE)
 	{
-		const auto* const createStruct = reinterpret_cast<CREATESTRUCTW*>(lParam);
+   		const auto* const createStruct = reinterpret_cast<CREATESTRUCTW*>(lParam);
 		auto* const window = static_cast<Window*>(createStruct->lpCreateParams);
 
 		SetWindowLongPtrW(hWnd, GWLP_USERDATA, (LONG_PTR) window);

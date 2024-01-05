@@ -5,9 +5,12 @@ size_t Main()
 	MainWindow mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mainWindow.Show();
 
+	auto& keyboard = mainWindow.GetKeyboard();
+
 	MSG msg = { 0 };
 	while (mainWindow.PeekAndDispatchMessage(&msg))
-	{ 
+	{
+		keyboard.Clear();
 	}
 
 	size_t exitCode = (size_t) msg.wParam;

@@ -24,5 +24,6 @@ public:
 	/// Records the time lapse from last start.
 	/// </summary>
 	/// <returns>The lapsed time.</returns>
-	float Stop();
+	float Lapse();
+	void Reset();
 };

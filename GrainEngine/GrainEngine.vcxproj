@@ -157,6 +157,7 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="Stopwatch.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -167,6 +168,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Stopwatch.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

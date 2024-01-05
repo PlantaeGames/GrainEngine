@@ -7,27 +7,23 @@ Keyboard::Keyboard() :
 	_keysDown()
 {}
 
-void Keyboard::Add(const Key key, bool keyUp = false) noexcept
+void Keyboard::Add(const Key key, bool keyUp) noexcept
 {
 	if (keyUp)
 	{
-		if (GetKeyUp(key) == false)
+		if (!GetKeyUp(key) && GetKey(key))
+		{
 			_keysUp.push_back(key);
-
-		if (GetKey(key) == true)
 			Remove(_keys, key);
+		}
 
 		return;
-	}
-
-	if ((GetKeyDown(key) && GetKey(key)) == false)
-	{
-		_keysDown.push_back(key);
 	}
 
 	if (GetKey(key) == false)
 	{
 		_keys.push_back(key);
+		_keysDown.push_back(key);
 	}
 }
 

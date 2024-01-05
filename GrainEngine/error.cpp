@@ -41,7 +41,7 @@ std::string Error::What() const noexcept
 	message << "[Details]\n";
 	message << runtime_error::what();
 
-	return std::move(message.str());
+	return message.str();
 }
 
 void Error::Show() const noexcept
@@ -52,4 +52,9 @@ void Error::Show() const noexcept
 Error::~Error() noexcept
 {
 	delete _fileName;
+}
+
+void Error::Log(const char* message) noexcept
+{
+	OutputDebugStringA(message);
 }
