@@ -13,63 +13,126 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{912b113b-962d-48c0-a4e5-1d66094a0313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{4beb0a84-9533-456e-ade3-97d1b26ab8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Errors">
+      <UniqueIdentifier>{c0299dd2-56f1-473c-bf71-c68adb3e9b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{76cc5311-1943-410f-8015-95f64472fcee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Diagnostics">
+      <UniqueIdentifier>{bc29cbec-9816-4eac-bc7e-e174194a0060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{7010e611-4aaf-4fc9-b9b6-6ad5dfb5d809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{37e99ef2-b513-467e-a190-be828829fd13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Errors">
+      <UniqueIdentifier>{67f97087-5c29-4e88-bc81-3c90bfd71954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Diagnostics">
+      <UniqueIdentifier>{11ebc6db-3e29-4b35-8155-5ee4608cf1c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{6077741d-3971-4633-b2ef-04ee10879f5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Patterns">
+      <UniqueIdentifier>{75e2d737-d244-4a7c-9c4c-442c91537454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Structures">
+      <UniqueIdentifier>{5253b494-86c6-4d41-8ae6-e9926d16ebb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{0789ab07-ff37-44f2-a246-030140d24d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{fab9cf19-8c66-4ad8-bf24-1a7d92952171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Utilities\Random.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Error.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Patterns\Singleton.h">
+      <Filter>Header Files\Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="Stopwatch.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Structures\Point.h">
+      <Filter>Header Files\Structures</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Components\MainWindow.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Diagnostics\Stopwatch.h">
+      <Filter>Header Files\Diagnostics</Filter>
     </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Errors\Error.h">
+      <Filter>Header Files\Errors</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\Key.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\Keyboard.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Mouse.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Renderer.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Window.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Input.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputDevice.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Utilities\Random.cpp">
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Error.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Components\MainWindow.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Stopwatch.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Diagnostics\Stopwatch.cpp">
+      <Filter>Source Files\Diagnostics</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Errors\Error.cpp">
+      <Filter>Source Files\Errors</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\Keyboard.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\Mouse.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Graphics\Renderer.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Singleton.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Graphics\Window.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputDevice.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Input.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

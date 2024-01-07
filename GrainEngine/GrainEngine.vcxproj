@@ -82,6 +82,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -102,6 +103,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -122,6 +124,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,6 +145,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,26 +155,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Error.h" />
-    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Components\MainWindow.h" />
+    <ClInclude Include="Diagnostics\Stopwatch.h" />
+    <ClInclude Include="Errors\Error.h" />
+    <ClInclude Include="Graphics\Renderer.h" />
+    <ClInclude Include="Graphics\Window.h" />
+    <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Input\InputDevice.h" />
+    <ClInclude Include="Input\Key.h" />
+    <ClInclude Include="Input\Keyboard.h" />
+    <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="Random.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Stopwatch.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Patterns\Singleton.h" />
+    <ClInclude Include="Structures\Point.h" />
+    <ClInclude Include="Utilities\Random.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Error.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Components\Input.cpp" />
+    <ClCompile Include="Components\MainWindow.cpp" />
+    <ClCompile Include="Diagnostics\Stopwatch.cpp" />
+    <ClCompile Include="Errors\Error.cpp" />
+    <ClCompile Include="Graphics\Renderer.cpp" />
+    <ClCompile Include="Graphics\Window.cpp" />
+    <ClCompile Include="Input\InputDevice.cpp" />
+    <ClCompile Include="Input\Keyboard.cpp" />
+    <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="Random.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Singleton.cpp" />
-    <ClCompile Include="Stopwatch.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Utilities\Random.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

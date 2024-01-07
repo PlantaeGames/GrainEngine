@@ -1,36 +1,28 @@
 #include "Main.h"
 
-size_t Main()
+namespace GrainEngine
 {
-	MainWindow mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mainWindow.Show();
-
-	auto& keyboard = mainWindow.GetKeyboard();
-
-	MSG msg = { 0 };
-	while (mainWindow.PeekAndDispatchMessage(&msg))
+	size_t Main()
 	{
-		keyboard.Clear();
-	}
+		MainWindow mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		mainWindow.Show();
 
-	size_t exitCode = (size_t) msg.wParam;
-	return exitCode;
-}
+		auto stopwatch = Stopwatch();
+		float deltaTime = 0.0f;
 
-int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
-{
-	size_t returnCode = 0;
-	try
-	{
-		returnCode = Main();
+		MSG msg = { 0 };
+		while (mainWindow.PeekAndDispatchMessage(&msg))
+		{
+			stopwatch.Reset();
+			stopwatch.Start();
+
+			// other code here.
+
+			deltaTime = stopwatch.Lapse();
+			auto fps = (unsigned int)((1.0f / deltaTime));
+		}
+
+		size_t exitCode = (size_t)msg.wParam;
+		return exitCode;
 	}
-	catch (const Error& error)
-	{
-		error.Show();
-	}
-	catch (const std::exception& exception)
-	{
-		GENERATE_ERROR(exception.what()).Show();
-	}
-	return (int) returnCode;
 }
