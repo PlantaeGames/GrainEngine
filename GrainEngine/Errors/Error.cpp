@@ -56,8 +56,10 @@ namespace GrainEngine::Errors
 		delete _fileName;
 	}
 
-	void Error::Log(const char* message) noexcept
+	void Error::Log(const std::string& message) noexcept
 	{
-		OutputDebugStringA(message);
+#ifdef _DEBUG
+		DebugConsole::GetInstance().Print(message);
+#endif // _DEBUG
 	}
 }

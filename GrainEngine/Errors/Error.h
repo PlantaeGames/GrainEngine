@@ -7,6 +7,8 @@
 
 #include <windows.h>
 
+#include "DebugConsole.h"
+
 namespace GrainEngine::Errors
 {
 #define MEMORY_ALLOCATION_ERROR "Failed to allocate memory."
@@ -64,6 +66,6 @@ namespace GrainEngine::Errors
 		/// <param name="rhs">The object to move from.</param>
 		/// <returns>Moved value.</returns>
 		Error& operator=(Error&& rhs) = delete;
-		static void Log(const char* message) noexcept;
+		static void Log(const std::string& message) noexcept;
 	};
 }

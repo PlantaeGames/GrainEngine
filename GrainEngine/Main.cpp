@@ -32,7 +32,7 @@ namespace GrainEngine
 			if (InputManager::GetInstance().GetKeyDown(Key::Down) &&
 				InputManager::GetInstance().GetKeyDown(Key::Up))
 			{
-				THROW_ERROR("Test");
+				Error::Log("Test");
 			}
 			/// ...
 			///				///

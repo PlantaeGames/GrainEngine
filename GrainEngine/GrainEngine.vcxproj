@@ -158,6 +158,7 @@
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
     <ClInclude Include="Diagnostics\Stopwatch.h" />
+    <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Window.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
     <ClCompile Include="Diagnostics\Stopwatch.cpp" />
+    <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
