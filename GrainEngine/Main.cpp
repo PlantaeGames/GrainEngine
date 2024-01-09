@@ -22,18 +22,13 @@ namespace GrainEngine
 				// grabbing input
 				inputManager.Feed(&msg);
 			}
-			if	  (msg.message == WM_QUIT) break;
+			if (msg.message == WM_QUIT) break;
 
 			// engine code
 			stopwatch.Reset();
 			stopwatch.Start();
 
 			/// other code here.
-			if (InputManager::GetInstance().GetKeyDown(Key::Down) &&
-				InputManager::GetInstance().GetKeyDown(Key::Up))
-			{
-				Error::Log("Test");
-			}
 			/// ...
 			///				///
 
@@ -41,6 +36,8 @@ namespace GrainEngine
 
 			deltaTime = stopwatch.Lapse();
 			auto fps = (unsigned int)((1.0f / deltaTime));
+			Error::Log("FPS: " + std::to_string(fps));
+			Error::ResetLogCursor();
 			//				//
 		}
 

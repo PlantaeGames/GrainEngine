@@ -67,5 +67,6 @@ namespace GrainEngine::Errors
 		/// <returns>Moved value.</returns>
 		Error& operator=(Error&& rhs) = delete;
 		static void Log(const std::string& message) noexcept;
+		static void ResetLogCursor() noexcept;
 	};
 }

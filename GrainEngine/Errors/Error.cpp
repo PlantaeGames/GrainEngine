@@ -62,4 +62,11 @@ namespace GrainEngine::Errors
 		DebugConsole::GetInstance().Print(message);
 #endif // _DEBUG
 	}
+
+	void Error::ResetLogCursor() noexcept
+	{
+#ifdef _DEBUG
+		DebugConsole::GetInstance().ResetCursor();
+#endif // _DEBUG
+	}
 }
