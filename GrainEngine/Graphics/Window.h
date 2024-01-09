@@ -77,7 +77,7 @@ namespace GrainEngine::Graphics
 		/// </summary>
 		/// <param name="pMsg">Pointer to MSG structure to hold current message.</param>
 		/// <returns>If the quit is requested or not.</returns>
-		bool PeekAndDispatchMessage(MSG* pMsg) const noexcept;
+		virtual bool PeekAndDispatchMessage(MSG* pMsg) const noexcept;
 		/// <summary>
 		/// Changes the window state to visible.
 		/// </summary>

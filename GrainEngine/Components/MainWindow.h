@@ -16,6 +16,8 @@ namespace GrainEngine::Components
 		MainWindow& operator= (const MainWindow& newInstance) = delete;
 		MainWindow& operator= (MainWindow&& oldInstance) noexcept = delete;
 		~MainWindow() noexcept override = default;
+
+		bool PeekAndDispatchMessage(MSG* pMsg) const noexcept override;
 	private:
 		MainWindow() = default;
 		LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept override;
