@@ -11,13 +11,13 @@ namespace GrainEngine::Patterns
 		Singleton& operator= (const Singleton& otherInstance) = delete;
 		Singleton&& operator= (Singleton&& oldInstance) noexcept = delete;
 
-		static const T& GetInstance()
+		static T& GetInstance()
 		{
 			static T instance;
 			return instance;
 		}
 	protected:
-		Singleton() = default;
+		Singleton() noexcept = default;
 		virtual ~Singleton() noexcept = default;
 	};
 }

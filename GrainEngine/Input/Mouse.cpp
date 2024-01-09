@@ -17,6 +17,35 @@ namespace GrainEngine::Input
 		}
 	}
 
+	void Mouse::Feed(const MSG* const msg) noexcept
+	{
+		unsigned int message = (unsigned int)msg->message;
+		switch (message)
+		{
+		case WM_LBUTTONDOWN:
+			InputDevice::Add((Key)msg->wParam);
+			return;
+		case WM_LBUTTONUP:
+			InputDevice::Add((Key)msg->wParam, true);
+			return;
+		case WM_RBUTTONDOWN:
+			InputDevice::Add((Key)msg->wParam);
+			return;
+		case WM_RBUTTONUP:
+			InputDevice::Add((Key)msg->wParam, true);
+			return;
+		case WM_MBUTTONDOWN:
+			InputDevice::Add((Key)msg->wParam);
+			return;
+		case WM_MBUTTONUP:
+			InputDevice::Add((Key)msg->wParam, true);
+			return;
+
+		default:
+			return;
+		}
+	}
+
 	void Mouse::Update() noexcept
 	{
 		UpdateMousePosition();
@@ -26,11 +55,6 @@ namespace GrainEngine::Input
 	Point<int> Mouse::GetMousePosition() const noexcept
 	{
 		return _mousePosition;
-	}
-
-	void Mouse::Add(Key key, bool keyUp) noexcept
-	{
-		InputDevice::Add(key, keyUp);
 	}
 
 	bool Mouse::GetKey(Key key) const noexcept

@@ -93,11 +93,11 @@
     <ClInclude Include="Graphics\Window.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Input\Input.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Input\InputDevice.h">
       <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\InputManager.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +131,7 @@
     <ClCompile Include="Input\InputDevice.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Input.cpp">
+    <ClCompile Include="Components\InputManager.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>

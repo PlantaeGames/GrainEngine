@@ -52,11 +52,18 @@ namespace GrainEngine::Graphics
 
 	bool Window::PeekAndDispatchMessage(MSG* pMsg) const noexcept
 	{
-		PeekMessageW(pMsg, _handle, 0, 0, PM_REMOVE);
+		bool result = false;
+		result = PeekMessageW(pMsg, _handle, 0, 0, PM_REMOVE);
+
+		if (pMsg->message == WM_QUIT)
+		{
+			return result;
+		}
+
 		TranslateMessage(pMsg);
 		DispatchMessageW(pMsg);
 
-		return pMsg->message != WM_QUIT;
+		return result;
 	}
 
 	void Window::Show() const noexcept

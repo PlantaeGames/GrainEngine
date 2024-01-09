@@ -22,7 +22,7 @@ namespace GrainEngine::Input
 		Mouse& operator= (Mouse&& oldInstance) noexcept = delete;
 		~Mouse() noexcept override = default;
 
-		void Add(Key key, bool keyUp = false) noexcept override;
+		void Feed(const MSG* const msg) noexcept override;
 
 		bool GetKey(Key key) const noexcept override;
 		bool GetKeyDown(Key key) const noexcept override;

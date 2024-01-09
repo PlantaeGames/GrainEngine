@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <assert.h>
 #include <sstream>
+#include <string>
 
 #include <windows.h>
 

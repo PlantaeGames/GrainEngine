@@ -6,9 +6,20 @@ namespace GrainEngine::Input
 		InputDevice()
 	{}
 
-	void Keyboard::Add(Key key, bool keyUp) noexcept
+	void Keyboard::Feed(const MSG* const msg) noexcept
 	{
-		InputDevice::Add(key, keyUp);
+		unsigned int message = (unsigned int)msg->message;
+		switch (message)
+		{
+		case WM_KEYDOWN:
+			InputDevice::Add((Key) msg->wParam);
+			return;
+		case WM_KEYUP:
+			InputDevice::Add((Key)msg->wParam, true);
+			return;
+		default:
+			return;
+		}
 	}
 
 	bool Keyboard::GetKey(Key key) const noexcept

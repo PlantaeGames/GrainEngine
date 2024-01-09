@@ -3,8 +3,9 @@
 #include <Windows.h>
 
 #include "Components/MainWindow.h"
+#include "Components/InputManager.h"
 #include "Diagnostics/Stopwatch.h"
-#include "Components/Input.h"
+#include "Components/InputManager.h"
 #include "Errors/Error.h"
 
 namespace GrainEngine
