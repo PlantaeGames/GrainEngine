@@ -14,6 +14,7 @@ namespace GrainEngine::Input
 
 		// mouse
 		MouseRight = VK_RBUTTON,
-		MouseLeft = VK_LBUTTON
+		MouseLeft = VK_LBUTTON,
+		MouseMiddle = VK_MBUTTON
 	};
 }

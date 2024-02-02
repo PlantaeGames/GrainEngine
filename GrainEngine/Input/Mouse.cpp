@@ -27,28 +27,28 @@ namespace GrainEngine::Input
 		{
 		case WM_MOUSEMOVE:
 			UpdateMousePosition(msg->hwnd);
-			return;
+			break;
 		case WM_LBUTTONDOWN:
-			InputDevice::Add((Key)msg->wParam);
-			return;
+			InputDevice::Add(Key::MouseLeft);
+			break;
 		case WM_LBUTTONUP:
-			InputDevice::Add((Key)msg->wParam, true);
-			return;
+			InputDevice::Add(Key::MouseLeft, true);
+			break;
 		case WM_RBUTTONDOWN:
-			InputDevice::Add((Key)msg->wParam);
-			return;
+			InputDevice::Add(Key::MouseRight);
+			break;
 		case WM_RBUTTONUP:
-			InputDevice::Add((Key)msg->wParam, true);
-			return;
+			InputDevice::Add(Key::MouseRight, true);
+			break;
 		case WM_MBUTTONDOWN:
-			InputDevice::Add((Key)msg->wParam);
-			return;
+			InputDevice::Add(Key::MouseMiddle);
+			break;
 		case WM_MBUTTONUP:
 			InputDevice::Add((Key)msg->wParam, true);
-			return;
+			break;
 
 		default:
-			return;
+			break;
 		}
 	}
 

@@ -4,10 +4,7 @@ namespace GrainEngine::Components
 {
 	InputManager::InputManager() :
 		_inputDevices()
-	{
-		Register<Mouse>();
-		Register<Keyboard>();
-	}
+	{}
 
 	void InputManager::Feed(const MSG* const msg) noexcept
 	{

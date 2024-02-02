@@ -7,6 +7,10 @@ namespace GrainEngine
 		MainWindow mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		auto& inputManager = InputManager::GetInstance();
+		inputManager.RegisterDevice<Mouse>();
+		inputManager.RegisterDevice<Keyboard>();
+		const auto& mouseDevice = inputManager.GetDevice<Mouse>();
+		const auto& keyboadDevice = inputManager.GetDevice<Keyboard>();
 
 		auto stopwatch = Stopwatch();
 		float deltaTime = 0.0f;
@@ -17,6 +21,7 @@ namespace GrainEngine
 
 		while (true)
 		{
+			// engine code
 			while (mainWindow.PeekAndDispatchMessage(&msg))
 			{
 				// grabbing input
@@ -24,12 +29,10 @@ namespace GrainEngine
 			}
 			if (msg.message == WM_QUIT) break;
 
-			// engine code
 			stopwatch.Reset();
 			stopwatch.Start();
 
 			/// other code here.
-			//Error::Log(inputManager.)
 			/// ...
 			///				///
 

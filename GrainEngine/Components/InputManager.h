@@ -23,13 +23,7 @@ namespace GrainEngine::Components
 	class InputManager : public Singleton<InputManager>
 	{
 		friend Singleton;
-	private:
-		enum class KeyState
-		{
-			Up,
-			Down,
-			Hold
-		};
+
 	public:
 		InputManager(const InputManager& otherInstance) noexcept = delete;
 		InputManager(InputManager&& oldInstance) noexcept = delete;
@@ -40,16 +34,34 @@ namespace GrainEngine::Components
 
 		void Update() const noexcept;
 
+		template<typename t_InputDevice>
+		const t_InputDevice& GetDevice() const
+		{
+			return *static_cast<t_InputDevice*>(FindDevice<t_InputDevice>().get());
+		}
+
+		template<typename t_InputDevice>
+		void RegisterDevice() noexcept
+		{
+			AddDevice<t_InputDevice>();
+		}
+
+		template<typename t_InputDevice>
+		void UnRegisterDevice()
+		{
+			RemoveDevice<t_InputDevice>();
+		}
+
 	private:
 		InputManager();
 		~InputManager() noexcept override = default;
 
 		template<typename t_InputDevice>
-		const unique_ptr<t_InputDevice>& FindDevice() const
+		const unique_ptr<InputDevice>& FindDevice() const
 		{
 			for (const auto& inputDevice : _inputDevices)
 			{
-				if (dynamic_cast<t_InputDevice>(inputDevice.get()) == nullptr)
+				if (dynamic_cast<t_InputDevice*>(inputDevice.get()) == nullptr)
 					continue;
 
 				return inputDevice;
@@ -59,19 +71,13 @@ namespace GrainEngine::Components
 		}
 
 		template<typename t_InputDevice>
-		const t_InputDevice& GetDevice() const
-		{
-			return *FindDevice<t_InputDevice>();
-		}
-
-		template<typename t_InputDevice>
-		void Register() noexcept
+		void AddDevice() noexcept
 		{
 			_inputDevices.push_back(std::move(std::make_unique<t_InputDevice>()));
 		}
 
 		template<typename t_InputDevice>
-		void UnRegister()
+		void RemoveDevice()
 		{
 			_inputDevices.remove(FindDevice<t_InputDevice>());
 		}
