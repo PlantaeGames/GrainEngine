@@ -31,7 +31,7 @@ namespace GrainEngine::Input
 		void Update() noexcept override;
 		Point<int> GetMousePosition() const noexcept;
 	private:
-		void UpdateMousePosition() noexcept;
+		void UpdateMousePosition(const HWND _handle) noexcept;
 	private:
 		Point<int> _mousePosition;
 	};

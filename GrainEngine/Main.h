@@ -53,6 +53,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	}
 	catch (const std::exception& exception)
 	{
+
+		// SUS HERE
 		GENERATE_ERROR(exception.what()).Show();
 	}
 	return (int)returnCode;

@@ -37,15 +37,32 @@ namespace GrainEngine::Components
 		InputManager& operator= (InputManager&& oldInstance) noexcept = delete;
 
 		void Feed(const MSG* const msg) noexcept;
-		
-		bool GetKeyDown(const Key key) const noexcept;
-		bool GetKeyUp(const Key key) const noexcept;
-		bool GetKey(const Key key) const noexcept;
 
 		void Update() const noexcept;
+
 	private:
 		InputManager();
 		~InputManager() noexcept override = default;
+
+		template<typename t_InputDevice>
+		const unique_ptr<t_InputDevice>& FindDevice() const
+		{
+			for (const auto& inputDevice : _inputDevices)
+			{
+				if (dynamic_cast<t_InputDevice>(inputDevice.get()) == nullptr)
+					continue;
+
+				return inputDevice;
+			}
+
+			THROW_ERROR(INPUT_DEVICE_NOT_FOUND_ERROR);
+		}
+
+		template<typename t_InputDevice>
+		const t_InputDevice& GetDevice() const
+		{
+			return *FindDevice<t_InputDevice>();
+		}
 
 		template<typename t_InputDevice>
 		void Register() noexcept
@@ -56,19 +73,8 @@ namespace GrainEngine::Components
 		template<typename t_InputDevice>
 		void UnRegister()
 		{
-			for (const auto& inputDevice : _inputDevices)
-			{
-				if (dynamic_cast<t_InputDevice>(&inputDevice) == nullptr)
-					continue;
-
-				_inputDevices.remove(inputDevice);
-				return;
-			}
-
-			THROW_ERROR(INPUT_DEVICE_NOT_FOUND_ERROR);
+			_inputDevices.remove(FindDevice<t_InputDevice>());
 		}
-
-		bool GetInput(const Key key, const KeyState state) const noexcept;
 
 	private:
 		std::list<unique_ptr<InputDevice>> _inputDevices;

@@ -7,10 +7,13 @@ namespace GrainEngine::Input
 		_mousePosition()
 	{}
 
-	void Mouse::UpdateMousePosition() noexcept
+	void Mouse::UpdateMousePosition(const HWND _handle) noexcept
 	{
 		POINT point = { 0 };
-		if (GetCursorPos(&point))
+		if (GetCursorPos(&point) == false)
+			return;
+
+		if (ScreenToClient(_handle, &point))
 		{
 			_mousePosition.x = point.x;
 			_mousePosition.y = point.y;
@@ -22,6 +25,9 @@ namespace GrainEngine::Input
 		unsigned int message = (unsigned int)msg->message;
 		switch (message)
 		{
+		case WM_MOUSEMOVE:
+			UpdateMousePosition(msg->hwnd);
+			return;
 		case WM_LBUTTONDOWN:
 			InputDevice::Add((Key)msg->wParam);
 			return;
@@ -48,7 +54,6 @@ namespace GrainEngine::Input
 
 	void Mouse::Update() noexcept
 	{
-		UpdateMousePosition();
 		InputDevice::Clear();
 	}
 

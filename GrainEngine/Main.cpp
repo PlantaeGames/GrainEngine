@@ -29,6 +29,7 @@ namespace GrainEngine
 			stopwatch.Start();
 
 			/// other code here.
+			//Error::Log(inputManager.)
 			/// ...
 			///				///
 
