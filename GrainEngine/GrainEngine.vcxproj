@@ -162,7 +162,7 @@
     <ClInclude Include="Diagnostics\Stopwatch.h" />
     <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
-    <ClInclude Include="Graphics\Renderer.h" />
+    <ClInclude Include="Graphics\D3DRenderer.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\InputDevice.h" />
     <ClInclude Include="Input\Key.h" />
@@ -181,7 +181,7 @@
     <ClCompile Include="Diagnostics\Stopwatch.cpp" />
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
-    <ClCompile Include="Graphics\Renderer.cpp" />
+    <ClCompile Include="Graphics\D3DRenderer.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\InputDevice.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
