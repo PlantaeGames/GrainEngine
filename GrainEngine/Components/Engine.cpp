@@ -37,7 +37,7 @@ namespace GrainEngine::Components
 
 			if (mouse.GetKeyDown(Key::MouseRight))
 			{
-				Error::Log("Mouse Right Key Pressed.");
+				Error::Log(mouse.GetCursorPosition().ToString() + "\n");
 			}
 
 			if (keyboard.GetKeyDown(Key::Up))

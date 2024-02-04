@@ -4,7 +4,7 @@ namespace GrainEngine::Input
 {
 	Mouse::Mouse() :
 		InputDevice(),
-		_mousePosition()
+		_cursorPosition()
 	{}
 
 	void Mouse::UpdateMousePosition(const HWND _handle) noexcept
@@ -15,8 +15,8 @@ namespace GrainEngine::Input
 
 		if (ScreenToClient(_handle, &point))
 		{
-			_mousePosition.x = point.x;
-			_mousePosition.y = point.y;
+			_cursorPosition.x = point.x;
+			_cursorPosition.y = point.y;
 		}
 	}
 
@@ -57,9 +57,9 @@ namespace GrainEngine::Input
 		InputDevice::Clear();
 	}
 
-	Point<int> Mouse::GetMousePosition() const noexcept
+	Point<int> Mouse::GetCursorPosition() const noexcept
 	{
-		return _mousePosition;
+		return _cursorPosition;
 	}
 
 	bool Mouse::GetKey(Key key) const noexcept
