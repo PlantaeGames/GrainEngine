@@ -102,6 +102,12 @@
     <ClInclude Include="Errors\DebugConsole.h">
       <Filter>Header Files\Errors</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Engine.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Time.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -139,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="Errors\DebugConsole.cpp">
       <Filter>Source Files\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Engine.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Time.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

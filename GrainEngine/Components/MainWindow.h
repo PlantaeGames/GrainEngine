@@ -19,7 +19,7 @@ namespace GrainEngine::Components
 
 		bool PeekAndDispatchMessage(MSG* pMsg) const noexcept override;
 	private:
-		MainWindow() = default;
+		MainWindow() = delete;
 		LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept override;
 	};
 }

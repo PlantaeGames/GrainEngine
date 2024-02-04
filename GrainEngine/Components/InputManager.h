@@ -25,7 +25,7 @@ namespace GrainEngine::Components
 		friend Singleton;
 
 	public:
-		InputManager(const InputManager& otherInstance) noexcept = delete;
+		InputManager(const InputManager& otherInstance) = delete;
 		InputManager(InputManager&& oldInstance) noexcept = delete;
 		InputManager& operator= (const InputManager& otherInstance) = delete;
 		InputManager& operator= (InputManager&& oldInstance) noexcept = delete;

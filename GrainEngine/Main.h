@@ -1,31 +1,20 @@
 #pragma once
 
-#include <string>
-
 #include <Windows.h>
 
-#include "Components/MainWindow.h"
-#include "Components/InputManager.h"
-#include "Diagnostics/Stopwatch.h"
-#include "Components/InputManager.h"
+#include "Components/Engine.h"
 #include "Errors/Error.h"
 
 namespace GrainEngine
 {
-#define WINDOW_NAME L"GrainEngine"
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-
 	using namespace Components;
-	using namespace Input;
-	using namespace Diagnostics;
 	using namespace Errors;
 
 	/// <summary>
 	/// The Main function of the engine.
 	/// </summary>
 	/// <returns>Exit Code.</returns>
-	size_t Main();
+	int Main();
 }
 
 /// <summary>
@@ -41,7 +30,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	using namespace GrainEngine;
 	using namespace Errors;
 
-	size_t returnCode = 0;
+	int returnCode = 0;
 	try
 	{
 		// starting engine.
@@ -55,5 +44,5 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		GENERATE_ERROR(exception.what()).Show();
 	}
-	return (int)returnCode;
+	return returnCode;
 }

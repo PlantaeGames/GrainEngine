@@ -155,8 +155,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Engine.h" />
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
+    <ClInclude Include="Components\Time.h" />
     <ClInclude Include="Diagnostics\Stopwatch.h" />
     <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
@@ -172,8 +174,10 @@
     <ClInclude Include="Utilities\Random.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Engine.cpp" />
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
+    <ClCompile Include="Components\Time.cpp" />
     <ClCompile Include="Diagnostics\Stopwatch.cpp" />
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
