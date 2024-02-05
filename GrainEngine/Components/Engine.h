@@ -5,6 +5,7 @@
 #include "Components/Time.h"
 #include "Errors/Error.h"
 #include "Patterns/Singleton.h"
+#include "Graphics/D3DRenderer.h"
 
 namespace GrainEngine::Components
 {
@@ -14,6 +15,7 @@ namespace GrainEngine::Components
 
 	using namespace Patterns;
 	using namespace Errors;
+	using namespace Graphics;
 
 	class Engine : public Singleton<Engine>
 	{
@@ -21,6 +23,7 @@ namespace GrainEngine::Components
 
 	private:
 		MainWindow _mainWindow;
+		D3DRenderer _renderer;
 
 		bool _running = false;
 		unsigned int _exitCode = 0;

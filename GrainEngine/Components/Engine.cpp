@@ -17,7 +17,9 @@ namespace GrainEngine::Components
 
 		while (_running)
 		{
-			// engine code
+			///  -----------------
+			///	  | ENGINE CODE |
+			///  -----------------
 			float deltaTime = time.Tick();
 			inputManager.Update();
 
@@ -44,9 +46,14 @@ namespace GrainEngine::Components
 			{
 				Stop(0);
 			}
+
+			///  -----------------
+			///	  | ENGINE CODE |
+			///  -----------------
+			_renderer.Present();
 		}
 
-		Error::Log("Engine Stoped.");
+		Error::Log("Engine Stoped.\n");
 
 		return _exitCode;
 	}
@@ -61,8 +68,9 @@ namespace GrainEngine::Components
 		return inputManager;
 	}
 
-	Engine::Engine()
-		: _mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
+	Engine::Engine(): 
+		_mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT),
+		_renderer(_mainWindow.GetHandle())		
 	{}
 
 	unsigned int Engine::Start() noexcept
@@ -70,7 +78,7 @@ namespace GrainEngine::Components
 		assert(_running == false);
 
 		_running = true;
-		Error::Log("Engine Started.");
+		Error::Log("Engine Started.\n");
 
 		unsigned int exitCode = Run();
 
@@ -84,6 +92,6 @@ namespace GrainEngine::Components
 		_running = false;
 		_exitCode = exitCode;
 
-		Error::Log("Stoping Engine.");
+		Error::Log("Stoping Engine.\n");
 	}
 }

@@ -87,6 +87,11 @@ namespace GrainEngine::Graphics
 		/// </summary>
 		void Hide() const noexcept;
 		/// <summary>
+		/// Obtains Handle of the Window.
+		/// </summary>
+		/// <returns>Handle of the window.</returns>
+		const HWND GetHandle() const noexcept;
+		/// <summary>
 		/// Assignment operator for copying.
 		/// </summary>
 		/// <param name="rhs">Assign to.</param>

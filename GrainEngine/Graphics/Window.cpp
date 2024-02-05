@@ -210,6 +210,11 @@ namespace GrainEngine::Graphics
 		_hInstance = hModule;
 	}
 
+	const HWND Window::GetHandle() const noexcept
+	{
+		return _handle;
+	}
+
 	const wchar_t* Window::WindowClass::GetName() const noexcept
 	{
 		return _name;
