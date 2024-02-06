@@ -17,6 +17,20 @@ namespace GrainEngine::Errors
 #define GENERATE_ERROR(message) Error(message, __FILE__, __LINE__)
 #define THROW_ERROR(message) throw GENERATE_ERROR(message);
 
+#define THROW_ERROR_INFO(errorCode)							\
+	{														\
+		TCHAR pMessageBuffer[256] = { 0 }; 					\
+		FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,			\
+			nullptr,										\
+			errorCode,										\
+			0,												\
+			(LPSTR) pMessageBuffer, 256,					\
+			nullptr);										\
+		THROW_ERROR((char*) pMessageBuffer);				\
+	}														\
+
+#define THROW_LAST_ERROR() THROW_ERROR_INFO(GetLastError())
+
 	/// <summary>
 	/// Error showing pop up.
 	/// </summary>
@@ -30,7 +44,7 @@ namespace GrainEngine::Errors
 		/// Default Contructor.
 		/// </summary>
 		/// <param name="message">The message to show on pop up.</param>
-		Error(const char* message, const char* fileName, unsigned int lineNumber);
+		Error(const std::string& message, const char* fileName, unsigned int lineNumber);
 		/// <summary>
 		/// Deleted copy constructor.
 		/// </summary>

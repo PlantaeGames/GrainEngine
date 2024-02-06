@@ -2,10 +2,10 @@
 
 namespace GrainEngine::Errors
 {
-	Error::Error(const char* message, const char* fileName, unsigned int lineNumber) :
+	Error::Error(const std::string& message, const char* fileName, unsigned int lineNumber) :
 		std::runtime_error(message)
 	{
-		assert(strlen(message) > 0);
+		assert(message.length() > 0);
 
 		unsigned int lengthOfFileName = (unsigned int)strlen(fileName);
 		assert(lengthOfFileName > 0);
@@ -33,14 +33,14 @@ namespace GrainEngine::Errors
 	std::string Error::What() const noexcept
 	{
 		std::stringstream message;
-		message << "[RUNTIME ERROR]\n\n";
-		message << "[FileName]\n\t";
+		message << "[ RUNTIME ERROR ]\n\n";
+		message << "[ FileName ]\t";
 		message << _fileName;
 		message << "\n";
 		message << "Line Number: ";
 		message << _lineNumber;
 		message << "\n\n";
-		message << "[Details]\n";
+		message << "[ Details ]\n";
 		message << runtime_error::what();
 
 		return message.str();
