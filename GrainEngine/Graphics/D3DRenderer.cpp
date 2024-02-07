@@ -2,7 +2,7 @@
 
 namespace GrainEngine::Graphics
 {
-	void D3DRenderer::Present() const
+	void D3DRenderer::Present()
 	{
 		THROW_DERROR(_pSwapchain->Present(1u, 0u));
 	}
@@ -47,22 +47,16 @@ namespace GrainEngine::Graphics
 			&_pDeviceContext));
 
 		Error::Log("D3D 11 Device and Swapchain Created.\n");
-	}
 
-	D3DRenderer::~D3DRenderer() noexcept
-	{
-		if (_pSwapchain != nullptr)
-		{
-			_pSwapchain->Release();
-		}
-		if (_pDeviceContext != nullptr)
-		{
-			_pDeviceContext->Release();
-		}
-		if (_pDevice != nullptr)
-		{
-			_pDevice->Release();
-		}
+		// getting back buffer render target
+		ComPtr<ID3D11Resource> pBackBuffer {};
+		THROW_DERROR(_pSwapchain->GetBuffer(0, __uuidof(ID3D11Resource), &pBackBuffer));
+		THROW_DERROR(_pDevice->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &_pBackTarget));
+
+		Error::Log("Clearing Screen.\n");
+
+		float clearColor[] { 0.0f, 0.5f, 0.0f, 1.0f };
+		ClearBackBuffer(clearColor);
 	}
 
 	std::vector<std::string> D3DRenderer::DXGIInfoQueue::GetMessages() const
@@ -116,15 +110,6 @@ namespace GrainEngine::Graphics
 			THROW_LAST_ERROR();
 		}
 
-		THROW_DERROR_NO_INFO(DxgiGetDebugInterface(__uuidof(IDXGIInfoQueue), 
-				reinterpret_cast<void**>(&_pInfoQueue)));
-	}
-
-	D3DRenderer::DXGIInfoQueue::~DXGIInfoQueue() noexcept
-	{
-		if (_pInfoQueue != nullptr)
-		{
-			_pInfoQueue->Release();
-		}
+		THROW_DERROR_NO_INFO(DxgiGetDebugInterface(__uuidof(IDXGIInfoQueue), &_pInfoQueue));
 	}
 }
