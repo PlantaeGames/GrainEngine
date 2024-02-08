@@ -37,20 +37,12 @@ namespace GrainEngine::Components
 			/// | OTHER CODE HERE |
 			///  -----------------
 
-			if (mouse.GetKeyDown(Key::MouseRight))
-			{
-				Error::Log(mouse.GetCursorPosition().ToString() + "\n");
-				_renderer.DrawTriangle();
-			}
-
-			if (keyboard.GetKeyDown(Key::Up))
-			{
-				Stop(0);
-			}
 
 			///  -----------------
 			///	  | ENGINE CODE |
 			///  -----------------
+			
+			_renderer.DrawTriangle();
 			_renderer.Present();
 		}
 

@@ -111,8 +111,8 @@
     <ClInclude Include="Components\Time.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Vertex.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Structures\Vertex.h">
+      <Filter>Header Files\Structures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

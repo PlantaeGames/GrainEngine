@@ -2,13 +2,26 @@
 
 namespace GrainEngine::Graphics
 {
+	void D3DRenderer::LoadShader(const std::string& name, ID3DBlob** ppShaderBin) const
+	{
+		assert(name.length() > 0);
+
+		std::wstringstream wideName;
+		wideName << name.c_str();
+
+		THROW_DERROR(D3DReadFileToBlob(wideName.str().c_str(), ppShaderBin));
+	}
+
 	void D3DRenderer::DrawTriangle()
 	{
 		const Vertex vertices[] = {
-			{ 1.0f, 0.0f },
-			{ 0.5f, 0.5f },
-			{ 1.0f, 0.0f }
+			{ 0.0f, 0.5f },
+			{ 0.5f, -0.5f },
+			{ -0.5f, -0.5f }
 		};
+
+		// creating vertex buffer
+		ComPtr<ID3D11Buffer> pVertexBuffer;
 
 		D3D11_BUFFER_DESC bufferDesc = { 0 };
 		bufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -21,14 +34,68 @@ namespace GrainEngine::Graphics
 		D3D11_SUBRESOURCE_DATA verticesData = { 0 };
 		verticesData.pSysMem = vertices;
 
-		THROW_DERROR(_pDevice->CreateBuffer(&bufferDesc, &verticesData, &_pVertexBuffer));
+		THROW_DERROR(_pDevice->CreateBuffer(&bufferDesc, &verticesData, &pVertexBuffer));
 
 		const UINT strides = sizeof(Vertex);
 		const UINT offset = 0u;
 
-		_pDeviceContext->IASetVertexBuffers(0u, 1u, _pVertexBuffer.GetAddressOf(), &strides, &offset);
+		// binding vertex buffer
+		_pDeviceContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &strides, &offset);
+
+		// binding vertex shader
+		ComPtr<ID3D11VertexShader> pVertexShader;
+		ComPtr<ID3DBlob> pVertexShaderBin;
+
+		LoadShader("Shaders\\Vertex.cso", &pVertexShaderBin);
+
+		THROW_DERROR(_pDevice->CreateVertexShader(pVertexShaderBin->GetBufferPointer(),
+			pVertexShaderBin->GetBufferSize(), nullptr, &pVertexShader));
+		
+		_pDeviceContext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
+
+		// binding pixel shader
+		ComPtr<ID3D11PixelShader> pPixelShader;
+		ComPtr<ID3DBlob> pPixelShaderBin;
+
+		LoadShader("Shaders\\Pixel.cso", &pPixelShaderBin);
+
+		THROW_DERROR(_pDevice->CreatePixelShader(pPixelShaderBin->GetBufferPointer(),
+			pPixelShaderBin->GetBufferSize(), nullptr, &pPixelShader));
+
+		_pDeviceContext->PSSetShader(pPixelShader.Get(), nullptr, 0);
+
+		ComPtr<ID3D11InputLayout> pInputLayout;
+
+		const D3D11_INPUT_ELEMENT_DESC inputElementDescs[]
+		{
+			{ "Position", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA }
+		};
+
+		THROW_DERROR(_pDevice->CreateInputLayout(inputElementDescs, 1u, 
+			pVertexShaderBin->GetBufferPointer(), pVertexShaderBin->GetBufferSize(),
+			&pInputLayout));
+
+		_pDeviceContext->IASetInputLayout(pInputLayout.Get());
+
+		// binding render target / back buffer
+		_pDeviceContext->OMSetRenderTargets(1u, _pBackTarget.GetAddressOf(), nullptr);
+
+		// setting input assembler
+		_pDeviceContext->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		// binding view port
+		D3D11_VIEWPORT viewPort = { 0 };
+		viewPort.Height = 600.0f;
+		viewPort.Width = 800.0f;
+		viewPort.MinDepth = 0.0f;
+		viewPort.MaxDepth = 1.0f;
+		viewPort.TopLeftX = 0.0f;
+		viewPort.TopLeftY = 0.0f;
+		_pDeviceContext->RSSetViewports(1u, &viewPort);
 
 		CHECK_DERROR(_pDeviceContext->Draw(3u, 0u));
+
+		Error::Log("Triangle Rendered\n");
 	}
 
 	void D3DRenderer::Present()
@@ -89,7 +156,7 @@ namespace GrainEngine::Graphics
 
 		Error::Log("Clearing Screen.\n");
 
-		float clearColor[] { 0.0f, 0.5f, 0.0f, 1.0f };
+		float clearColor[] { 0.0f, 1.0f, 0.0f, 1.0f };
 		ClearBackBuffer(clearColor);
 
 	}

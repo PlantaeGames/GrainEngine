@@ -10,10 +10,12 @@
 
 #include <d3d11.h>
 #include <dxgi.h>
+#include <d3dcompiler.h>
 
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "dxgi.lib")
 #pragma comment (lib, "dxguid.lib")
+#pragma comment (lib, "D3DCompiler.lib")
 
 #ifdef _DEBUG
 #include <dxgidebug.h>
@@ -24,7 +26,7 @@
 #include "Patterns/Singleton.h"
 #include "Errors/Error.h"
 
-#include "Vertex.h"
+#include "Structures/Vertex.h"
 
 namespace GrainEngine::Graphics
 {
@@ -126,13 +128,13 @@ namespace GrainEngine::Graphics
 	private:
 		void ClearBackBuffer(const float color[4]) const noexcept;
 
+		void LoadShader(const std::string& name, ID3DBlob** ppShaderBin) const;
+
 	private:
 		ComPtr<ID3D11Device> _pDevice;
 		ComPtr<ID3D11DeviceContext> _pDeviceContext;
 		ComPtr<IDXGISwapChain> _pSwapchain;
 		ComPtr<ID3D11RenderTargetView> _pBackTarget;
-
-		ComPtr<ID3D11Buffer> _pVertexBuffer;
 
 #ifdef _DEBUG
 		mutable DXGIInfoQueue _infoQueue;
