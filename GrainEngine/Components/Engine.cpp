@@ -2,7 +2,7 @@
 
 namespace GrainEngine::Components
 {
-	unsigned int Engine::Run() noexcept
+	unsigned int Engine::Run()
 	{
 		_mainWindow.Show();
 
@@ -40,6 +40,7 @@ namespace GrainEngine::Components
 			if (mouse.GetKeyDown(Key::MouseRight))
 			{
 				Error::Log(mouse.GetCursorPosition().ToString() + "\n");
+				_renderer.DrawTriangle();
 			}
 
 			if (keyboard.GetKeyDown(Key::Up))
@@ -73,7 +74,7 @@ namespace GrainEngine::Components
 		_renderer(_mainWindow.GetHandle())		
 	{}
 
-	unsigned int Engine::Start() noexcept
+	unsigned int Engine::Start()
 	{
 		assert(_running == false);
 

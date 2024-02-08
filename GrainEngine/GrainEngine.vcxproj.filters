@@ -55,6 +55,9 @@
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{fab9cf19-8c66-4ad8-bf24-1a7d92952171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{76d9762d-b767-4717-ae7d-ceceff84c94d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -108,6 +111,9 @@
     <ClInclude Include="Components\Time.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Vertex.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -152,5 +158,13 @@
     <ClCompile Include="Components\Time.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\Vertex.hlsl">
+      <Filter>Source Files\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\Pixel.hlsl">
+      <Filter>Source Files\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

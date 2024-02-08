@@ -24,35 +24,60 @@
 #include "Patterns/Singleton.h"
 #include "Errors/Error.h"
 
+#include "Vertex.h"
+
 namespace GrainEngine::Graphics
 {
 #define THROW_DERROR_NO_INFO(hResult) if((hResult == S_OK || hResult == S_FALSE) == false) { THROW_ERROR_INFO(hResult) }
 
 #ifdef _DEBUG
+
+#define THROW_DERROR_INFO()									\
+	{														\
+		TCHAR pMessageBuffer[256] = { 0 }; 					\
+		FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,			\
+			nullptr,										\
+			hResult,										\
+			0,												\
+			(LPSTR)pMessageBuffer, 256,						\
+			nullptr);										\
+															\
+		std::vector<std::string> infoMessages = _infoQueue.GetMessages();	\
+		std::stringstream message;							\
+		message << (char*)pMessageBuffer;					\
+		for (const std::string& infoMessage : infoMessages)	\
+			message << infoMessage;							\
+		THROW_ERROR(message.str());							\
+	}														\
+
 #define THROW_DERROR(function)									\
 	{															\
-	_infoQueue.Set();											\
+		_infoQueue.Set();										\
 		HRESULT hResult = function;								\
-		if (hResult != S_OK)									\
+		if ((hResult == S_OK || hResult == S_FALSE) == false)	\
 		{														\
-			TCHAR pMessageBuffer[256] = { 0 }; 					\
-			FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,			\
-				nullptr,										\
-				hResult,										\
-				0,												\
-				(LPSTR)pMessageBuffer, 256,						\
-				nullptr);										\
-																\
-			std::vector<std::string> infoMessages = _infoQueue.GetMessages();	\
-			std::stringstream message;							\
-			message << (char*)pMessageBuffer;					\
-			for (const std::string& infoMessage : infoMessages)	\
-				message << infoMessage;							\
-				THROW_ERROR(message.str());						\
+			THROW_DERROR_INFO();								\
 		}														\
 	}
+
+#define CHECK_DERROR(function)									\
+	{															\
+		_infoQueue.Set();										\
+		function;												\
+		HRESULT hResult = S_FALSE;								\
+		if (_infoQueue.CheckMessages())							\
+		{														\
+			THROW_DERROR_INFO();								\
+		}														\
+	}
+
 #else
-#define CHECK_DERROR(function) CHECK_DERROR_NO_DETAIL(function)
+
+#define THROW_DERROR(function) THROW_DERROR_NO_INFO(function)
+
+#define CHECK_DERROR_NO_DEBUG(function) function
+#define CHECK_DERROR(function) CHECK_DERROR_NO_DEBUG(function)
+
 #endif
 
 	using Microsoft::WRL::ComPtr;
@@ -63,6 +88,7 @@ namespace GrainEngine::Graphics
 	class D3DRenderer
 	{
 	private:
+#ifdef _DEBUG
 		class DXGIInfoQueue
 		{
 		private:
@@ -81,7 +107,9 @@ namespace GrainEngine::Graphics
 
 			void Set() noexcept;
 			std::vector<std::string> GetMessages() const;
+			bool CheckMessages() const noexcept;
 		};
+#endif
 	public:
 		D3DRenderer(HWND hWnd);
 
@@ -93,12 +121,10 @@ namespace GrainEngine::Graphics
 		~D3DRenderer() noexcept = default;
 
 		void Present();
+		void DrawTriangle();
 
 	private:
-		void ClearBackBuffer(float color[4])
-		{
-			_pDeviceContext->ClearRenderTargetView(_pBackTarget.Get(), color);
-		}
+		void ClearBackBuffer(const float color[4]) const noexcept;
 
 	private:
 		ComPtr<ID3D11Device> _pDevice;
@@ -106,8 +132,10 @@ namespace GrainEngine::Graphics
 		ComPtr<IDXGISwapChain> _pSwapchain;
 		ComPtr<ID3D11RenderTargetView> _pBackTarget;
 
+		ComPtr<ID3D11Buffer> _pVertexBuffer;
+
 #ifdef _DEBUG
-		DXGIInfoQueue _infoQueue;
+		mutable DXGIInfoQueue _infoQueue;
 #endif
 	};
 }

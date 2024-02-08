@@ -34,14 +34,14 @@ namespace GrainEngine::Components
 		Engine& operator= (const Engine& otherInstance) = delete;
 		Engine& operator= (Engine&& oldInstance) noexcept = delete;
 
-		unsigned int Start() noexcept;
+		unsigned int Start();
 		void Stop(unsigned int exitCode) noexcept;
 
 	private:
 		Engine();
 		~Engine() noexcept override = default;
 
-		unsigned int Run() noexcept;
+		unsigned int Run();
 		InputManager& InitializeInput() const noexcept;
 	};
 }

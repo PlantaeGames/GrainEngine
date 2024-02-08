@@ -2,9 +2,43 @@
 
 namespace GrainEngine::Graphics
 {
+	void D3DRenderer::DrawTriangle()
+	{
+		const Vertex vertices[] = {
+			{ 1.0f, 0.0f },
+			{ 0.5f, 0.5f },
+			{ 1.0f, 0.0f }
+		};
+
+		D3D11_BUFFER_DESC bufferDesc = { 0 };
+		bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+		bufferDesc.ByteWidth = sizeof(vertices);
+		bufferDesc.StructureByteStride = sizeof(Vertex);
+		bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		bufferDesc.CPUAccessFlags = 0u;
+		bufferDesc.MiscFlags = 0u;
+
+		D3D11_SUBRESOURCE_DATA verticesData = { 0 };
+		verticesData.pSysMem = vertices;
+
+		THROW_DERROR(_pDevice->CreateBuffer(&bufferDesc, &verticesData, &_pVertexBuffer));
+
+		const UINT strides = sizeof(Vertex);
+		const UINT offset = 0u;
+
+		_pDeviceContext->IASetVertexBuffers(0u, 1u, _pVertexBuffer.GetAddressOf(), &strides, &offset);
+
+		CHECK_DERROR(_pDeviceContext->Draw(3u, 0u));
+	}
+
 	void D3DRenderer::Present()
 	{
 		THROW_DERROR(_pSwapchain->Present(1u, 0u));
+	}
+
+	void D3DRenderer::ClearBackBuffer(const float color[4]) const noexcept
+	{
+		_pDeviceContext->ClearRenderTargetView(_pBackTarget.Get(), color);
 	}
 
 	D3DRenderer::D3DRenderer(HWND hWnd)
@@ -57,6 +91,13 @@ namespace GrainEngine::Graphics
 
 		float clearColor[] { 0.0f, 0.5f, 0.0f, 1.0f };
 		ClearBackBuffer(clearColor);
+
+	}
+#ifdef _DEBUG
+	bool D3DRenderer::DXGIInfoQueue::CheckMessages() const noexcept
+	{
+		unsigned long long currentIndex = _pInfoQueue->GetNumStoredMessages(DXGI_DEBUG_ALL);
+		return _lastMessageIndex - currentIndex > 0;
 	}
 
 	std::vector<std::string> D3DRenderer::DXGIInfoQueue::GetMessages() const
@@ -81,7 +122,7 @@ namespace GrainEngine::Graphics
 
 			THROW_DERROR_NO_INFO(_pInfoQueue->GetMessage(DXGI_DEBUG_ALL, i, message, &len));
 
-			messages.emplace_back(message->pDescription);
+			messages.emplace_back(std::string(message->pDescription) + "\n");
 		}
 
 		return messages;
@@ -112,4 +153,5 @@ namespace GrainEngine::Graphics
 
 		THROW_DERROR_NO_INFO(DxgiGetDebugInterface(__uuidof(IDXGIInfoQueue), &_pInfoQueue));
 	}
+#endif
 }

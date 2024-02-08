@@ -44,5 +44,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		GENERATE_ERROR(exception.what()).Show();
 	}
+	catch (...)
+	{
+		Error::Log("Some UnExpected Happened.");
+	}
 	return returnCode;
 }
