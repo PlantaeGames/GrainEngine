@@ -1,5 +1,3 @@
-lok.exe
-
 **/Debug
 **/x64
 
@@ -9,6 +7,7 @@ lok.exe
 *.user
 *.userosscache
 *.sln.docstates
+*.cso
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

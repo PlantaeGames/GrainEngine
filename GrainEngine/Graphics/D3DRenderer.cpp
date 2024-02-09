@@ -94,8 +94,6 @@ namespace GrainEngine::Graphics
 		_pDeviceContext->RSSetViewports(1u, &viewPort);
 
 		CHECK_DERROR(_pDeviceContext->Draw(3u, 0u));
-
-		Error::Log("Triangle Rendered\n");
 	}
 
 	void D3DRenderer::Present()

@@ -44,6 +44,8 @@ namespace GrainEngine::Components
 			
 			_renderer.DrawTriangle();
 			_renderer.Present();
+
+			Error::Log("FPS: " + std::to_string((int) (1 / deltaTime)) + " \n");
 		}
 
 		Error::Log("Engine Stoped.\n");
