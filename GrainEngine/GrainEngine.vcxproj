@@ -171,39 +171,63 @@
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
     <ClInclude Include="Components\Time.h" />
+    <ClInclude Include="Graphics\D3D\D3DTransformer.h" />
+    <ClInclude Include="Graphics\D3D\D3DShaderLoader.h" />
+    <ClInclude Include="Graphics\D3D\D3DError.h" />
     <ClInclude Include="Diagnostics\Stopwatch.h" />
+    <ClInclude Include="ECS\Entity.h" />
     <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
-    <ClInclude Include="Graphics\D3DRenderer.h" />
+    <ClInclude Include="Graphics\D3D\D3DRenderer.h" />
     <ClInclude Include="Graphics\Window.h" />
+    <ClInclude Include="ECS\IComponent.h" />
     <ClInclude Include="Input\InputDevice.h" />
     <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Input\Keyboard.h" />
     <ClInclude Include="Input\Mouse.h" />
+    <ClInclude Include="Graphics\IPipelineComponent.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Graphics\Material.h" />
     <ClInclude Include="Patterns\Singleton.h" />
+    <ClInclude Include="Graphics\Renderer.h" />
+    <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
     <ClInclude Include="Structures\Vertex.h" />
     <ClInclude Include="Utilities\Random.h" />
+    <ClInclude Include="ECS\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Engine.cpp" />
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
     <ClCompile Include="Components\Time.cpp" />
+    <ClCompile Include="Graphics\D3D\D3DTransformer.cpp" />
+    <ClCompile Include="Graphics\D3D\D3DShaderLoader.cpp" />
+    <ClCompile Include="Graphics\D3D\D3DError.cpp" />
     <ClCompile Include="Diagnostics\Stopwatch.cpp" />
+    <ClCompile Include="ECS\Entity.cpp" />
+    <ClCompile Include="ECS\IComponent.cpp" />
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
-    <ClCompile Include="Graphics\D3DRenderer.cpp" />
+    <ClCompile Include="Graphics\D3D\D3DRenderer.cpp" />
+    <ClCompile Include="Graphics\ITransformer.h" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\InputDevice.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
+    <ClCompile Include="Graphics\IPipelineComponent.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Graphics\Renderer.cpp" />
+    <ClCompile Include="Graphics\Material.cpp" />
+    <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\IShaderLoader.cpp" />
+    <ClCompile Include="Structures\Collection.h" />
     <ClCompile Include="Utilities\Random.cpp" />
+    <ClCompile Include="ECS\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders\Pixel.hlsl">
+    <FxCompile Include="Shaders\Default\Pixel.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
@@ -213,7 +237,7 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(RelativeDir)%(Filename).cso</ObjectFileOutput>
     </FxCompile>
-    <FxCompile Include="Shaders\Vertex.hlsl">
+    <FxCompile Include="Shaders\Default\Vertex.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
