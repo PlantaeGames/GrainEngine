@@ -194,6 +194,7 @@
     <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
     <ClInclude Include="Structures\Vertex.h" />
+    <ClInclude Include="ECS\Components\Transform.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="ECS\World.h" />
   </ItemGroup>
@@ -207,7 +208,6 @@
     <ClCompile Include="Graphics\D3D\D3DError.cpp" />
     <ClCompile Include="Diagnostics\Stopwatch.cpp" />
     <ClCompile Include="ECS\Entity.cpp" />
-    <ClCompile Include="ECS\IComponent.cpp" />
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
     <ClCompile Include="Graphics\D3D\D3DRenderer.cpp" />
@@ -223,6 +223,7 @@
     <ClCompile Include="Graphics\Shader.cpp" />
     <ClCompile Include="Graphics\IShaderLoader.cpp" />
     <ClCompile Include="Structures\Collection.h" />
+    <ClCompile Include="ECS\Components\Transform.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="ECS\World.cpp" />
   </ItemGroup>
