@@ -1,8 +1,7 @@
 #pragma once
 
-#include <memory>
-
 #include "Entity.h"
+#include "RefPtr.h"
 
 namespace GrainEngine::ECS
 {
@@ -18,10 +17,9 @@ namespace GrainEngine::ECS
 		IComponent& operator= (IComponent&& oldInstance) noexcept = default;
 
 	protected:
-		IComponent(std::weak_ptr<Entity>&& pEntity)
-		{
-			_pEntity = pEntity;
-		}
+		IComponent(const Entity& pEntity) :
+			_pEntity(&pEntity)
+		{}
 
 		virtual void Awake() {}
 		virtual void Start() {}
@@ -29,6 +27,6 @@ namespace GrainEngine::ECS
 		virtual void End() {}
 
 	protected:
-		std::weak_ptr<Entity> _pEntity;
+		RefPtr<Entity> _pEntity;
 	};
 }

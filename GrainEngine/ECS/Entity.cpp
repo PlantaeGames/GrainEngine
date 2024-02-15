@@ -5,6 +5,6 @@ namespace GrainEngine::ECS
 	Entity::Entity() :
 		_pComponents()
 	{
-		_pComponents.push(std::move(std::make_shared<Transform>(std::weak_ptr<Entity>(this))));
+		_pComponents.push(std::move(std::make_shared<Transform>(*this)));
 	}
 }

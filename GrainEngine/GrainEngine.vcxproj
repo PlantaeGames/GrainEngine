@@ -193,6 +193,7 @@
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
+    <ClInclude Include="ECS\RefPtr.h" />
     <ClInclude Include="Structures\Vertex.h" />
     <ClInclude Include="ECS\Components\Transform.h" />
     <ClInclude Include="Utilities\Random.h" />
