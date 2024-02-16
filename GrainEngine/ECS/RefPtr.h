@@ -42,10 +42,7 @@ public:
 private:
 	void Swap(RefPtr<T>& otherInstance)
 	{
-		auto temp = _ptr;
-		_ptr = otherInstance._ptr;
-
-		otherInstance->_ptr = temp;
+		std::swap(_ptr, otherInstance._ptr);
 	}
 
 private:
