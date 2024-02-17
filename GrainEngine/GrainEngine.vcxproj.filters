@@ -156,10 +156,10 @@
     <ClInclude Include="ECS\GarbageCollector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\SmartObject.h">
+    <ClInclude Include="ECS\ManagedObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\ManagedObject.h">
+    <ClInclude Include="Structures\Pair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -243,15 +243,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Components\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ECS\GarbageCollector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ECS\SmartObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ECS\ManagedObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
