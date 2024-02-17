@@ -4,7 +4,8 @@
 #include <stack>
 
 #include "IComponent.h"
-#include "ECS/Components/Transform.h"
+#include "Components/Transform.h"
+#include "ManagedObject.h"
 
 namespace GrainEngine::ECS
 {

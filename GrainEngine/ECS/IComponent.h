@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "RefPtr.h"
+#include "ManagedObject.h"
 
 namespace GrainEngine::ECS
 {
@@ -17,16 +17,11 @@ namespace GrainEngine::ECS
 		IComponent& operator= (IComponent&& oldInstance) noexcept = default;
 
 	protected:
-		IComponent(const Entity& pEntity) :
-			_pEntity(&pEntity)
-		{}
+		IComponent() = default;
 
-		virtual void Awake() {}
-		virtual void Start() {}
-		virtual void Update() {}
-		virtual void End() {}
-
-	protected:
-		RefPtr<Entity> _pEntity;
+		virtual void Awake(ManagedObject<Entity>& parent) {}
+		virtual void Start(ManagedObject<Entity>& parent) {}
+		virtual void Update(ManagedObject<Entity>& parent) {}
+		virtual void End(ManagedObject<Entity>& parent) {}
 	};
 }
