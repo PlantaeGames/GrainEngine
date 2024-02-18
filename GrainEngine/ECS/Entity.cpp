@@ -5,6 +5,6 @@ namespace GrainEngine::ECS
 	Entity::Entity() :
 		_pComponents()
 	{
-		_pComponents.push(std::move(std::make_shared<Transform>()));
+		_pComponents.push_back(std::move(ManagedObject<Transform>()));
 	}
 }

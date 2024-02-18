@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <stack>
+#include <list>
 
 #include "IComponent.h"
 #include "Components/Transform.h"
@@ -18,14 +18,12 @@ namespace GrainEngine::ECS
 		~Entity() noexcept = default;
 
 		Entity(const Entity& otherInstance) = default;
-		Entity(Entity&& oldInstance) noexcept = default;
+		Entity(Entity&& oldInstance) noexcept  = default;
 
 		Entity& operator= (const Entity& otherInstance) = default;
 		Entity& operator= (Entity&& oldInstance) noexcept = default;
 
 	private:
-		std::stack<std::shared_ptr<IComponent>> _pComponents;
-
-
+		std::list<ManagedObject<IComponent>> _pComponents;
 	};
 }

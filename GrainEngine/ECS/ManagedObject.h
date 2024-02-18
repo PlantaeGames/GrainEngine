@@ -51,6 +51,15 @@ namespace GrainEngine::ECS
 			return reinterpret_cast<t_T*>(_ptr);
 		}
 
+		template<typename t_Interface>
+		t_Interface* GetPtr() const noexcept
+		{
+			if (_ptr == 0u)
+				THROW_ERROR(DEREFERENCE_OF_NULLPTR_ERROR);
+
+			return reinterpret_cast<t_Interface*>(_ptr);
+		}
+
 	private:
 		void Swap(ManagedObject& otherInstance)
 		{
