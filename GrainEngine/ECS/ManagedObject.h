@@ -11,31 +11,30 @@ namespace GrainEngine::ECS
 
 	using namespace Errors;
 
-	template<typename t_T>
+	template<typename t_Interface>
 	class ManagedObject
 	{
 		friend GarbageCollector;
 
 	public:
 		ManagedObject() :
-			_ptr(GarbageCollector::GetInstance.New<t_T>((unsigned long long) this))
+			_ptr(0u)
 		{}
 
 		~ManagedObject() noexcept
 		{
-			GarbageCollector::GetInstance().Trigger<t_T>(_ptr, (unsigned long long) this);
+			TriggerGC();
 		}
 
 		ManagedObject(const ManagedObject& otherInstance)
 		{
-			_ptr = otherInstance._ptr;
-			GarbageCollector::GetInstance().AddReference<t_T>(_ptr, (unsigned long long) this);
+			IncrementGC();
 		}
 
 		ManagedObject& operator= (const ManagedObject& otherInstance)
 		{
-			_ptr = otherInstance._ptr;
-			GarbageCollector::GetInstance().AddReference<t_T>(_ptr, (unsigned long long) this);
+			TriggerGC();
+			IncrementGC();
 
 			return *this;
 		}
@@ -43,27 +42,70 @@ namespace GrainEngine::ECS
 		ManagedObject(ManagedObject&& oldInstance) noexcept = delete;
 		ManagedObject& operator= (ManagedObject&& oldInstance) noexcept = delete;
 
-		t_T* GetPtr() const noexcept
+		template<typename t_T>
+		void New()
 		{
-			if (_ptr == 0u)
+			NewGC<t_T>();
+		}
+
+		void Release()
+		{
+			ReleaseGC();
+		}
+
+		t_Interface* GetPtr() const noexcept
+		{
+			if (CheckValid() == false)
 				THROW_ERROR(DEREFERENCE_OF_NULLPTR_ERROR);
 
 			return reinterpret_cast<t_T*>(_ptr);
 		}
 
-		template<typename t_Interface>
-		t_Interface* GetPtr() const noexcept
+		template<typename t_T>
+		t_T* GetPtr() const noexcept
 		{
-			if (_ptr == 0u)
-				THROW_ERROR(DEREFERENCE_OF_NULLPTR_ERROR);
+			return dynamic_cast<t_T*>(GetPtr());
+		}
 
-			return reinterpret_cast<t_Interface*>(_ptr);
+		t_Interface* operator* ()
+		{
+			return GetPtr();
+		}
+
+		bool CheckValid()
+		{
+			return _ptr != 0u;
 		}
 
 	private:
-		void Swap(ManagedObject& otherInstance)
+		template<typename t_T>
+		void NewGC()
 		{
-			std::swap(_ptr, otherInstance._ptr);
+			if (CheckValid())
+			{
+				TriggerGC();
+			}
+
+			_ptr(GarbageCollector::GetInstance.New<t_T>((unsigned long long) this));
+		}
+		void TriggerGC()
+		{
+			if (CheckValid() == false) return;
+
+			GarbageCollector::GetInstance().Trigger<t_T>(_ptr, (unsigned long long) this);
+		}
+		void IncrementGC() const
+		{
+			if (CheckValid() == false) return;
+
+			_ptr = otherInstance._ptr;
+			GarbageCollector::GetInstance().AddReference<t_T>(_ptr, (unsigned long long) this);
+		}
+		void ReleaseGC()
+		{
+			if (CheckValid() == false) return;
+
+			GarbageCollector::GetInstance().Release(_ptr);
 		}
 
 	private:

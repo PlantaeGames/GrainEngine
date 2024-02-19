@@ -67,6 +67,25 @@ namespace GrainEngine::ECS
 		}
 
 		template<typename t_T>
+		void Release(unsigned long long id)
+		{
+			for (auto& object : _objects)
+			{
+				if (object.x != id) continue;
+
+				// remove danglers
+				RemoveReferences<t_T>(id);
+
+				// release
+				delete reinterpret_cast<t_T*>(id);
+				// clearing from list
+				_objects.remove(object);
+				
+				break;
+			}
+		}
+
+		template<typename t_T>
 		void Trigger(unsigned long long id, unsigned long long ref)
 		{
 			for (auto& object : _objects)
