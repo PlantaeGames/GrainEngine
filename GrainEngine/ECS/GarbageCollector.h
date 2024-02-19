@@ -1,9 +1,9 @@
 #pragma once
 
 #include <list>
+#include <utility>
 
 #include "Patterns/Singleton.h"
-#include "Structures/Pair.h"
 
 namespace GrainEngine::ECS
 {
@@ -12,6 +12,32 @@ namespace GrainEngine::ECS
 	class GarbageCollector : public Singleton<GarbageCollector>
 	{
 		friend Singleton;
+
+	private:
+		std::list<std::pair<char*, std::pair<char*, unsigned long>>> _objects;
+		std::list<std::pair<char*, std::list<char*>>> _references;
+
+	private:
+		GarbageCollector() = default;
+
+		template<typename t_T>
+		void RemoveReferences(char* id)
+		{
+			for (auto& reference : _references)
+			{
+				if (reference.first != id) continue;
+
+				for (auto& referer : reference.second)
+				{
+					reinterpret_cast<t_T*>(referer)->_ptr = 0u;
+				}
+
+				_references.remove(reference);
+
+				break;
+			}
+		}
+
 	public:
 		~GarbageCollector() noexcept = default;
 
@@ -22,59 +48,62 @@ namespace GrainEngine::ECS
 		GarbageCollector& operator= (GarbageCollector&& oldInstance) noexcept = delete;
 
 		template<typename t_T>
-		unsigned long long New(unsigned long long ref)
+		char* New(char* ref)
 		{
-			const auto* const pObject = new t_T();
+			const auto* pObject = new t_T();
 
-			const auto object = Pair<unsigned long long, Pair<unsigned long long, unsigned long long>>(
-				(unsigned long long) pObject,
-				Pair<unsigned long long, unsigned long long>((unsigned long long) pObject), 1u)
-			);
+			auto object = std::pair<char*, std::pair<char*, unsigned long>>();
+			object.first = (char*) (pObject);
+			object.second = std::pair<char*, unsigned long>(ref, 1u);
 
 			_objects.push_back(std::move(object));
 
-			auto reference = Pair<unsigned long long, std::list<unsigned long long>>(
-				(unsigned long long) pObject,
-				std::list<unsigned long long>()
+			auto reference = std::pair<char*, std::list<char*>>(
+				(char*) pObject,
+				std::list<char*>()
 			);
-			reference.y.push_back(ref);
+			reference.second.push_back(ref);
 
 			_references.push_back(std::move(reference));
 
-			return (unsigned long long) pObject;
+			return (char*) pObject;
 		}
 
 		template<typename t_T>
-		unsigned long long AddReference(unsigned long long id, unsigned long long ref)
+		unsigned long Increment(char* id, char* ref)
 		{
 			for (auto& object : _objects)
 			{
-				if (object.x != id) continue;
+				if (object.first != id) continue;
 
-				++object.y.y;
+				++object.second.second;
 
 				break;
 			}
 
 			for (auto& reference : _references)
 			{
-				if (reference.x != id) continue;
+				if (reference.first != id) continue;
 
-				reference.y.push_back(ref);
+				reference.second.push_back(ref);
+
+				return (unsigned long) reference.second.size();
 
 				break;
 			}
+
+			return 0u;
 		}
 
-		template<typename t_T>
-		void Release(unsigned long long id)
+		template<typename t_T, typename t_Wrapper>
+		void Release(char* id)
 		{
 			for (auto& object : _objects)
 			{
-				if (object.x != id) continue;
+				if (object.first != id) continue;
 
 				// remove danglers
-				RemoveReferences<t_T>(id);
+				RemoveReferences<t_Wrapper>(id);
 
 				// release
 				delete reinterpret_cast<t_T*>(id);
@@ -85,17 +114,17 @@ namespace GrainEngine::ECS
 			}
 		}
 
-		template<typename t_T>
-		void Trigger(unsigned long long id, unsigned long long ref)
+		template<typename t_T, typename t_Wrapper>
+		void Trigger(char* id, char* ref)
 		{
 			for (auto& object : _objects)
 			{
-				if (object.x != id) continue;
+				if (object.first != id) continue;
 
-				if (object.y.y == 0)
+				if (object.second.second == 0)
 				{
 					// remove danglers
-					RemoveReferences<t_T>(id);
+					RemoveReferences<t_Wrapper>(id);
 
 					// release
 					delete reinterpret_cast<t_T*>(id);
@@ -104,17 +133,17 @@ namespace GrainEngine::ECS
 				}
 				else
 				{
-					--object.y.y;
+					--object.second.second;
 
 					for (auto& reference : _references)
 					{
-						if (reference != id) continue;
+						if (reference.first != id) continue;
 
-						for (auto referer : reference.y)
+						for (auto referer : reference.second)
 						{
 							if (referer != ref) continue;
 
-							reference.y.remove(ref);
+							reference.second.remove(ref);
 
 							break;
 						}
@@ -126,30 +155,5 @@ namespace GrainEngine::ECS
 				break;
 			}
 		}
-
-	private:
-		GarbageCollector() = default;
-
-		template<typename t_T>
-		void RemoveReferences(unsigned long long id)
-		{
-			for (auto& reference : _references)
-			{
-				if (reference.x != id) continue;
-
-				for (auto& referer : reference.y)
-				{
-					reinterpret_cast<t_T*>(referer)->_ptr = 0u;
-				}
-
-				_references.remove(reference);
-
-				break;
-			}
-		}
-
-	private:
-		std::list<Pair<unsigned long long, Pair<unsigned long long, unsigned long long>>> _objects;
-		std::list<Pair<unsigned long long, std::list<unsigned long long>>> _references;
 	};
 }

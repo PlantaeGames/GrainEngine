@@ -194,7 +194,6 @@
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Graphics\IShaderLoader.h" />
-    <ClInclude Include="Structures\Pair.h" />
     <ClInclude Include="Structures\Point.h" />
     <ClInclude Include="ECS\RefPtr.h" />
     <ClInclude Include="Structures\Vertex.h" />
@@ -225,7 +224,6 @@
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\Material.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
-    <ClCompile Include="Graphics\IShaderLoader.cpp" />
     <ClCompile Include="Structures\Collection.h" />
     <ClCompile Include="ECS\Components\Transform.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />

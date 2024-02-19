@@ -5,7 +5,7 @@
 #include "Components/Time.h"
 #include "Errors/Error.h"
 #include "Patterns/Singleton.h"
-#include "Graphics/D3DRenderer.h"
+#include "Graphics/D3D/D3DRenderer.h"
 
 namespace GrainEngine::Components
 {

@@ -6,6 +6,8 @@ namespace GrainEngine::ECS::Components
 {
 	class Transform : public IComponent
 	{
-
+	public:
+		Transform();
+		~Transform() noexcept override;
 	};
 }
