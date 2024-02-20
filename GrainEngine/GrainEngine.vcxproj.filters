@@ -159,6 +159,18 @@
     <ClInclude Include="ECS\ManagedObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Structures\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\EntityManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -237,6 +249,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Components\Transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

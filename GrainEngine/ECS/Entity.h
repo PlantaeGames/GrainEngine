@@ -2,10 +2,12 @@
 
 #include <memory>
 #include <list>
+#include <string>
 
 #include "ECS/Components/Transform.h"
 #include "ManagedObject.h"
 #include "IComponent.h"
+#include "Tag.h"
 
 namespace GrainEngine::ECS
 {
@@ -51,5 +53,10 @@ namespace GrainEngine::ECS
 
 	private:
 		std::list<ManagedObject<IComponent>> _pComponents;
+
+	public:
+		std::string name;
+		ManagedObject<Transform> transform;
+		Tag tag;
 	};
 }

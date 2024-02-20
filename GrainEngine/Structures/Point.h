@@ -3,15 +3,41 @@
 #include <string>
 #include <sstream>
 
+#include "Vertex.h"
+
 namespace GrainEngine::Structures
 {
-	template<typename T>
-	struct Point
+	template<typename t_T>
+	class Point
 	{
-		T x = 0;
-		T y = 0;
+	public:
+		t_T x = 0;
+		t_T y = 0;
 
-		std::string ToString()
+		Point() {}
+
+		Point(t_T x, t_T y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		operator Vertex() const noexcept
+		{
+			return Vertex((float)x, (float)y);
+		}
+
+		operator Vector2() const noexcept
+		{
+			return Vector2((float)x, (float)y);
+		}
+
+		operator Vector3() const noexcept
+		{
+			return Vector3((float)x, (float)y);
+		}
+
+		std::string ToString() const noexcept
 		{
 			std::stringstream string;
 			string << "Point: { ";
