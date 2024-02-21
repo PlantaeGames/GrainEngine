@@ -18,6 +18,8 @@ namespace GrainEngine::Input
 		InputDevice& operator= (const InputDevice& otherInstance) = delete;
 		InputDevice& operator= (InputDevice&& oldInstance) noexcept = delete;
 
+		bool operator== (const InputDevice& rhs) const noexcept;
+
 		virtual ~InputDevice() noexcept = default;
 
 		virtual void Feed(const MSG* msg) noexcept = 0;
@@ -37,7 +39,7 @@ namespace GrainEngine::Input
 		void Remove(vector<Key>& container, Key key) noexcept;
 
 	protected:
-		InputDevice();
+		InputDevice(unsigned int id);
 
 		void Add(Key key, bool keyUp = false) noexcept;
 	private:

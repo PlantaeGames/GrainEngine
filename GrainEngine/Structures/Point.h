@@ -22,11 +22,6 @@ namespace GrainEngine::Structures
 
 		Point() {}
 
-		operator Vertex() const
-		{
-			return Vertex((float)x, (float)y);
-		}
-
 		std::string ToString()
 		{
 			std::stringstream string;

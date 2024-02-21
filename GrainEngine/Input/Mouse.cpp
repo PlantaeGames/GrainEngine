@@ -3,7 +3,12 @@
 namespace GrainEngine::Input
 {
 	Mouse::Mouse() :
-		InputDevice(),
+		InputDevice(0u),
+		_cursorPosition()
+	{}
+
+	Mouse::Mouse(unsigned int id) :
+		InputDevice(id),
 		_cursorPosition()
 	{}
 

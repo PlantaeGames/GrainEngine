@@ -73,7 +73,7 @@ namespace GrainEngine::Components
 		template<typename t_InputDevice>
 		void AddDevice() noexcept
 		{
-			_inputDevices.push_back(std::move(std::make_unique<t_InputDevice>()));
+			_inputDevices.push_back(std::move(std::make_unique<t_InputDevice>(_inputDevices.size())));
 		}
 
 		template<typename t_InputDevice>
