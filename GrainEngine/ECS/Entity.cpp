@@ -3,16 +3,18 @@
 namespace GrainEngine::ECS
 {
 	Entity::Entity() :
-		_pComponents()
+		name("Entity"),
+		tag(Tag::None),
+		_pMComponents()
 	{
-		_pComponents.push_back(ManagedObject<IComponent>().New<Transform>());
+		pMTransform = AddComponent<Transform>();
 	}
 
 	Entity::~Entity() noexcept
 	{
-		for (auto& pComponent : _pComponents)
+		for (auto& pMComponent : _pMComponents)
 		{
-			pComponent.Release();
+			pMComponent.Release();
 		}
 	}
 }

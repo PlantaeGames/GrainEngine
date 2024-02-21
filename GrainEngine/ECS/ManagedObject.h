@@ -111,12 +111,12 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		void Hold(ManagedObject<t_T>& other)
 		{
-			if (dynamic_cast<t_Interface*>(other._ptr) == nullptr)
+			if (dynamic_cast<t_Interface*>(other.GetPtr()) == nullptr)
 				THROW_ERROR(INVALID_HOLD_ON_MANAGED_OBJECT);
 
 			TriggerGC();
 
-			_ptr = other._ptr;
+			_ptr = (char*) other.GetPtr();
 
 			IncrementGC();
 		}
@@ -143,6 +143,11 @@ namespace GrainEngine::ECS
 		t_Interface& operator* ()
 		{
 			return *GetPtr();
+		}
+
+		t_Interface* operator-> ()
+		{
+			return GetPtr();
 		}
 	};
 }

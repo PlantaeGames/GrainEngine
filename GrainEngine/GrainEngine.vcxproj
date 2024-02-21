@@ -168,11 +168,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Components\Engine.h" />
+    <ClInclude Include="ECS\EntityManager.h" />
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
     <ClInclude Include="Components\Time.h" />
     <ClInclude Include="ECS\GarbageCollector.h" />
     <ClInclude Include="ECS\ManagedObject.h" />
+    <ClInclude Include="ECS\Tag.h" />
     <ClInclude Include="Graphics\D3D\D3DTransformer.h" />
     <ClInclude Include="Graphics\D3D\D3DShaderLoader.h" />
     <ClInclude Include="Graphics\D3D\D3DError.h" />
@@ -196,13 +198,17 @@
     <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
     <ClInclude Include="ECS\RefPtr.h" />
+    <ClInclude Include="Structures\Vector2.h" />
+    <ClInclude Include="Structures\Vector3.h" />
     <ClInclude Include="Structures\Vertex.h" />
     <ClInclude Include="ECS\Components\Transform.h" />
+    <ClInclude Include="ECS\TickType.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="ECS\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Engine.cpp" />
+    <ClCompile Include="ECS\EntityManager.cpp" />
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
     <ClCompile Include="Components\Time.cpp" />
@@ -226,6 +232,8 @@
     <ClCompile Include="Graphics\Shader.cpp" />
     <ClCompile Include="Structures\Collection.h" />
     <ClCompile Include="ECS\Components\Transform.cpp" />
+    <ClCompile Include="Structures\Vector2.cpp" />
+    <ClCompile Include="Structures\Vector3.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="ECS\World.cpp" />
   </ItemGroup>

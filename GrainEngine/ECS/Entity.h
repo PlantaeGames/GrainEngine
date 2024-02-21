@@ -1,11 +1,13 @@
 #pragma once
 
-#include <memory>
-#include <list>
+#include <vector>
+#include <string>
 
 #include "ECS/Components/Transform.h"
 #include "ManagedObject.h"
 #include "IComponent.h"
+#include "TickType.h"
+#include "Tag.h"
 
 namespace GrainEngine::ECS
 {
@@ -26,30 +28,48 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		ManagedObject<t_T> GetComponent()
 		{
-			for (const auto& pCComponent : _pComponents)
+			for (auto& pMCComponent : _pMComponents)
 			{
-				if (dynamic_cast<t_T*>(pCComponent.GetPtr()) == nullptr)
+				if (dynamic_cast<t_T*>(pMCComponent.GetPtr()) == nullptr)
 					continue;
 
-				ManagedObject<t_T> pComponent = {};
-				pComponent.Hold<IComponent>(pCComponent);
-
-				return pComponent;
+				return ManagedObject<t_T>().Hold<IComponent>(pMCComponent);
 			}
+		}
+
+		template<typename t_T>
+		std::vector<ManagedObject<t_T>> GetComponents()
+		{
+			std::vector<ManagedObject<t_T>> pMComponents = { };
+
+			for (auto& pMCComponent : _pMComponents)
+			{
+				if (dynamic_cast<t_T*>(pMCComponent.GetPtr()) == nullptr)
+					continue;
+
+				pMComponents.push_back(ManagedObject<t_T>().Hold<IComponent>(pMCComponent));
+			}
+
+			return pMComponents;
 		}
 
 		template<typename t_T>
 		ManagedObject<t_T> AddComponent()
 		{
-			_pComponents.push_back(ManagedObject<IComponent>().New<t_T>());
+			_pMComponents.push_back(ManagedObject<IComponent>().New<t_T>());
 			
-			ManagedObject<t_T> pComponent = {};
-			pComponent.Hold<IComponent>(_pComponents.back());
+			ManagedObject<t_T> pMComponent = {};
+			pMComponent.Hold<IComponent>(_pMComponents.back());
 
-			return pComponent;
+			return pMComponent;
 		}
 
+	public:
+		std::string name;
+		Tag tag;
+		ManagedObject<Transform> pMTransform;
+
 	private:
-		std::list<ManagedObject<IComponent>> _pComponents;
+		std::vector<ManagedObject<IComponent>> _pMComponents;
 	};
 }

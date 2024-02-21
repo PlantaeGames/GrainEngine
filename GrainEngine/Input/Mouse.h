@@ -16,7 +16,7 @@ namespace GrainEngine::Input
 	{
 	public:
 		Mouse(unsigned int id);
-		Mouse()
+		Mouse();
 		Mouse(const Mouse& otherInstance) = delete;
 		Mouse(Mouse&& oldInstance) noexcept = delete;
 		Mouse& operator= (const Mouse& otherInstance) = delete;

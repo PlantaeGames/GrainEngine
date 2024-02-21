@@ -2,12 +2,10 @@
 
 namespace GrainEngine::ECS
 {
-	enum class TickType
+	enum class Tag
 	{
 		None,
-		Awake,
-		Start,
-		Update,
-		End
+		Player,
+		MainCamera
 	};
 }
