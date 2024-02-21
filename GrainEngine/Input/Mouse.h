@@ -29,10 +29,10 @@ namespace GrainEngine::Input
 		bool GetKeyUp(Key key) const noexcept override;
 
 		void Update() noexcept override;
-		Point<int> GetCursorPosition() const noexcept;
+		Point GetCursorPosition() const noexcept;
 	private:
 		void UpdateMousePosition(const HWND _handle) noexcept;
 	private:
-		Point<int> _cursorPosition;
+		Point _cursorPosition;
 	};
 }

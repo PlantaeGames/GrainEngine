@@ -1,10 +1,19 @@
 #pragma once
 
-namespace GrainEngine::Graphics
+namespace GrainEngine::Structures
 {
-	struct Vertex
+	class Vertex
 	{
-		float x = 0;
-		float y = 0;
+	public:
+		Vertex(float x, float y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		Vertex() {}
+	public:
+		float x = 0.0f;
+		float y = 0.0f;
 	};
 }

@@ -57,7 +57,7 @@ namespace GrainEngine::Input
 		InputDevice::Clear();
 	}
 
-	Point<int> Mouse::GetCursorPosition() const noexcept
+	Point Mouse::GetCursorPosition() const noexcept
 	{
 		return _cursorPosition;
 	}

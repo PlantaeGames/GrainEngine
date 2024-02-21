@@ -3,13 +3,29 @@
 #include <string>
 #include <sstream>
 
+#include "Vertex.h"
+
 namespace GrainEngine::Structures
 {
-	template<typename T>
-	struct Point
+	class Point
 	{
-		T x = 0;
-		T y = 0;
+	public:
+		int x = 0;
+		int y = 0;
+
+	public:
+		Point(int x, int y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		Point() {}
+
+		operator Vertex() const
+		{
+			return Vertex((float)x, (float)y);
+		}
 
 		std::string ToString()
 		{

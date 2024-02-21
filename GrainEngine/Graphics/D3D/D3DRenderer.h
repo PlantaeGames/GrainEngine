@@ -86,6 +86,7 @@ namespace GrainEngine::Graphics
 
 	using namespace Patterns;
 	using namespace Errors;
+	using namespace Structures;
 
 	class D3DRenderer
 	{

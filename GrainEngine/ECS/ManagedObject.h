@@ -79,8 +79,21 @@ namespace GrainEngine::ECS
 			return *this;
 		}
 
-		ManagedObject(ManagedObject&& oldInstance) noexcept = delete;
-		ManagedObject& operator= (ManagedObject&& oldInstance) noexcept = delete;
+		ManagedObject(ManagedObject&& otherInstance) noexcept
+		{
+			_ptr = otherInstance._ptr;
+
+			IncrementGC();
+		}
+		ManagedObject& operator= (ManagedObject&& otherInstance) noexcept
+		{
+			TriggerGC();
+
+			_ptr = otherInstance._ptr;
+			IncrementGC();
+
+			return *this;
+		}
 
 		template<typename t_T>
 		ManagedObject& New()
