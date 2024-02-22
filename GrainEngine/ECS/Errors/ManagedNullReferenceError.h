@@ -15,7 +15,7 @@ namespace GrainEngine::ECS
 	{
 	public:
 		ManagedNullReferenceError(const std::string& message,  const char* fileName, unsigned int lineNumber);
-		~ManagedNullReferenceError() noexcept = default;
+		~ManagedNullReferenceError() noexcept override = default;
 
 		ManagedNullReferenceError(const ManagedNullReferenceError& otherInstance) = delete;
 		ManagedNullReferenceError(ManagedNullReferenceError&& oldInstance) noexcept = delete;

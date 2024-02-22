@@ -180,6 +180,12 @@
     <ClInclude Include="ECS\Errors\InvalidManagedObjectHoldError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ECS\Errors\ComponentNotFoundError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECS\Errors\EntityNotFoundError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -273,6 +279,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Errors\InvalidManagedObjectHoldError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\Errors\ComponentNotFoundError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ECS\Errors\EntityNotFoundError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

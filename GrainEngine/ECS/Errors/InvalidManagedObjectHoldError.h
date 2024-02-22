@@ -16,7 +16,7 @@ namespace GrainEngine::ECS
 	{
 	public:
 		InvalidManagedObjectHoldError(const std::string& message, const char* fileName, unsigned int lineNumber);
-		~InvalidManagedObjectHoldError() noexcept = default;
+		~InvalidManagedObjectHoldError() noexcept override = default;
 
 		InvalidManagedObjectHoldError(const InvalidManagedObjectHoldError& otherInstance) = delete;
 		InvalidManagedObjectHoldError(InvalidManagedObjectHoldError&& oldInstance) noexcept = delete;

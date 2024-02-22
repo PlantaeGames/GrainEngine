@@ -172,6 +172,8 @@
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
     <ClInclude Include="Components\Time.h" />
+    <ClInclude Include="ECS\Errors\ComponentNotFoundError.h" />
+    <ClInclude Include="ECS\Errors\EntityNotFoundError.h" />
     <ClInclude Include="ECS\Errors\InvalidManagedObjectHoldError.h" />
     <ClInclude Include="ECS\Errors\ManagedNullReferenceError.h" />
     <ClInclude Include="ECS\GarbageCollector.h" />
@@ -214,6 +216,8 @@
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
     <ClCompile Include="Components\Time.cpp" />
+    <ClCompile Include="ECS\Errors\ComponentNotFoundError.cpp" />
+    <ClCompile Include="ECS\Errors\EntityNotFoundError.cpp" />
     <ClCompile Include="ECS\Errors\InvalidManagedObjectHoldError.cpp" />
     <ClCompile Include="ECS\Errors\ManagedNullReferenceError.cpp" />
     <ClCompile Include="Graphics\D3D\D3DTransformer.cpp" />

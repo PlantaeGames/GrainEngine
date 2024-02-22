@@ -21,31 +21,28 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		void NewGC()
 		{
-			if (_ptr != 0u)
-			{
-				TriggerGC();
-			}
+			TriggerGC();
 
 			_ptr = GarbageCollector::GetInstance().New<t_T>((char*) this);
 		}
 
 		void TriggerGC()
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 
 			GarbageCollector::GetInstance().Trigger<t_Interface, ManagedObject<t_Interface>>(_ptr, (char*) this);
 		}
 		void IncrementGC() const
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 			
 			GarbageCollector::GetInstance().Increment<t_Interface>(_ptr, (char*) this);
 		}
 		void ReleaseGC()
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 
 			GarbageCollector::GetInstance().Release<t_Interface, ManagedObject<t_Interface>>(_ptr);
@@ -128,6 +125,11 @@ namespace GrainEngine::ECS
 			ReleaseGC();
 		}
 
+		bool CheckValid() const noexcept
+		{
+			return _ptr != nullptr;
+		}
+
 		bool Equals(const ManagedObject& rhs)
 		{
 			return _ptr == rhs._ptr;
@@ -135,7 +137,7 @@ namespace GrainEngine::ECS
 
 		t_Interface* GetPtr() const
 		{
-			if ((_ptr != 0u == false))
+			if (CheckValid() == false)
 			{
 				THROW_MANAGED_NULL_REFERENCE_ERROR(DEREFERENCE_OF_NULLPTR_ERROR_MESSAGE);
 			}
@@ -157,11 +159,6 @@ namespace GrainEngine::ECS
 		t_Interface* operator-> ()
 		{
 			return GetPtr();
-		}
-
-		bool operator== (const ManagedObject& rhs)
-		{
-			return Equals(rhs);
 		}
 	};
 }

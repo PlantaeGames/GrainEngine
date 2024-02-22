@@ -8,9 +8,12 @@
 #include "IComponent.h"
 #include "TickType.h"
 #include "Tag.h"
+#include "ECS/Errors/ComponentNotFoundError.h"
 
 namespace GrainEngine::ECS
 {
+#define COMPONENT_NOT_FOUND_ERROR_MESSAGE "Component Not Found."
+
 	using namespace ECS::Components;
 
 	class Entity
@@ -35,6 +38,8 @@ namespace GrainEngine::ECS
 
 				return ManagedObject<t_T>().Hold<IComponent>(pMCComponent);
 			}
+
+			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
 		}
 
 		template<typename t_T>
@@ -62,6 +67,22 @@ namespace GrainEngine::ECS
 			pMComponent.Hold<IComponent>(_pMComponents.back());
 
 			return pMComponent;
+		}
+
+		template<typename t_T>
+		void RemoveComponent()
+		{
+			for (auto current = _pMComponents.begin(); current != _pMComponents.end(); ++current)
+			{
+				if (dynamic_cast<t_T*>(current->GetPtr()) == nullptr)
+					continue;
+
+				_pMComponents.erase(current);
+
+				return;
+			}
+
+			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
 		}
 
 		void Tick(ManagedObject<Entity>& pMEntity, TickType tickType);
