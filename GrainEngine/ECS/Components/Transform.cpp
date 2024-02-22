@@ -3,7 +3,10 @@
 namespace GrainEngine::ECS::Components
 {
 	Transform::Transform() :
-		IComponent()
+		IComponent(),
+		position(),
+		rotation(),
+		scale(1.0f, 1.0f, 1.0f)
 	{
 
 	}

@@ -64,6 +64,14 @@ namespace GrainEngine::ECS
 			return pMComponent;
 		}
 
+		void Tick(ManagedObject<Entity>& pMEntity, TickType tickType);
+
+	private:
+		void AwakeTick(ManagedObject<Entity>& pMEntity);
+		void StartTick(ManagedObject<Entity>& pMEntity);
+		void UpdateTick(ManagedObject<Entity>& pMEntity);
+		void EndTick(ManagedObject<Entity>& pMEntity);
+
 	public:
 		std::string name;
 		Tag tag;

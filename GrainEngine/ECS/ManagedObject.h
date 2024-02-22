@@ -2,11 +2,13 @@
 
 #include "GarbageCollector.h"
 #include "Errors/Error.h"
+#include "ECS/Errors/ManagedNullReferenceError.h"
+#include "ECS/Errors/InvalidManagedObjectHoldError.h"
 
 namespace GrainEngine::ECS
 {
-#define DEREFERENCE_OF_NULLPTR_ERROR "Dereference of a NULL PTR."
-#define INVALID_HOLD_ON_MANAGED_OBJECT "Managed Objects are not compatible."
+#define DEREFERENCE_OF_NULLPTR_ERROR_MESSAGE "Dereference of a NULL PTR."
+#define INVALID_HOLD_ON_MANAGED_OBJECT_MESSAGE "Managed Objects are not compatible."
 
 	using namespace Errors;
 
@@ -112,7 +114,7 @@ namespace GrainEngine::ECS
 		void Hold(ManagedObject<t_T>& other)
 		{
 			if (dynamic_cast<t_Interface*>(other.GetPtr()) == nullptr)
-				THROW_ERROR(INVALID_HOLD_ON_MANAGED_OBJECT);
+				THROW_INVALID_MANAGED_HOLD_ERROR(INVALID_HOLD_ON_MANAGED_OBJECT_MESSAGE);
 
 			TriggerGC();
 
@@ -126,10 +128,17 @@ namespace GrainEngine::ECS
 			ReleaseGC();
 		}
 
+		bool Equals(const ManagedObject& rhs)
+		{
+			return _ptr == rhs._ptr;
+		}
+
 		t_Interface* GetPtr() const
 		{
 			if ((_ptr != 0u == false))
-				THROW_ERROR(DEREFERENCE_OF_NULLPTR_ERROR);
+			{
+				THROW_MANAGED_NULL_REFERENCE_ERROR(DEREFERENCE_OF_NULLPTR_ERROR_MESSAGE);
+			}
 
 			return reinterpret_cast<t_Interface*>(_ptr);
 		}
@@ -148,6 +157,11 @@ namespace GrainEngine::ECS
 		t_Interface* operator-> ()
 		{
 			return GetPtr();
+		}
+
+		bool operator== (const ManagedObject& rhs)
+		{
+			return Equals(rhs);
 		}
 	};
 }

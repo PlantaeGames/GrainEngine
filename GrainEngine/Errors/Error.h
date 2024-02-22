@@ -39,6 +39,7 @@ namespace GrainEngine::Errors
 	private:
 		unsigned int _lineNumber = 0;
 		const char* _fileName = nullptr;
+
 	public:
 		/// <summary>
 		/// Default Contructor.
@@ -58,16 +59,16 @@ namespace GrainEngine::Errors
 		/// <summary>
 		/// Show the error pop up.
 		/// </summary>
-		void Show() const noexcept;
+		virtual void Show() const noexcept;
 		/// <summary>
 		/// Gets the stored error message.
 		/// </summary>
 		/// <returns>Error message.</returns>
-		std::string What() const noexcept;
+		virtual std::string What() const noexcept;
 		/// <summary>
 		/// Overriden Destructor.
 		/// </summary>
-		~Error() noexcept override;
+		virtual ~Error() noexcept override;
 		/// <summary>
 		/// Deleted copy assignment operator.
 		/// </summary>
