@@ -23,6 +23,7 @@ namespace GrainEngine::Components
 
 		float Tick() noexcept;
 		float GetDeltaTime() const noexcept;
+		unsigned int FPS() const noexcept;
 
 	private:
 		Time();

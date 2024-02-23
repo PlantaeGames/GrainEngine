@@ -123,6 +123,7 @@ namespace GrainEngine::Graphics
 
 		~D3DRenderer() noexcept = default;
 
+		void Clear() const noexcept;
 		void Present();
 		void DrawTriangle();
 

@@ -27,6 +27,11 @@ namespace GrainEngine::ECS
 		WorldManager& operator= (const WorldManager& otherInstance) = delete;
 		WorldManager& operator= (WorldManager&& oldInstance) noexcept = delete;
 
+		World& GetActiveWorld() const noexcept
+		{
+			return *_pRActiveWorld;
+		}
+
 		World& CreateWorld() noexcept;
 		World& GetWorld(unsigned int id);
 		World& GetWorld(std::string& name);
@@ -36,6 +41,6 @@ namespace GrainEngine::ECS
 
 	private:
 		std::vector<World> _worlds;
-		RefPtr<World> _pRActiveWorld;
+		mutable RefPtr<World> _pRActiveWorld;
 	};
 }

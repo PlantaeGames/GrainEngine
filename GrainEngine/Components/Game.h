@@ -18,6 +18,10 @@ namespace GrainEngine::Components
 		Game& operator= (const Game& otherInstance) = delete;
 		Game& operator= (Game&& oldInstance) noexcept = delete;
 
+		void Start();
+		void Update();
+		void End();
+
 		WorldManager& GetWorldManager() const noexcept
 		{
 			return _worldManager;

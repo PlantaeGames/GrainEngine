@@ -2,6 +2,11 @@
 
 namespace GrainEngine::Components
 {
+	unsigned int Time::FPS() const noexcept
+	{
+		return (unsigned int) (1 / _deltaTime);
+	}
+
 	Time::Time()
 		: _stopWatch()
 	{}

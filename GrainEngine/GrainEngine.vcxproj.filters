@@ -198,6 +198,9 @@
     <ClInclude Include="ECS\Errors\CannotRemoveActiveWorldError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Errors\InputDeviceNotFoundError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -309,6 +312,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Errors\CannotRemoveActiveWorldError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Errors\InputDeviceNotFoundError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

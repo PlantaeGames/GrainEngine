@@ -47,6 +47,7 @@ namespace GrainEngine::ECS
 			if (current->Equals(pMEntity))
 				continue;
 
+			current->GetPtr()->Tick(*current, TickType::End);
 			_pMEntities.erase(current);
 
 			return;

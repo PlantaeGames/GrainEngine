@@ -47,7 +47,6 @@ namespace GrainEngine::ECS
 		{
 			return _ptr;
 		}
-
 	private:
 		void Swap(RefPtr<T>& otherInstance)
 		{

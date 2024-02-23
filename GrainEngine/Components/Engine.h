@@ -6,6 +6,8 @@
 #include "Errors/Error.h"
 #include "Graphics/D3D/D3DRenderer.h"
 #include "Components/Game.h"
+#include "ECS/RefPtr.h"
+#include "ECS/GarbageCollector.h"
 
 namespace GrainEngine::Components
 {
@@ -21,7 +23,10 @@ namespace GrainEngine::Components
 	private:
 		Game _game;
 		MainWindow _mainWindow;
+		MSG _msg;
 		D3DRenderer _renderer;
+		mutable RefPtr<Time> _pRTime;
+		mutable RefPtr<InputManager> _pRInputManager;
 
 		bool _running = false;
 		unsigned int _exitCode = 0;
@@ -39,7 +44,12 @@ namespace GrainEngine::Components
 		void Stop(unsigned int exitCode) noexcept;
 
 	private:
+		void PrepareTick();
+		void Tick();
+		void EndTick();
+
 		unsigned int Run();
-		InputManager& InitializeInput() const noexcept;
+		void InitializeInput() const noexcept;
+		void InitializeWindow() const noexcept;
 	};
 }

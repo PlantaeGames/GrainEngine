@@ -194,6 +194,7 @@
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="ECS\IComponent.h" />
     <ClInclude Include="Input\InputDevice.h" />
+    <ClInclude Include="Input\Errors\InputDeviceNotFoundError.h" />
     <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Input\Keyboard.h" />
     <ClInclude Include="Input\Mouse.h" />
@@ -239,6 +240,7 @@
     <ClCompile Include="Graphics\ITransformer.h" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\InputDevice.cpp" />
+    <ClCompile Include="Input\Errors\InputDeviceNotFoundError.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Graphics\IPipelineComponent.cpp" />

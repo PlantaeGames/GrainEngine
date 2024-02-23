@@ -101,6 +101,12 @@ namespace GrainEngine::Graphics
 		THROW_DERROR(_pSwapchain->Present(1u, 0u));
 	}
 
+	void D3DRenderer::Clear() const noexcept
+	{
+		const float color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+		ClearBackBuffer(color);
+	}
+
 	void D3DRenderer::ClearBackBuffer(const float color[4]) const noexcept
 	{
 		_pDeviceContext->ClearRenderTargetView(_pBackTarget.Get(), color);

@@ -11,5 +11,13 @@ namespace GrainEngine::ECS::Components
 
 	}
 
+	void Transform::Start(ManagedObject<Entity>& pMEntity)
+	{
+		
+	}
+
+	void Transform::Update(ManagedObject<Entity>& pMEntity)
+	{}
+
 	Transform::~Transform() noexcept {}
 }
