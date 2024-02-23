@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GarbageCollector.h"
-#include "Errors/Error.h"
 #include "ECS/Errors/ManagedNullReferenceError.h"
 #include "ECS/Errors/InvalidManagedObjectHoldError.h"
 

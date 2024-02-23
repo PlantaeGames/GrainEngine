@@ -14,7 +14,8 @@ namespace GrainEngine::ECS
 {
 #define COMPONENT_NOT_FOUND_ERROR_MESSAGE "Component Not Found."
 
-	using namespace ECS::Components;
+	using namespace Components;
+	using namespace Errors;
 
 	class Entity
 	{
@@ -27,6 +28,11 @@ namespace GrainEngine::ECS
 
 		Entity& operator= (const Entity& otherInstance) = default;
 		Entity& operator= (Entity&& oldInstance) noexcept = default;
+
+		bool operator== (const Entity& entity) const noexcept
+		{
+			return entity.name == name;
+		}
 
 		template<typename t_T>
 		ManagedObject<t_T> GetComponent()

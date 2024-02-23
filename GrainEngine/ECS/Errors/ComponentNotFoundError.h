@@ -4,14 +4,12 @@
 
 #include "Errors/Error.h"
 
-namespace GrainEngine::ECS
+namespace GrainEngine::ECS::Errors
 {
 #define GENERATE_COMPONENT_NOT_FOUND_ERROR(message) ComponentNotFoundError(message, __FILE__, __LINE__)
 #define THROW_COMPONENT_NOT_FOUND_ERROR(message) GENERATE_COMPONENT_NOT_FOUND_ERROR(message)
 
-	using namespace Errors;
-
-	class ComponentNotFoundError : public Error
+	class ComponentNotFoundError : public GrainEngine::Errors::Error
 	{
 		ComponentNotFoundError(const std::string& message, const char* fileName, unsigned int lineNumber);
 		~ComponentNotFoundError() noexcept override = default;

@@ -2,10 +2,29 @@
 
 namespace GrainEngine::ECS
 {
+	std::vector<ManagedObject<Entity>> EntityManager::GetEntities(const std::string& name)
+	{
+		std::vector<ManagedObject<Entity>> pMEntities;
+
+		for (auto& pMEntity : _pMEntities)
+		{
+			if (pMEntity->name != name)
+				continue;
+
+			pMEntities.push_back(pMEntity);
+		}
+
+		return pMEntities;
+	}
+
 	ManagedObject<Entity>& EntityManager::CreateEntity() noexcept
 	{
 		_pMEntities.push_back(ManagedObject<Entity>().New());
-		return _pMEntities.back();
+		auto& pMEntity = _pMEntities.back();
+
+		pMEntity->Tick(pMEntity, TickType::Awake);
+
+		return pMEntity;
 	}
 
 	ManagedObject<Entity>& EntityManager::GetEntity(const std::string& name)

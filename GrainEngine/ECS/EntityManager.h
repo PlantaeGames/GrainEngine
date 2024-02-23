@@ -11,20 +11,23 @@ namespace GrainEngine::ECS
 {
 #define ENTITY_NOT_FOUND_ERROR_MESSAGE "Entity Not Found."
 
+	using namespace Errors;
+
 	class EntityManager
 	{
 	public:
 		EntityManager();
 		~EntityManager() noexcept;
 
-		EntityManager(const EntityManager& otherInstance) = delete;
-		EntityManager(EntityManager&& oldInstance) noexcept = delete;
+		EntityManager(const EntityManager& otherInstance) = default;
+		EntityManager(EntityManager&& oldInstance) noexcept = default;
 
-		EntityManager& operator= (const EntityManager& otherInstance) = delete;
-		EntityManager& operator= (EntityManager&& oldInstance) noexcept = delete;
+		EntityManager& operator= (const EntityManager& otherInstance) = default;
+		EntityManager& operator= (EntityManager&& oldInstance) noexcept = default;
 
 		ManagedObject<Entity>& CreateEntity() noexcept;
 		ManagedObject<Entity>& GetEntity(const std::string& name);
+		std::vector<ManagedObject<Entity>> GetEntities(const std::string& name);
 		void RemoveEntity(ManagedObject<Entity>& pMEntity);
 
 		void Tick(TickType tickType);

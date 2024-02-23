@@ -4,14 +4,12 @@
 
 #include "Errors/Error.h"
 
-namespace GrainEngine::ECS
+namespace GrainEngine::ECS::Errors
 {
 #define GENERATE_ENTITY_NOT_FOUND_ERROR(message) EntityNotFoundError(message, __FILE__, __LINE__)
 #define THROW_ENTITY_NOT_FOUND_ERROR(message) throw GENERATE_ENTITY_NOT_FOUND_ERROR(message)
 
-	using namespace Errors;
-
-	class EntityNotFoundError : public Error
+	class EntityNotFoundError : public GrainEngine::Errors::Error
 	{
 	public:
 		EntityNotFoundError(const std::string& message, const char* fileName, unsigned int lineNumber);

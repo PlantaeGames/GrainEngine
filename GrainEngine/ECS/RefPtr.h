@@ -1,50 +1,60 @@
 #pragma once
 
-template<typename T> 
-class RefPtr
+namespace GrainEngine::ECS
 {
-public:
-	explicit RefPtr(const T* const ptr)
+	template<typename T>
+	class RefPtr
 	{
-		_ptr = ptr;
-	}
-	~RefPtr() {}
+	public:
+		explicit RefPtr() :
+			_ptr(nullptr)
+		{}
 
-	RefPtr(const RefPtr<T>& otherInstance) = delete;
-	explicit RefPtr(RefPtr<T>&& oldInstance) noexcept
-	{
-		Swap(oldInstance);
-	}
+		explicit RefPtr(const T* const ptr)
+		{
+			_ptr = ptr;
+		}
+		explicit RefPtr(T& object)
+		{
+			_ptr = &object;
+		}
+		~RefPtr() noexcept = default;
 
-	RefPtr<T>& operator= (const RefPtr<T>& otherInstance) = delete;
-	RefPtr<T>& operator= (RefPtr<T>&& oldInstance) noexcept
-	{
-		_ptr = nullptr;
+		RefPtr(const RefPtr<T>& otherInstance) = delete;
+		explicit RefPtr(RefPtr<T>&& oldInstance) noexcept
+		{
+			Swap(oldInstance);
+		}
 
-		Swap(oldInstance);
-	}
+		RefPtr<T>& operator= (const RefPtr<T>& otherInstance) = delete;
+		RefPtr<T>& operator= (RefPtr<T>&& oldInstance) noexcept
+		{
+			Swap(oldInstance);
+			return *this;
+		}
 
-	T& operator* () 
-	{
-		return *_ptr;
-	}
+		T& operator* ()
+		{
+			return *Get();
+		}
 
-	T& operator-> ()
-	{
-		return *_ptr;
-	}
+		T* operator-> ()
+		{
+			return Get();
+		}
 
-	T* Get()
-	{
-		return _ptr;
-	}
+		T* Get()
+		{
+			return _ptr;
+		}
 
-private:
-	void Swap(RefPtr<T>& otherInstance)
-	{
-		std::swap(_ptr, otherInstance._ptr);
-	}
+	private:
+		void Swap(RefPtr<T>& otherInstance)
+		{
+			std::swap(_ptr, otherInstance._ptr);
+		}
 
-private:
-	T* _ptr = nullptr;
-};
+	private:
+		T* _ptr = nullptr;
+	};
+}

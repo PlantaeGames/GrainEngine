@@ -4,14 +4,12 @@
 
 #include "Errors/Error.h"
 
-namespace GrainEngine::ECS
+namespace GrainEngine::ECS::Errors
 {
 #define GENERATE_MANAGED_NULL_REFERENCE_ERROR(message) ManagedNullReferenceError(message, __FILE__, __LINE__)
 #define THROW_MANAGED_NULL_REFERENCE_ERROR(message) throw GENERATE_MANAGED_NULL_REFERENCE_ERROR(message)
 
-	using namespace Errors;
-
-	class ManagedNullReferenceError : public Error
+	class ManagedNullReferenceError : public GrainEngine::Errors::Error
 	{
 	public:
 		ManagedNullReferenceError(const std::string& message,  const char* fileName, unsigned int lineNumber);
