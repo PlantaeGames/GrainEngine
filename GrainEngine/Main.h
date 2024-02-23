@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <Windows.h>
 
 #include "Components/Engine.h"
@@ -7,8 +9,8 @@
 
 namespace GrainEngine
 {
-	using namespace Components;
-	using namespace Errors;
+	using namespace GrainEngine::Components;
+	using namespace GrainEngine::Errors;
 
 	/// <summary>
 	/// The Main function of the engine.
@@ -28,7 +30,7 @@ namespace GrainEngine
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
 {
 	using namespace GrainEngine;
-	using namespace Errors;
+	using namespace GrainEngine::Errors;
 
 	int returnCode = 0;
 	try
