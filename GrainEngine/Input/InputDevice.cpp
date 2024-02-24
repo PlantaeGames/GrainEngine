@@ -2,10 +2,11 @@
 
 namespace GrainEngine::Input
 {
-	InputDevice::InputDevice() :
+	InputDevice::InputDevice(unsigned int id) :
 		_keys(),
 		_keysDown(),
-		_keysUp()
+		_keysUp(),
+		_id(id)
 	{}
 
 	void InputDevice::Add(Key key, bool keyUp) noexcept
@@ -55,6 +56,11 @@ namespace GrainEngine::Input
 				++current;;
 			}
 		}
+	}
+
+	bool InputDevice::operator== (const InputDevice& rhs) const noexcept
+	{
+		return _id == rhs._id;
 	}
 
 	void InputDevice::Clear() noexcept

@@ -12,6 +12,7 @@ namespace GrainEngine::Input
 	class Keyboard : public InputDevice
 	{
 	public:
+		Keyboard(unsigned int id);
 		Keyboard();
 		Keyboard(const Keyboard& otherInstance) = delete;
 		Keyboard(Keyboard&& oldInstance) noexcept = delete;

@@ -1,7 +1,10 @@
 #pragma once
 
 #include "ECS/IComponent.h"
+#include "ECS/ManagedObject.h"
 #include "Structures/Vector3.h"
+
+#include "Errors/Error.h"
 
 namespace GrainEngine::ECS::Components
 {
@@ -12,6 +15,9 @@ namespace GrainEngine::ECS::Components
 	public:
 		Transform();
 		~Transform() noexcept override;
+
+		void Start(ManagedObject<Entity>& pMEntity) override;
+		void Update(ManagedObject<Entity>& pMEntity) override;
 
 	public:
 		Vector3 position;

@@ -4,9 +4,10 @@
 
 namespace GrainEngine::ECS
 {
+	class Entity;
+
 	class IComponent
 	{
-		class Entity;
 	public:
 		virtual ~IComponent() noexcept = default;
 
@@ -16,10 +17,10 @@ namespace GrainEngine::ECS
 		IComponent& operator= (const IComponent& otherInstance) = default;
 		IComponent& operator= (IComponent&& oldInstance) noexcept = default;
 
-		virtual void Awake(ManagedObject<Entity>& parent) {}
-		virtual void Start(ManagedObject<Entity>& parent) {}
-		virtual void Update(ManagedObject<Entity>& parent) {}
-		virtual void End(ManagedObject<Entity>& parent) {}
+		virtual void Awake(ManagedObject<Entity>& pMEntity) {}
+		virtual void Start(ManagedObject<Entity>& pMEntity) {}
+		virtual void Update(ManagedObject<Entity>& pMEntity) {}
+		virtual void End(ManagedObject<Entity>& pMEntity) {}
 
 	protected:
 		IComponent() = default;

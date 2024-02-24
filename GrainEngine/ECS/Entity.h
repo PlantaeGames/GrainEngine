@@ -1,17 +1,21 @@
 #pragma once
 
-#include <memory>
-#include <list>
+#include <vector>
 #include <string>
 
 #include "ECS/Components/Transform.h"
 #include "ManagedObject.h"
 #include "IComponent.h"
+#include "TickType.h"
 #include "Tag.h"
+#include "ECS/Errors/ComponentNotFoundError.h"
 
 namespace GrainEngine::ECS
 {
-	using namespace ECS::Components;
+#define COMPONENT_NOT_FOUND_ERROR_MESSAGE "Component Not Found."
+
+	using namespace Components;
+	using namespace Errors;
 
 	class Entity
 	{
@@ -25,38 +29,82 @@ namespace GrainEngine::ECS
 		Entity& operator= (const Entity& otherInstance) = default;
 		Entity& operator= (Entity&& oldInstance) noexcept = default;
 
+		bool operator== (const Entity& entity) const noexcept
+		{
+			return entity.name == name;
+		}
+
 		template<typename t_T>
 		ManagedObject<t_T> GetComponent()
 		{
-			for (const auto& pCComponent : _pComponents)
+			for (auto& pMCComponent : _pMComponents)
 			{
-				if (dynamic_cast<t_T*>(pCComponent.GetPtr()) == nullptr)
+				if (dynamic_cast<t_T*>(pMCComponent.GetPtr()) == nullptr)
 					continue;
 
-				ManagedObject<t_T> pComponent = {};
-				pComponent.Hold<IComponent>(pCComponent);
-
-				return pComponent;
+				return ManagedObject<t_T>().Hold<IComponent>(pMCComponent);
 			}
+
+			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
+		}
+
+		template<typename t_T>
+		std::vector<ManagedObject<t_T>> GetComponents()
+		{
+			std::vector<ManagedObject<t_T>> pMComponents = { };
+
+			for (auto& pMCComponent : _pMComponents)
+			{
+				if (dynamic_cast<t_T*>(pMCComponent.GetPtr()) == nullptr)
+					continue;
+
+				pMComponents.push_back(ManagedObject<t_T>().Hold<IComponent>(pMCComponent));
+			}
+
+			return pMComponents;
 		}
 
 		template<typename t_T>
 		ManagedObject<t_T> AddComponent()
 		{
-			_pComponents.push_back(ManagedObject<IComponent>().New<t_T>());
+			_pMComponents.push_back(ManagedObject<IComponent>().New<t_T>());
 			
-			ManagedObject<t_T> pComponent = {};
-			pComponent.Hold<IComponent>(_pComponents.back());
+			ManagedObject<t_T> pMComponent = {};
+			pMComponent.Hold<IComponent>(_pMComponents.back());
 
-			return pComponent;
+			return pMComponent;
 		}
 
+		template<typename t_T>
+		void RemoveComponent()
+		{
+			for (auto current = _pMComponents.begin(); current != _pMComponents.end(); ++current)
+			{
+				if (dynamic_cast<t_T*>(current->GetPtr()) == nullptr)
+					continue;
+
+				_pMComponents.erase(current);
+
+				return;
+			}
+
+			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
+		}
+
+		void Tick(ManagedObject<Entity>& pMEntity, TickType tickType);
+
 	private:
-		std::list<ManagedObject<IComponent>> _pComponents;
+		void AwakeTick(ManagedObject<Entity>& pMEntity);
+		void StartTick(ManagedObject<Entity>& pMEntity);
+		void UpdateTick(ManagedObject<Entity>& pMEntity);
+		void EndTick(ManagedObject<Entity>& pMEntity);
 
 	public:
 		std::string name;
-		ManagedObject<Transform> transform;
 		Tag tag;
+		ManagedObject<Transform> pMTransform;
+
+	private:
+		std::vector<ManagedObject<IComponent>> _pMComponents;
 	};
 }

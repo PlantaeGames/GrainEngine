@@ -8,15 +8,15 @@
 #include "Patterns/Singleton.h"
 #include "Input/Mouse.h"
 #include "Input/Keyboard.h"
-#include "Errors/Error.h"
+#include "Input/Errors/InputDeviceNotFoundError.h"
 
 namespace GrainEngine::Components
 {
-#define INPUT_DEVICE_NOT_FOUND_ERROR "Requested input device not registerd."
+#define INPUT_DEVICE_NOT_FOUND_ERROR_MESSAGE "Requested input device not registerd."
 
 	using namespace Patterns;
 	using namespace Input;
-	using namespace Errors;
+	using namespace GrainEngine::Input::Errors;
 
 	using std::unique_ptr;
 
@@ -67,13 +67,13 @@ namespace GrainEngine::Components
 				return inputDevice;
 			}
 
-			THROW_ERROR(INPUT_DEVICE_NOT_FOUND_ERROR);
+			THROW_INPUT_DEVICE_NOT_FOUND_ERROR(INPUT_DEVICE_NOT_FOUND_ERROR_MESSAGE);
 		}
 
 		template<typename t_InputDevice>
 		void AddDevice() noexcept
 		{
-			_inputDevices.push_back(std::move(std::make_unique<t_InputDevice>()));
+			_inputDevices.push_back(std::move(std::make_unique<t_InputDevice>((unsigned int)_inputDevices.size())));
 		}
 
 		template<typename t_InputDevice>

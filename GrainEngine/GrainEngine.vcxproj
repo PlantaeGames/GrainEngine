@@ -168,13 +168,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Components\Engine.h" />
+    <ClInclude Include="ECS\EntityManager.h" />
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
     <ClInclude Include="Components\Time.h" />
-    <ClInclude Include="ECS\EntityManager.h" />
+    <ClInclude Include="ECS\Errors\CannotRemoveActiveWorldError.h" />
+    <ClInclude Include="ECS\Errors\ComponentNotFoundError.h" />
+    <ClInclude Include="ECS\Errors\EntityNotFoundError.h" />
+    <ClInclude Include="ECS\Errors\InvalidManagedObjectHoldError.h" />
+    <ClInclude Include="ECS\Errors\ManagedNullReferenceError.h" />
+    <ClInclude Include="Components\Game.h" />
+    <ClInclude Include="ECS\Errors\WorldNotFoundError.h" />
     <ClInclude Include="ECS\GarbageCollector.h" />
     <ClInclude Include="ECS\ManagedObject.h" />
     <ClInclude Include="ECS\Tag.h" />
+    <ClInclude Include="ECS\WorldManager.h" />
     <ClInclude Include="Graphics\D3D\D3DTransformer.h" />
     <ClInclude Include="Graphics\D3D\D3DShaderLoader.h" />
     <ClInclude Include="Graphics\D3D\D3DError.h" />
@@ -183,9 +191,12 @@
     <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
     <ClInclude Include="Graphics\D3D\D3DRenderer.h" />
+    <ClInclude Include="Graphics\Errors\GraphicsError.h" />
+    <ClInclude Include="Graphics\Errors\UnableToLoadShaderGraphicsError.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="ECS\IComponent.h" />
     <ClInclude Include="Input\InputDevice.h" />
+    <ClInclude Include="Input\Errors\InputDeviceNotFoundError.h" />
     <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Input\Keyboard.h" />
     <ClInclude Include="Input\Mouse.h" />
@@ -195,22 +206,32 @@
     <ClInclude Include="Patterns\Singleton.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Shader.h" />
-    <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
-    <ClInclude Include="ECS\RefPtr.h" />
+    <ClInclude Include="Misc\RefPtr.h" />
     <ClInclude Include="Structures\Vector2.h" />
     <ClInclude Include="Structures\Vector3.h" />
     <ClInclude Include="Structures\Vertex.h" />
     <ClInclude Include="ECS\Components\Transform.h" />
+    <ClInclude Include="ECS\TickType.h" />
+    <ClInclude Include="Utilities\Errors\FileNotValidError.h" />
+    <ClInclude Include="Utilities\FileReader.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="ECS\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Engine.cpp" />
+    <ClCompile Include="ECS\EntityManager.cpp" />
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
     <ClCompile Include="Components\Time.cpp" />
-    <ClCompile Include="ECS\EntityManager.cpp" />
+    <ClCompile Include="ECS\Errors\CannotRemoveActiveWorldError.cpp" />
+    <ClCompile Include="ECS\Errors\ComponentNotFoundError.cpp" />
+    <ClCompile Include="ECS\Errors\EntityNotFoundError.cpp" />
+    <ClCompile Include="ECS\Errors\InvalidManagedObjectHoldError.cpp" />
+    <ClCompile Include="ECS\Errors\ManagedNullReferenceError.cpp" />
+    <ClCompile Include="Components\Game.cpp" />
+    <ClCompile Include="ECS\Errors\WorldNotFoundError.cpp" />
+    <ClCompile Include="ECS\WorldManager.cpp" />
     <ClCompile Include="Graphics\D3D\D3DTransformer.cpp" />
     <ClCompile Include="Graphics\D3D\D3DShaderLoader.cpp" />
     <ClCompile Include="Graphics\D3D\D3DError.cpp" />
@@ -219,9 +240,11 @@
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
     <ClCompile Include="Graphics\D3D\D3DRenderer.cpp" />
-    <ClCompile Include="Graphics\ITransformer.h" />
+    <ClCompile Include="Graphics\Errors\GraphicsError.cpp" />
+    <ClCompile Include="Graphics\Errors\UnableToLoadShaderGraphicsError.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\InputDevice.cpp" />
+    <ClCompile Include="Input\Errors\InputDeviceNotFoundError.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Graphics\IPipelineComponent.cpp" />
@@ -231,6 +254,10 @@
     <ClCompile Include="Graphics\Shader.cpp" />
     <ClCompile Include="Structures\Collection.h" />
     <ClCompile Include="ECS\Components\Transform.cpp" />
+    <ClCompile Include="Structures\Vector2.cpp" />
+    <ClCompile Include="Structures\Vector3.cpp" />
+    <ClCompile Include="Utilities\Errors\FileNotValidError.cpp" />
+    <ClCompile Include="Utilities\FileReader.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="ECS\World.cpp" />
   </ItemGroup>

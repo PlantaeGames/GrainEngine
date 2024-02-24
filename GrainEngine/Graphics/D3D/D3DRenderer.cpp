@@ -46,7 +46,7 @@ namespace GrainEngine::Graphics
 		ComPtr<ID3D11VertexShader> pVertexShader;
 		ComPtr<ID3DBlob> pVertexShaderBin;
 
-		LoadShader("Shaders\\Vertex.cso", &pVertexShaderBin);
+		LoadShader("Shaders\\Default\\Vertex.cso", &pVertexShaderBin);
 
 		THROW_DERROR(_pDevice->CreateVertexShader(pVertexShaderBin->GetBufferPointer(),
 			pVertexShaderBin->GetBufferSize(), nullptr, &pVertexShader));
@@ -57,7 +57,7 @@ namespace GrainEngine::Graphics
 		ComPtr<ID3D11PixelShader> pPixelShader;
 		ComPtr<ID3DBlob> pPixelShaderBin;
 
-		LoadShader("Shaders\\Pixel.cso", &pPixelShaderBin);
+		LoadShader("Shaders\\Default\\Pixel.cso", &pPixelShaderBin);
 
 		THROW_DERROR(_pDevice->CreatePixelShader(pPixelShaderBin->GetBufferPointer(),
 			pPixelShaderBin->GetBufferSize(), nullptr, &pPixelShader));
@@ -99,6 +99,12 @@ namespace GrainEngine::Graphics
 	void D3DRenderer::Present()
 	{
 		THROW_DERROR(_pSwapchain->Present(1u, 0u));
+	}
+
+	void D3DRenderer::Clear() const noexcept
+	{
+		const float color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+		ClearBackBuffer(color);
 	}
 
 	void D3DRenderer::ClearBackBuffer(const float color[4]) const noexcept

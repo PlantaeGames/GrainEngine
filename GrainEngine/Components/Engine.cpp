@@ -2,70 +2,102 @@
 
 namespace GrainEngine::Components
 {
+	void Engine::Tick()
+	{
+		_game.Update();
+
+		_renderer.DrawTriangle();
+	}
+
+	void Engine::PrepareTick()
+	{
+		_renderer.Clear();
+
+		_pRTime->Tick();
+		_pRInputManager->Update();
+
+		while (_mainWindow.PeekAndDispatchMessage(&_msg))
+		{
+			// grabbing input
+			_pRInputManager->Feed(&_msg);
+		}
+		if (_msg.message == WM_QUIT)
+		{
+			Stop((unsigned int)_msg.wParam);
+		}
+	}
+
+	void Engine::EndTick()
+	{
+		_renderer.Present();
+	}
+
 	unsigned int Engine::Run()
 	{
-		_mainWindow.Show();
+		InitializeWindow();
+		InitializeInput();
 
-		auto& inputManager = InitializeInput();
+		const auto& mouse = _pRInputManager->GetDevice<Mouse>();
+		const auto& keyboard = _pRInputManager->GetDevice<Keyboard>();
 
-		const auto& mouse = inputManager.GetDevice<Mouse>();
-		const auto& keyboard = inputManager.GetDevice<Keyboard>();
+		// adding test enties in game
+		
+		_game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
 
-		auto& time = Time::GetInstance();
+		//
 
-		MSG msg = { 0 };
+		_game.Start();
 
 		while (_running)
 		{
 			///  -----------------
 			///	  | ENGINE CODE |
 			///  -----------------
-			float deltaTime = time.Tick();
-			inputManager.Update();
+		
+			PrepareTick();
 
-			while (_mainWindow.PeekAndDispatchMessage(&msg))
-			{
-				// grabbing input
-				inputManager.Feed(&msg);
-			}
-			if (msg.message == WM_QUIT)
-			{
-				Stop((unsigned int)msg.wParam);
-			}
-			
 			///  -----------------
 			/// | OTHER CODE HERE |
 			///  -----------------
-
+			
+			Tick();
 
 			///  -----------------
 			///	  | ENGINE CODE |
 			///  -----------------
 			
-			_renderer.DrawTriangle();
-			_renderer.Present();
+			EndTick();
 
-			Error::Log("FPS: " + std::to_string((int) (1 / deltaTime)) + " \n");
+			Error::Log("CURRENT MANAGED OBJECTS UNDER GC ARE: " + std::to_string(GarbageCollector::GetInstance().GetManagedObjectsCount()) + "\n");
+			//Error::Log("FPS: " + std::to_string(_pRTime->FPS()) + " \n");
 		}
+
+		_game.End();
 
 		Error::Log("Engine Stoped.\n");
 
 		return _exitCode;
 	}
 
-	InputManager& Engine::InitializeInput() const noexcept
+
+	void Engine::InitializeWindow() const noexcept
 	{
-		auto& inputManager = InputManager::GetInstance();
+		_mainWindow.Show();
+	}
 
-		inputManager.RegisterDevice<Mouse>();
-		inputManager.RegisterDevice<Keyboard>();
-
-		return inputManager;
+	void Engine::InitializeInput() const noexcept
+	{
+		_pRInputManager->RegisterDevice<Mouse>();
+		_pRInputManager->RegisterDevice<Keyboard>();
 	}
 
 	Engine::Engine(): 
+		_game(),
 		_mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT),
-		_renderer(_mainWindow.GetHandle())		
+		_msg(),
+		_renderer(_mainWindow.GetHandle()),
+		_pRTime(Time::GetInstance()),
+		_pRInputManager(InputManager::GetInstance())
 	{}
 
 	unsigned int Engine::Start()

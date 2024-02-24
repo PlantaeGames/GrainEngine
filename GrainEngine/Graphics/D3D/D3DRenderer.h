@@ -86,6 +86,7 @@ namespace GrainEngine::Graphics
 
 	using namespace Patterns;
 	using namespace Errors;
+	using namespace Structures;
 
 	class D3DRenderer
 	{
@@ -122,6 +123,7 @@ namespace GrainEngine::Graphics
 
 		~D3DRenderer() noexcept = default;
 
+		void Clear() const noexcept;
 		void Present();
 		void DrawTriangle();
 

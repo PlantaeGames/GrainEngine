@@ -2,23 +2,73 @@
 
 namespace GrainEngine::ECS
 {
-	Entity::Entity() :
-		_pComponents(),
-		name("Entity"),
-		transform(),
-		tag(Tag::None)
+	void Entity::Tick(ManagedObject<Entity>& pMEntity, TickType tickType)
 	{
-		_pComponents.push_back(ManagedObject<IComponent>().New<Transform>());
+		switch (tickType)
+		{
+		case TickType::None:
+			break;
 
-		const auto transform = GetComponent<Transform>();
-		this->transform = transform;
+		case TickType::Awake:
+			AwakeTick(pMEntity);
+			break;
+		case TickType::Start:
+			StartTick(pMEntity);
+			break;
+		case TickType::Update:
+			UpdateTick(pMEntity);
+			break;
+		case TickType::End:
+			EndTick(pMEntity);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	void Entity::AwakeTick(ManagedObject<Entity>& pMEntity)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->Awake(pMEntity);
+		}
+	}
+	void Entity::StartTick(ManagedObject<Entity>& pMEntity)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->Start(pMEntity);
+		}
+	}
+	void Entity::UpdateTick(ManagedObject<Entity>& pMEntity)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->Update(pMEntity);
+		}
+	}
+	void Entity::EndTick(ManagedObject<Entity>& pMEntity)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->End(pMEntity);
+		}
+	}
+
+	Entity::Entity() :
+		name("Entity"),
+		tag(Tag::None),
+		_pMComponents()
+	{
+		pMTransform = AddComponent<Transform>();
 	}
 
 	Entity::~Entity() noexcept
 	{
-		for (auto& pComponent : _pComponents)
+		for (auto& pMComponent : _pMComponents)
 		{
-			pComponent.Release();
+			pMComponent.Release();
 		}
 	}
 }

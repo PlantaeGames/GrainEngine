@@ -3,7 +3,11 @@
 namespace GrainEngine::Input
 {
 	Keyboard::Keyboard() :
-		InputDevice()
+		InputDevice(0u)
+	{}
+
+	Keyboard::Keyboard(unsigned int id) :
+		InputDevice(id)
 	{}
 
 	void Keyboard::Feed(const MSG* const msg) noexcept

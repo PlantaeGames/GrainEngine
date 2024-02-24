@@ -1,12 +1,13 @@
 #pragma once
 
 #include "GarbageCollector.h"
-#include "Errors/Error.h"
+#include "ECS/Errors/ManagedNullReferenceError.h"
+#include "ECS/Errors/InvalidManagedObjectHoldError.h"
 
 namespace GrainEngine::ECS
 {
-#define DEREFERENCE_OF_NULLPTR_ERROR "Dereference of a NULL PTR."
-#define INVALID_HOLD_ON_MANAGED_OBJECT "Managed Objects are not compatible."
+#define DEREFERENCE_OF_NULLPTR_ERROR_MESSAGE "Dereference of a NULL PTR."
+#define INVALID_HOLD_ON_MANAGED_OBJECT_MESSAGE "Managed Objects are not compatible."
 
 	using namespace Errors;
 
@@ -19,31 +20,28 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		void NewGC()
 		{
-			if (_ptr != 0u)
-			{
-				TriggerGC();
-			}
+			TriggerGC();
 
 			_ptr = GarbageCollector::GetInstance().New<t_T>((char*) this);
 		}
 
 		void TriggerGC()
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 
 			GarbageCollector::GetInstance().Trigger<t_Interface, ManagedObject<t_Interface>>(_ptr, (char*) this);
 		}
 		void IncrementGC() const
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 			
 			GarbageCollector::GetInstance().Increment<t_Interface>(_ptr, (char*) this);
 		}
 		void ReleaseGC()
 		{
-			if (_ptr != 0u == false)
+			if (CheckValid() == false)
 				return;
 
 			GarbageCollector::GetInstance().Release<t_Interface, ManagedObject<t_Interface>>(_ptr);
@@ -79,8 +77,21 @@ namespace GrainEngine::ECS
 			return *this;
 		}
 
-		ManagedObject(ManagedObject&& oldInstance) noexcept = delete;
-		ManagedObject& operator= (ManagedObject&& oldInstance) noexcept = delete;
+		ManagedObject(ManagedObject&& otherInstance) noexcept
+		{
+			_ptr = otherInstance._ptr;
+
+			IncrementGC();
+		}
+		ManagedObject& operator= (ManagedObject&& otherInstance) noexcept
+		{
+			TriggerGC();
+
+			_ptr = otherInstance._ptr;
+			IncrementGC();
+
+			return *this;
+		}
 
 		template<typename t_T>
 		ManagedObject& New()
@@ -98,12 +109,12 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		void Hold(ManagedObject<t_T>& other)
 		{
-			if (dynamic_cast<t_Interface*>(other._ptr) == nullptr)
-				THROW_ERROR(INVALID_HOLD_ON_MANAGED_OBJECT);
+			if (dynamic_cast<t_Interface*>(other.GetPtr()) == nullptr)
+				THROW_INVALID_MANAGED_HOLD_ERROR(INVALID_HOLD_ON_MANAGED_OBJECT_MESSAGE);
 
 			TriggerGC();
 
-			_ptr = other._ptr;
+			_ptr = (char*) other.GetPtr();
 
 			IncrementGC();
 		}
@@ -113,10 +124,22 @@ namespace GrainEngine::ECS
 			ReleaseGC();
 		}
 
+		bool CheckValid() const noexcept
+		{
+			return _ptr != nullptr;
+		}
+
+		bool Equals(const ManagedObject& rhs)
+		{
+			return _ptr == rhs._ptr;
+		}
+
 		t_Interface* GetPtr() const
 		{
-			if ((_ptr != 0u == false))
-				THROW_ERROR(DEREFERENCE_OF_NULLPTR_ERROR);
+			if (CheckValid() == false)
+			{
+				THROW_MANAGED_NULL_REFERENCE_ERROR(DEREFERENCE_OF_NULLPTR_ERROR_MESSAGE);
+			}
 
 			return reinterpret_cast<t_Interface*>(_ptr);
 		}
@@ -130,6 +153,11 @@ namespace GrainEngine::ECS
 		t_Interface& operator* ()
 		{
 			return *GetPtr();
+		}
+
+		t_Interface* operator-> ()
+		{
+			return GetPtr();
 		}
 	};
 }

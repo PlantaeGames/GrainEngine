@@ -3,7 +3,12 @@
 namespace GrainEngine::Input
 {
 	Mouse::Mouse() :
-		InputDevice(),
+		InputDevice(0u),
+		_cursorPosition()
+	{}
+
+	Mouse::Mouse(unsigned int id) :
+		InputDevice(id),
 		_cursorPosition()
 	{}
 
@@ -57,7 +62,7 @@ namespace GrainEngine::Input
 		InputDevice::Clear();
 	}
 
-	Point<int> Mouse::GetCursorPosition() const noexcept
+	Point Mouse::GetCursorPosition() const noexcept
 	{
 		return _cursorPosition;
 	}

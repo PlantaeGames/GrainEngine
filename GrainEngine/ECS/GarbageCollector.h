@@ -47,6 +47,11 @@ namespace GrainEngine::ECS
 		GarbageCollector& operator= (const GarbageCollector& otherInstance) = delete;
 		GarbageCollector& operator= (GarbageCollector&& oldInstance) noexcept = delete;
 
+		unsigned long long GetManagedObjectsCount() const noexcept
+		{
+			return (unsigned long long) _objects.size();
+		}
+
 		template<typename t_T>
 		char* New(char* ref)
 		{

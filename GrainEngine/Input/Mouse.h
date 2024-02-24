@@ -15,6 +15,7 @@ namespace GrainEngine::Input
 	class Mouse : public InputDevice
 	{
 	public:
+		Mouse(unsigned int id);
 		Mouse();
 		Mouse(const Mouse& otherInstance) = delete;
 		Mouse(Mouse&& oldInstance) noexcept = delete;
@@ -29,10 +30,10 @@ namespace GrainEngine::Input
 		bool GetKeyUp(Key key) const noexcept override;
 
 		void Update() noexcept override;
-		Point<int> GetCursorPosition() const noexcept;
+		Point GetCursorPosition() const noexcept;
 	private:
 		void UpdateMousePosition(const HWND _handle) noexcept;
 	private:
-		Point<int> _cursorPosition;
+		Point _cursorPosition;
 	};
 }

@@ -4,9 +4,19 @@ namespace GrainEngine::ECS::Components
 {
 	Transform::Transform() :
 		IComponent(),
-		position(0.0f, 0.0f, 0.0f),
-		rotation(0.0f, 0.0f, 0.0f),
-		scale(0.0f, 0.0f, 0.0f)
+		position(),
+		rotation(),
+		scale(1.0f, 1.0f, 1.0f)
+	{
+
+	}
+
+	void Transform::Start(ManagedObject<Entity>& pMEntity)
+	{
+		
+	}
+
+	void Transform::Update(ManagedObject<Entity>& pMEntity)
 	{}
 
 	Transform::~Transform() noexcept {}

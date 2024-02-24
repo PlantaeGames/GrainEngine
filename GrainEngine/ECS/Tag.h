@@ -5,8 +5,7 @@ namespace GrainEngine::ECS
 	enum class Tag
 	{
 		None,
-		GameObject,
-		MainCamera,
-		Player
+		Player,
+		MainCamera
 	};
 }
