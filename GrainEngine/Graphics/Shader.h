@@ -28,7 +28,6 @@ namespace GrainEngine::Graphics
 
 	private:
 		void LoadToPrimaryMemory();
-
 	protected:
 		virtual void LoadToGPUMemory() = 0;
 
