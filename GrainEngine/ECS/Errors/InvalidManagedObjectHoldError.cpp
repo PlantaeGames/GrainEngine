@@ -2,7 +2,7 @@
 
 namespace GrainEngine::ECS::Errors
 {
-	InvalidManagedObjectHoldError::InvalidManagedObjectHoldError(const std::string& message, const char* fileName, unsigned int lineNumber) :
+	InvalidManagedObjectHoldError::InvalidManagedObjectHoldError(const std::string& message, const std::string& fileName, unsigned int lineNumber) :
 		Error(message, fileName, lineNumber)
 	{}
 }

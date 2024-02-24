@@ -6,7 +6,7 @@
 #include "Errors/Error.h"
 #include "Graphics/D3D/D3DRenderer.h"
 #include "Components/Game.h"
-#include "ECS/RefPtr.h"
+#include "Misc/RefPtr.h"
 #include "ECS/GarbageCollector.h"
 
 namespace GrainEngine::Components
@@ -16,6 +16,7 @@ namespace GrainEngine::Components
 #define WINDOW_HEIGHT 600
 
 	using namespace GrainEngine::Errors;
+	using namespace GrainEngine::Misc;
 	using namespace Graphics;
 
 	class Engine

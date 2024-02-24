@@ -138,9 +138,6 @@
     <ClInclude Include="Graphics\IPipelineComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\IShaderLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\D3D\D3DShaderLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -150,7 +147,7 @@
     <ClInclude Include="ECS\Components\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ECS\RefPtr.h">
+    <ClInclude Include="Misc\RefPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ECS\GarbageCollector.h">
@@ -199,6 +196,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input\Errors\InputDeviceNotFoundError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Errors\GraphicsError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\FileReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Errors\FileNotValidError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Errors\UnableToLoadShaderGraphicsError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -272,9 +281,6 @@
     <ClCompile Include="Structures\Collection.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\ITransformer.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\D3D\D3DTransformer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -315,6 +321,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Input\Errors\InputDeviceNotFoundError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Errors\GraphicsError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\FileReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Errors\FileNotValidError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Errors\UnableToLoadShaderGraphicsError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

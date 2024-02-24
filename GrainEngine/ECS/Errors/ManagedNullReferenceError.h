@@ -7,18 +7,12 @@
 namespace GrainEngine::ECS::Errors
 {
 #define GENERATE_MANAGED_NULL_REFERENCE_ERROR(message) ManagedNullReferenceError(message, __FILE__, __LINE__)
-#define THROW_MANAGED_NULL_REFERENCE_ERROR(message) throw GENERATE_MANAGED_NULL_REFERENCE_ERROR(message)
+#define THROW_MANAGED_NULL_REFERENCE_ERROR(message) THROW(GENERATE_MANAGED_NULL_REFERENCE_ERROR(message))
 
 	class ManagedNullReferenceError : public GrainEngine::Errors::Error
 	{
 	public:
-		ManagedNullReferenceError(const std::string& message,  const char* fileName, unsigned int lineNumber);
+		ManagedNullReferenceError(const std::string& message,  const std::string& fileName, unsigned int lineNumber);
 		~ManagedNullReferenceError() noexcept override = default;
-
-		ManagedNullReferenceError(const ManagedNullReferenceError& otherInstance) = delete;
-		ManagedNullReferenceError(ManagedNullReferenceError&& oldInstance) noexcept = delete;
-
-		ManagedNullReferenceError& operator= (const ManagedNullReferenceError& otherInstance) = delete;
-		ManagedNullReferenceError& operator= (ManagedNullReferenceError&& oldInstance) noexcept = delete;
 	};
 }

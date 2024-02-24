@@ -2,32 +2,13 @@
 
 namespace GrainEngine::Errors
 {
-	Error::Error(const std::string& message, const char* fileName, unsigned int lineNumber) :
-		std::runtime_error(message)
+	Error::Error(const std::string& message, const std::string& fileName, unsigned int lineNumber) :
+		_lineNumber(lineNumber),
+		_fileName(fileName),
+		std::runtime_error(message),
+		_information()
 	{
 		assert(message.length() > 0);
-
-		unsigned int lengthOfFileName = (unsigned int)strlen(fileName);
-		assert(lengthOfFileName > 0);
-
-		char* tempFileName = new char[lengthOfFileName + 1];
-		if (tempFileName == nullptr)
-		{
-			// error
-			throw runtime_error(MEMORY_ALLOCATION_ERROR);
-		}
-
-		errno_t result = 0;
-		result = strcpy_s(tempFileName, lengthOfFileName + 1, fileName);
-
-		if (result != 0)
-		{
-			// error
-			throw runtime_error(MEMORY_COPY_ERROR);
-		}
-		_fileName = tempFileName;
-
-		_lineNumber = lineNumber;
 	}
 
 	std::string Error::What() const noexcept
@@ -43,17 +24,25 @@ namespace GrainEngine::Errors
 		message << "[ Details ]\n";
 		message << runtime_error::what();
 
+		message << "[ Extra Information ]\n";
+		for (const auto& info : _information)
+		{
+			message << info;
+		}
+
 		return message.str();
+	}
+
+	void Error::Append(const std::string& message) noexcept
+	{
+		assert(message.length() > 0);
+
+		_information.push_back(message + "\n");
 	}
 
 	void Error::Show() const noexcept
 	{
 		MessageBoxExA(nullptr, What().c_str(), "ERROR", MB_ICONERROR, 0);
-	}
-
-	Error::~Error() noexcept
-	{
-		delete _fileName;
 	}
 
 	void Error::Log(const std::string& message) noexcept

@@ -5,7 +5,7 @@
 #include "ECS/Errors/WorldNotFoundError.h"
 #include "ECS/Errors//CannotRemoveActiveWorldError.h"
 #include "World.h"
-#include "RefPtr.h"
+#include "Misc/RefPtr.h"
 #include "TickType.h"
 
 namespace GrainEngine::ECS
@@ -14,6 +14,7 @@ namespace GrainEngine::ECS
 #define CANNOT_REMOVE_ACTIVE_WORLD_ERROR_MESSAGE "Cannot Remove Active World."
 
 	using namespace Errors;
+	using namespace GrainEngine::Misc;
 
 	class WorldManager
 	{

@@ -191,6 +191,8 @@
     <ClInclude Include="Errors\DebugConsole.h" />
     <ClInclude Include="Errors\Error.h" />
     <ClInclude Include="Graphics\D3D\D3DRenderer.h" />
+    <ClInclude Include="Graphics\Errors\GraphicsError.h" />
+    <ClInclude Include="Graphics\Errors\UnableToLoadShaderGraphicsError.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="ECS\IComponent.h" />
     <ClInclude Include="Input\InputDevice.h" />
@@ -204,14 +206,15 @@
     <ClInclude Include="Patterns\Singleton.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Shader.h" />
-    <ClInclude Include="Graphics\IShaderLoader.h" />
     <ClInclude Include="Structures\Point.h" />
-    <ClInclude Include="ECS\RefPtr.h" />
+    <ClInclude Include="Misc\RefPtr.h" />
     <ClInclude Include="Structures\Vector2.h" />
     <ClInclude Include="Structures\Vector3.h" />
     <ClInclude Include="Structures\Vertex.h" />
     <ClInclude Include="ECS\Components\Transform.h" />
     <ClInclude Include="ECS\TickType.h" />
+    <ClInclude Include="Utilities\Errors\FileNotValidError.h" />
+    <ClInclude Include="Utilities\FileReader.h" />
     <ClInclude Include="Utilities\Random.h" />
     <ClInclude Include="ECS\World.h" />
   </ItemGroup>
@@ -237,7 +240,8 @@
     <ClCompile Include="Errors\DebugConsole.cpp" />
     <ClCompile Include="Errors\Error.cpp" />
     <ClCompile Include="Graphics\D3D\D3DRenderer.cpp" />
-    <ClCompile Include="Graphics\ITransformer.h" />
+    <ClCompile Include="Graphics\Errors\GraphicsError.cpp" />
+    <ClCompile Include="Graphics\Errors\UnableToLoadShaderGraphicsError.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\InputDevice.cpp" />
     <ClCompile Include="Input\Errors\InputDeviceNotFoundError.cpp" />
@@ -252,6 +256,8 @@
     <ClCompile Include="ECS\Components\Transform.cpp" />
     <ClCompile Include="Structures\Vector2.cpp" />
     <ClCompile Include="Structures\Vector3.cpp" />
+    <ClCompile Include="Utilities\Errors\FileNotValidError.cpp" />
+    <ClCompile Include="Utilities\FileReader.cpp" />
     <ClCompile Include="Utilities\Random.cpp" />
     <ClCompile Include="ECS\World.cpp" />
   </ItemGroup>
