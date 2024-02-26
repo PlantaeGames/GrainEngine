@@ -7,9 +7,9 @@ namespace GrainEngine::Graphics
 		try
 		{
 			FileReader fileReader = { _fileName };
-			_pBinary = std::make_unique<byte[]>(fileReader.GetSize());
+			_pCode = std::make_unique<byte[]>(fileReader.GetSize());
 
-			fileReader.ReadAll(_pBinary);
+			fileReader.ReadAll(_pCode);
 		}
 		catch(const FileNotValidError& error)
 		{
@@ -20,11 +20,19 @@ namespace GrainEngine::Graphics
 		}
 	}
 
+	void Shader::LoadToGPUMemory() 
+	{}
+
 	Shader::Shader(const std::string& fileName) :
-		_fileName(fileName),
-		_pBinary(nullptr)
+		_fileName(),
+		_pCode(nullptr)
 	{
+		assert(_fileName.length() > 0);
+
+		_fileName = fileName;
+
 		LoadToPrimaryMemory();
+		LoadToGPUMemory();
 	}
 
 	Shader::~Shader() noexcept

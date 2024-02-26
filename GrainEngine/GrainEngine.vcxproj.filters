@@ -126,7 +126,7 @@
     <ClInclude Include="Graphics\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DError.h">
+    <ClInclude Include="Graphics\D3D\Errors\D3DGraphicsError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Material.h">
@@ -136,12 +136,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\IPipelineComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DShaderLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DTransformer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ECS\Components\Transform.h">
@@ -210,6 +204,15 @@
     <ClInclude Include="Graphics\Errors\UnableToLoadShaderGraphicsError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\D3D\D3DShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\D3D\D3DVertexShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\D3D\WinD3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -263,7 +266,7 @@
     <ClCompile Include="Graphics\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DError.cpp">
+    <ClCompile Include="Graphics\D3D\Errors\D3DGraphicsError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Material.cpp">
@@ -275,13 +278,7 @@
     <ClCompile Include="Graphics\IPipelineComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DShaderLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Structures\Collection.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DTransformer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Components\Transform.cpp">
@@ -333,6 +330,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Errors\UnableToLoadShaderGraphicsError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\D3D\D3DShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\D3D\D3DVertexShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

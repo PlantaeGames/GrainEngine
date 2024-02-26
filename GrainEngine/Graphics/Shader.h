@@ -26,14 +26,13 @@ namespace GrainEngine::Graphics
 
 		virtual void Bind() override = 0;
 
-	private:
-		void LoadToPrimaryMemory();
 	protected:
-		virtual void LoadToGPUMemory() = 0;
+		virtual void LoadToPrimaryMemory();
+		virtual void LoadToGPUMemory();
 
 	protected:
 		std::string _fileName;
-		std::unique_ptr<byte[]> _pBinary;
+		std::unique_ptr<byte[]> _pCode;
 	};
 }
 
