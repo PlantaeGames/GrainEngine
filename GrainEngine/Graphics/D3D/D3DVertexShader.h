@@ -19,7 +19,8 @@ namespace GrainEngine::Graphics::D3D
 	class D3DVertexShader : public D3DShader
 	{
 	public:
-		D3DVertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice);
+		D3DVertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice,
+			const ComPtr<ID3D11DeviceContext>& pDeviceContext);
 		~D3DVertexShader() noexcept override = default;
 
 		void Bind() override;
@@ -33,5 +34,6 @@ namespace GrainEngine::Graphics::D3D
 	private:
 		ComPtr<ID3D11VertexShader> _pVertexShader;
 		ComPtr<ID3D11Device> _pDevice;
+		ComPtr<ID3D11DeviceContext> _pDeviceContext;
 	};
 }

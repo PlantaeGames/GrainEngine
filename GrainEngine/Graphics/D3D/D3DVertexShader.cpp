@@ -4,7 +4,7 @@ namespace GrainEngine::Graphics::D3D
 {
 	void D3DVertexShader::Bind()
 	{
-
+		_pDeviceContext->VSSetShader(_pVertexShader.Get(), nullptr, 0);
 	}
 
 	void D3DVertexShader::Load()
@@ -16,10 +16,12 @@ namespace GrainEngine::Graphics::D3D
 		);
 	}
 
-	D3DVertexShader::D3DVertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice) :
+	D3DVertexShader::D3DVertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice,
+		const ComPtr<ID3D11DeviceContext>& pDeviceContext) :
 		D3DShader(fileName),
 		_pVertexShader(),
-		_pDevice(pDevice)
+		_pDevice(pDevice),
+		_pDeviceContext(pDeviceContext)
 	{
 		Load();
 	}
