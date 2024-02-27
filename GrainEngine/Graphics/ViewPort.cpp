@@ -18,8 +18,8 @@ namespace GrainEngine::Graphics
 		_viewPort.MaxDepth = maxDepth;
 	}
 
-	ViewPort::ViewPort(const Rect rect, const ComPtr<ID3D11Device>& pDevice) :
-		PipelineComponent(pDevice),
+	ViewPort::ViewPort(const Rect rect) :
+		PipelineComponent(),
 		rect(rect)
 	{
 		Update();

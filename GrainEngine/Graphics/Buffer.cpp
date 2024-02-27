@@ -38,4 +38,8 @@ namespace GrainEngine::Graphics
 	{
 		New(description, initialData);
 	}
+
+	Buffer::Buffer() :
+		PipelineComponent()
+	{}
 }

@@ -19,7 +19,7 @@ namespace GrainEngine::Graphics
 	class PixelShader : public Shader
 	{
 	public:
-		PixelShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice);
+		PixelShader(const std::string& fileName);
 		~PixelShader() noexcept override = default;
 
 		/// <summary>

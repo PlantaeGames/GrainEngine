@@ -9,7 +9,7 @@ namespace GrainEngine::Graphics
 		);
 	}
 
-	Shader::Shader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice) :
+	Shader::Shader(const std::string& fileName) :
 		PipelineComponent(pDevice)
 	{
 		assert(fileName.length() > 0);

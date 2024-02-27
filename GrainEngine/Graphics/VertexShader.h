@@ -24,6 +24,11 @@ namespace GrainEngine::Graphics
 
 		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
 
+		ComPtr<ID3DBlob> GetBinary() const noexcept
+		{
+			return _pBinary;
+		}
+
 	private:
 		/// <summary>
 		/// Loads the Shader on GPU.

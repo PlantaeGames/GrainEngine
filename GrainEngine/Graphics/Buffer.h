@@ -18,15 +18,16 @@ namespace GrainEngine::Graphics
 	class Buffer : PipelineComponent
 	{
 	public:
+		Buffer();
 		Buffer(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData, const ComPtr<ID3D11Device>& pDevice);
-		virtual ~Buffer() noexcept = default;
+		virtual ~Buffer() noexcept override = default;
 
 		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override = 0;
 
 		void New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		void Release();
 
-	private:
+	protected:
 		bool CheckValid() const noexcept;
 
 	protected:

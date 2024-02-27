@@ -1,6 +1,7 @@
 #pragma once
 
 #include "WinD3D.h"
+#include "Device.h"
 
 namespace GrainEngine::Graphics
 {
@@ -9,7 +10,7 @@ namespace GrainEngine::Graphics
 	class PipelineComponent
 	{
 	public:
-		PipelineComponent(const ComPtr<ID3D11Device>& pDevice);
+		PipelineComponent();
 		virtual ~PipelineComponent() noexcept = default;
 
 		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) = 0;

@@ -20,7 +20,7 @@ namespace GrainEngine::Graphics
 	class Shader : public PipelineComponent
 	{
 	public:
-		Shader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice);
+		Shader(const std::string& fileName);
 		virtual ~Shader() noexcept override = default;
 
 		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override = 0;

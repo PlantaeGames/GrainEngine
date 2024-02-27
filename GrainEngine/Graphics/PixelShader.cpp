@@ -16,8 +16,8 @@ namespace GrainEngine::Graphics
 		);
 	}
 
-	PixelShader::PixelShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice) :
-		Shader(fileName, pDevice),
+	PixelShader::PixelShader(const std::string& fileName) :
+		Shader(fileName),
 		_pPixelShader()
 	{
 		LoadToGPU();

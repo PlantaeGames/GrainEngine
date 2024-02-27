@@ -11,7 +11,7 @@ namespace GrainEngine::Graphics
 	class ViewPort : PipelineComponent
 	{
 	public:
-		ViewPort(const Rect rect, const ComPtr<ID3D11Device>& pDevice);
+		ViewPort(const Rect rect);
 		~ViewPort() noexcept override = default;
 
 		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
