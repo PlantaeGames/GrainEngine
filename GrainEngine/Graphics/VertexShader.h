@@ -19,10 +19,10 @@ namespace GrainEngine::Graphics
 	class VertexShader : public Shader
 	{
 	public:
-		VertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice);
+		VertexShader(const std::string& fileName);
 		~VertexShader() noexcept override = default;
 
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 		ComPtr<ID3DBlob> GetBinary() const noexcept
 		{

@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void VertexShader::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void VertexShader::Bind()
 	{
-		pDeviceContext->VSSetShader(_pVertexShader.Get(), nullptr, 0);
+		_pDeviceContext->VSSetShader(_pVertexShader.Get(), nullptr, 0);
 	}
 
 	void VertexShader::LoadToGPU()
@@ -16,8 +16,8 @@ namespace GrainEngine::Graphics
 		);
 	}
 
-	VertexShader::VertexShader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice) :
-		Shader(fileName, pDevice),
+	VertexShader::VertexShader(const std::string& fileName) :
+		Shader(fileName),
 		_pVertexShader()
 	{
 		LoadToGPU();

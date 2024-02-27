@@ -249,6 +249,18 @@
     <ClInclude Include="Graphics\Device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\PipelineState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Errors\InvalidRenderTargetGraphicsError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -312,9 +324,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\PipelineComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Structures\Collection.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ECS\Components\Transform.cpp">
@@ -405,6 +414,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\PipelineState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Errors\InvalidRenderTargetGraphicsError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

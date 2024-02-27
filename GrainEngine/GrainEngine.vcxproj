@@ -188,7 +188,11 @@
     <ClInclude Include="Graphics\DXFactory.h" />
     <ClInclude Include="Graphics\Errors\BufferEmptyGraphicsError.h" />
     <ClInclude Include="Graphics\Errors\BufferNotEmptyGraphicsError.h" />
+    <ClInclude Include="Graphics\Errors\InvalidRenderTargetGraphicsError.h" />
+    <ClInclude Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.h" />
     <ClInclude Include="Graphics\InputLayout.h" />
+    <ClInclude Include="Graphics\Pipeline.h" />
+    <ClInclude Include="Graphics\PipelineState.h" />
     <ClInclude Include="Graphics\PixelShader.h" />
     <ClInclude Include="Graphics\PrimitiveTopology.h" />
     <ClInclude Include="Graphics\RenderTargetView.h" />
@@ -250,7 +254,11 @@
     <ClCompile Include="Graphics\DXFactory.cpp" />
     <ClCompile Include="Graphics\Errors\BufferEmptyGraphicsError.cpp" />
     <ClCompile Include="Graphics\Errors\BufferNotEmptyGraphicsError.cpp" />
+    <ClCompile Include="Graphics\Errors\InvalidRenderTargetGraphicsError.cpp" />
+    <ClCompile Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.cpp" />
     <ClCompile Include="Graphics\InputLayout.cpp" />
+    <ClCompile Include="Graphics\Pipeline.cpp" />
+    <ClCompile Include="Graphics\PipelineState.cpp" />
     <ClCompile Include="Graphics\PixelShader.cpp" />
     <ClCompile Include="Graphics\PrimitiveTopology.cpp" />
     <ClCompile Include="Graphics\RenderTargetView.cpp" />
@@ -276,7 +284,6 @@
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\Material.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
-    <ClCompile Include="Structures\Collection.h" />
     <ClCompile Include="ECS\Components\Transform.cpp" />
     <ClCompile Include="Structures\Vector2.cpp" />
     <ClCompile Include="Structures\Vector3.cpp" />

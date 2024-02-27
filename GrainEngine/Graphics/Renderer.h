@@ -1,5 +1,9 @@
 #pragma once
-class Renderer
-{
-};
 
+namespace GrainEngine::Graphics
+{
+	class Renderer
+	{
+
+	};
+}

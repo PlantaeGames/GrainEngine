@@ -2,6 +2,11 @@
 
 namespace GrainEngine::Graphics
 {
+	void Swapchain::ClearScreen()
+	{
+		_backView.Clear();
+	}
+
 	void Swapchain::Create(HWND hWnd)
 	{
 		// swapchain properties
@@ -28,11 +33,14 @@ namespace GrainEngine::Graphics
 		);
 
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pSwapchain->GetBuffer(0u, __uuidof(ID3D11Resource), &_backBuffer);
+			_pSwapchain->GetBuffer(0u, __uuidof(ID3D11Resource), &_pBackBuffer);
 		);
+
+		_backView.New(_pBackBuffer);
 	}
 
-	Swapchain::Swapchain(HWND hWnd)
+	Swapchain::Swapchain(HWND hWnd) :
+		_backView()
 	{
 		Create(hWnd);
 	}

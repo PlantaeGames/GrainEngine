@@ -31,7 +31,7 @@ namespace GrainEngine::ECS
 
 		bool operator== (const Entity& entity) const noexcept
 		{
-			return entity.name == name;
+			return entity._id == _id;
 		}
 
 		template<typename t_T>
@@ -105,6 +105,7 @@ namespace GrainEngine::ECS
 		ManagedObject<Transform> pMTransform;
 
 	private:
+		unsigned long long _id = 0u;
 		std::vector<ManagedObject<IComponent>> _pMComponents;
 	};
 }

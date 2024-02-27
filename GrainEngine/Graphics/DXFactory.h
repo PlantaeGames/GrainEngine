@@ -14,10 +14,10 @@ namespace GrainEngine::Graphics
 
 	class DXFactory : public Singleton<DXFactory>
 	{
-		friend DXFactory;
+		friend Singleton;
 
 	public:
-		DXFactory() noexcept = default;
+		~DXFactory() noexcept = default;
 
 		ComPtr<IDXGIFactory> GetFactory() const noexcept
 		{

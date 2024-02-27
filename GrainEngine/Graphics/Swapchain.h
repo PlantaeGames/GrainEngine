@@ -3,6 +3,7 @@
 #include "WinD3D.h"
 #include "DXFactory.h"
 #include "Device.h"
+#include "RenderTargetView.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -18,11 +19,14 @@ namespace GrainEngine::Graphics
 		Swapchain(HWND hWnd);
 		~Swapchain() noexcept = default;
 
+		void ClearScreen();
+
 	private:
 		void Create(HWND hWnd);
 
 	private:
 		ComPtr<IDXGISwapChain> _pSwapchain;
-		ComPtr<ID3D11Resource> _backBuffer;
+		ComPtr<ID3D11Resource> _pBackBuffer;
+		RenderTargetView _backView;
 	};
 }

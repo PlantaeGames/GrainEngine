@@ -61,6 +61,8 @@ namespace GrainEngine::ECS
 		tag(Tag::None),
 		_pMComponents()
 	{
+		_id = (unsigned long long) this;
+
 		pMTransform = AddComponent<Transform>();
 	}
 

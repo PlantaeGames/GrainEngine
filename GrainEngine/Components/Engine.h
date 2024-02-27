@@ -4,7 +4,7 @@
 #include "Components/MainWindow.h"
 #include "Components/Time.h"
 #include "Errors/Error.h"
-#include "Graphics/D3D/D3DRenderer.h"
+#include "Graphics/D3DRenderer.h"
 #include "Components/Game.h"
 #include "Misc/RefPtr.h"
 #include "ECS/GarbageCollector.h"
