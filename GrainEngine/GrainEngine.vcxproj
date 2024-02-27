@@ -183,7 +183,11 @@
     <ClInclude Include="ECS\ManagedObject.h" />
     <ClInclude Include="ECS\Tag.h" />
     <ClInclude Include="ECS\WorldManager.h" />
+    <ClInclude Include="Graphics\Buffer.h" />
+    <ClInclude Include="Graphics\Errors\BufferEmptyGraphicsError.h" />
+    <ClInclude Include="Graphics\Errors\BufferNotEmptyGraphicsError.h" />
     <ClInclude Include="Graphics\PixelShader.h" />
+    <ClInclude Include="Graphics\VertexBuffer.h" />
     <ClInclude Include="Graphics\VertexShader.h" />
     <ClInclude Include="Graphics\ViewPort.h" />
     <ClInclude Include="Graphics\Errors\D3DGraphicsError.h" />
@@ -235,7 +239,11 @@
     <ClCompile Include="Components\Game.cpp" />
     <ClCompile Include="ECS\Errors\WorldNotFoundError.cpp" />
     <ClCompile Include="ECS\WorldManager.cpp" />
+    <ClCompile Include="Graphics\Buffer.cpp" />
+    <ClCompile Include="Graphics\Errors\BufferEmptyGraphicsError.cpp" />
+    <ClCompile Include="Graphics\Errors\BufferNotEmptyGraphicsError.cpp" />
     <ClCompile Include="Graphics\PixelShader.cpp" />
+    <ClCompile Include="Graphics\VertexBuffer.cpp" />
     <ClCompile Include="Graphics\VertexShader.cpp" />
     <ClCompile Include="Graphics\ViewPort.cpp" />
     <ClCompile Include="Graphics\Errors\D3DGraphicsError.cpp" />
