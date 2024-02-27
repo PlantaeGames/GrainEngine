@@ -2,12 +2,15 @@
 
 #include "WinD3D.h"
 #include "Patterns/Singleton.h"
+#include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
 {
 	using Microsoft::WRL::ComPtr;
 
+	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Patterns;
+	using namespace GrainEngine::Graphics::Errors;
 
 	class Device : public Singleton<Device>
 	{
@@ -21,6 +24,11 @@ namespace GrainEngine::Graphics
 			return _pDevice;
 		}
 
+		ComPtr<ID3D11DeviceContext> GetDeviceContext() const noexcept
+		{
+			return _pDeviceContext;
+		}
+
 	private:
 		Device();
 
@@ -28,5 +36,6 @@ namespace GrainEngine::Graphics
 
 	private:
 		ComPtr<ID3D11Device> _pDevice;
+		ComPtr<ID3D11DeviceContext> _pDeviceContext;
 	};
 }

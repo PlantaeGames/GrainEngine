@@ -10,7 +10,7 @@ namespace GrainEngine::Graphics
 	}
 
 	Shader::Shader(const std::string& fileName) :
-		PipelineComponent(pDevice)
+		PipelineComponent()
 	{
 		assert(fileName.length() > 0);
 

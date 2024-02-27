@@ -15,14 +15,14 @@ namespace GrainEngine::Graphics
 	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Graphics::Errors;
 
-	class Buffer : PipelineComponent
+	class Buffer : public PipelineComponent
 	{
 	public:
 		Buffer();
-		Buffer(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData, const ComPtr<ID3D11Device>& pDevice);
+		Buffer(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		virtual ~Buffer() noexcept override = default;
 
-		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override = 0;
+		virtual void Bind() override = 0;
 
 		void New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		void Release();

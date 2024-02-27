@@ -25,7 +25,7 @@ namespace GrainEngine::Graphics
 		/// <summary>
 		/// Binds the shader to the pipeline.
 		/// </summary>
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 	private:
 		/// <summary>

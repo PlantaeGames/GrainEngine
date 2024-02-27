@@ -2,10 +2,10 @@
 
 namespace GrainEngine::Graphics
 {
-	void ViewPort::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void ViewPort::Bind()
 	{
 		Update();
-		pDeviceContext->RSSetViewports(1u, &_viewPort);
+		_pDeviceContext->RSSetViewports(1u, &_viewPort);
 	}
 
 	void ViewPort::Update() noexcept

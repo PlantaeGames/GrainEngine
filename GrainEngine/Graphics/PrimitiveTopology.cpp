@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void PrimitiveTopology::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void PrimitiveTopology::Bind()
 	{
-		pDeviceContext->IASetPrimitiveTopology(_topology);
+		_pDeviceContext->IASetPrimitiveTopology(_topology);
 	}
 
 	PrimitiveTopology::PrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY topology) :

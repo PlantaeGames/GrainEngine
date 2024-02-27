@@ -13,9 +13,10 @@ namespace GrainEngine::Graphics
 		PipelineComponent();
 		virtual ~PipelineComponent() noexcept = default;
 
-		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) = 0;
+		virtual void Bind() = 0;
 
 	protected:
 		ComPtr<ID3D11Device> _pDevice;
+		ComPtr<ID3D11DeviceContext> _pDeviceContext;
 	};
 }

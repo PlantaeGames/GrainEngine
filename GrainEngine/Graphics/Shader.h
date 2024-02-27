@@ -23,7 +23,7 @@ namespace GrainEngine::Graphics
 		Shader(const std::string& fileName);
 		virtual ~Shader() noexcept override = default;
 
-		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override = 0;
+		virtual void Bind() override = 0;
 
 	private:
 		void LoadToCPU();

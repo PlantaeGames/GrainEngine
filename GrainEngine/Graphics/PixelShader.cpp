@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void PixelShader::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void PixelShader::Bind()
 	{
-		pDeviceContext->PSSetShader(_pPixelShader.Get(), nullptr, 0);
+		_pDeviceContext->PSSetShader(_pPixelShader.Get(), nullptr, 0);
 	}
 
 	void PixelShader::LoadToGPU()

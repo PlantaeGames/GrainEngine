@@ -17,7 +17,7 @@ namespace GrainEngine::Graphics
 		VertexBuffer();
 		~VertexBuffer() noexcept override = default;
 
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 		void Create(const Vertex* pVertices, unsigned int numberOfVertices);
 

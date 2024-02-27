@@ -135,7 +135,7 @@ namespace GrainEngine::Graphics
 		// creating device and swapchain
 		unsigned int creationFlags = 0;
 #ifdef _DEBUG
-		creationFlags |= D3D10_CREATE_DEVICE_DEBUG;
+		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 		THROW_DERROR(D3D11CreateDeviceAndSwapChain(
 			nullptr,					// adapter, using default

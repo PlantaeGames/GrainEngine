@@ -17,7 +17,7 @@ namespace GrainEngine::Graphics
 		InputLayout(const ComPtr<ID3DBlob>& pVertexShaderBinary);
 		~InputLayout() noexcept override = default;
 
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 
 	private:

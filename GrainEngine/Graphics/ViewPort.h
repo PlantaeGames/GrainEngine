@@ -14,7 +14,7 @@ namespace GrainEngine::Graphics
 		ViewPort(const Rect rect);
 		~ViewPort() noexcept override = default;
 
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 	private:
 		void Update() noexcept;

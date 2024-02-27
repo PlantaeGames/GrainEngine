@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void InputLayout::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void InputLayout::Bind()
 	{
-		pDeviceContext->IASetInputLayout(_pInputLayout.Get());
+		_pDeviceContext->IASetInputLayout(_pInputLayout.Get());
 	}
 
 	void InputLayout::Create(const ComPtr<ID3DBlob>& pVertexShaderBinary)

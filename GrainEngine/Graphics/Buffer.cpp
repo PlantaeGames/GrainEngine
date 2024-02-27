@@ -33,8 +33,8 @@ namespace GrainEngine::Graphics
 		return (_pBuffer.Get() == nullptr) == false;
 	}
 
-	Buffer::Buffer(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData, const ComPtr<ID3D11Device>& pDevice) :
-		PipelineComponent(pDevice)
+	Buffer::Buffer(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData) :
+		PipelineComponent()
 	{
 		New(description, initialData);
 	}

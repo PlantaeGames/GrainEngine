@@ -17,7 +17,7 @@ namespace GrainEngine::Graphics
 		RenderTargetView(const ComPtr<ID3D11Resource>& pBuffer);
 		~RenderTargetView() noexcept override = default;
 
-		void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override;
+		void Bind() override;
 
 		void Clear(const ComPtr<ID3D11DeviceContext>& pDeviceContext);
 

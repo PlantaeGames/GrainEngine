@@ -2,14 +2,14 @@
 
 namespace GrainEngine::Graphics
 {
-	void VertexBuffer::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void VertexBuffer::Bind()
 	{
 		if (CheckValid() == false)
 		{
 			THROW_BUFFER_EMPTY_GRAPHICS_ERROR(BUFFER_EMPTY_GRAPHICS_ERROR_MESSAGE);
 		}
 
-		pDeviceContext->IASetVertexBuffers(0u, 1u, _pBuffer.GetAddressOf(), &stride, &offset);
+		_pDeviceContext->IASetVertexBuffers(0u, 1u, _pBuffer.GetAddressOf(), &stride, &offset);
 	}
 
 	void VertexBuffer::Create(const Vertex* pVertices, unsigned int numberOfVertices)

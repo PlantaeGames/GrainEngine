@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void RenderTargetView::Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext)
+	void RenderTargetView::Bind()
 	{
-		pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), nullptr);
+		_pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), nullptr);
 	}
 
 	void RenderTargetView::Create(const ComPtr<ID3D11Resource>& pBuffer)
@@ -21,7 +21,7 @@ namespace GrainEngine::Graphics
 	}
 
 	RenderTargetView::RenderTargetView(const ComPtr<ID3D11Resource>& pBuffer) :
-		PipelineComponent(pDevice)
+		PipelineComponent()
 	{
 		Create(pBuffer);
 	}
