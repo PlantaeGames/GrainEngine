@@ -90,7 +90,7 @@
     <ClInclude Include="Input\Mouse.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DRenderer.h">
+    <ClInclude Include="Graphics\D3DRenderer.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Window.h">
@@ -126,7 +126,7 @@
     <ClInclude Include="Graphics\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\Errors\D3DGraphicsError.h">
+    <ClInclude Include="Graphics\Errors\D3DGraphicsError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Material.h">
@@ -135,7 +135,7 @@
     <ClInclude Include="Graphics\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\IPipelineComponent.h">
+    <ClInclude Include="Graphics\PipelineComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ECS\Components\Transform.h">
@@ -204,13 +204,19 @@
     <ClInclude Include="Graphics\Errors\UnableToLoadShaderGraphicsError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DShader.h">
+    <ClInclude Include="Graphics\VertexShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\D3DVertexShader.h">
+    <ClInclude Include="Graphics\WinD3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\D3D\WinD3D.h">
+    <ClInclude Include="Graphics\PixelShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures\Rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ViewPort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,7 +242,7 @@
     <ClCompile Include="Input\Mouse.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DRenderer.cpp">
+    <ClCompile Include="Graphics\D3DRenderer.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Window.cpp">
@@ -266,7 +272,7 @@
     <ClCompile Include="Graphics\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\Errors\D3DGraphicsError.cpp">
+    <ClCompile Include="Graphics\Errors\D3DGraphicsError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Material.cpp">
@@ -275,7 +281,7 @@
     <ClCompile Include="Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\IPipelineComponent.cpp">
+    <ClCompile Include="Graphics\PipelineComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Structures\Collection.h">
@@ -332,10 +338,13 @@
     <ClCompile Include="Graphics\Errors\UnableToLoadShaderGraphicsError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DShader.cpp">
+    <ClCompile Include="Graphics\VertexShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\D3D\D3DVertexShader.cpp">
+    <ClCompile Include="Graphics\PixelShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\ViewPort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

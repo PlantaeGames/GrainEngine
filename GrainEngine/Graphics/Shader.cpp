@@ -2,39 +2,23 @@
 
 namespace GrainEngine::Graphics
 {
-	void Shader::LoadToPrimaryMemory()
+	void Shader::LoadToCPU()
 	{
-		try
-		{
-			FileReader fileReader = { _fileName };
-			_pCode = std::make_unique<byte[]>(fileReader.GetSize());
-
-			fileReader.ReadAll(_pCode);
-		}
-		catch(const FileNotValidError& error)
-		{
-			auto shaderError = GENERATE_UNABLE_TO_LOAD_SHADER_GRAPHICS_ERROR(UNABLE_TO_LOAD_SHADER_GRAPHICS_ERROR_MESSAGE);
-			shaderError.Append(error.What());
-
-			THROW(shaderError);
-		}
+		CHECK_THROW_D3D_ERROR_INFO(
+			D3DReadFileToBlob(_wFileName.c_str(), &_pBinary)
+		);
 	}
 
-	void Shader::LoadToGPUMemory() 
-	{}
-
-	Shader::Shader(const std::string& fileName) :
-		_fileName(),
-		_pCode(nullptr)
+	Shader::Shader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice) :
+		PipelineComponent(pDevice)
 	{
-		assert(_fileName.length() > 0);
+		assert(fileName.length() > 0);
 
-		_fileName = fileName;
+		std::wstringstream wideStringStream = {};
+		wideStringStream << fileName.c_str();
 
-		LoadToPrimaryMemory();
-		LoadToGPUMemory();
+		_wFileName = wideStringStream.str();
+
+		LoadToCPU();
 	}
-
-	Shader::~Shader() noexcept
-	{}
 }

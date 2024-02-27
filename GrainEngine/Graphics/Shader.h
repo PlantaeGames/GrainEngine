@@ -2,37 +2,35 @@
 
 #include <string>
 #include <memory>
+#include <sstream>
 
-#include "IPipelineComponent.h"
-#include "Utilities/FileReader.h"
-#include "Graphics/Errors/UnableToLoadShaderGraphicsError.h"
+#include "WinD3D.h"
+#include "PipelineComponent.h"
+#include "Errors/Error.h"
+#include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
 {
-#define UNABLE_TO_LOAD_SHADER_GRAPHICS_ERROR_MESSAGE "Unable to Load Shader."
-
-	using namespace GrainEngine::Utilities;
-	using namespace GrainEngine::Utilities::Errors;
+	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Graphics::Errors;
 
 	/// <summary>
 	/// Base class for Shaders.
 	/// </summary>
-	class Shader : IPipelineComponent
+	class Shader : public PipelineComponent
 	{
 	public:
-		Shader(const std::string& fileName);
-		virtual ~Shader() noexcept override;
+		Shader(const std::string& fileName, const ComPtr<ID3D11Device>& pDevice);
+		virtual ~Shader() noexcept override = default;
 
-		virtual void Bind() override = 0;
+		virtual void Bind(const ComPtr<ID3D11DeviceContext>& pDeviceContext) override = 0;
+
+	private:
+		void LoadToCPU();
 
 	protected:
-		virtual void LoadToPrimaryMemory();
-		virtual void LoadToGPUMemory();
-
-	protected:
-		std::string _fileName;
-		std::unique_ptr<byte[]> _pCode;
+		std::wstring _wFileName;
+		ComPtr<ID3DBlob> _pBinary;
 	};
 }
 

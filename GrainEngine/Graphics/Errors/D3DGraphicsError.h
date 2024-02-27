@@ -2,11 +2,11 @@
 
 #include <string>
 
-#include "Graphics/D3D/WinD3D.h"
+#include "Graphics/WinD3D.h"
 #include "Graphics/Errors/GraphicsError.h"
 #include "Patterns/Singleton.h"
 
-namespace GrainEngine::Graphics::D3D::Errors
+namespace GrainEngine::Graphics::Errors
 {
 #define GENERATE_D3D_GRAPHICS_ERROR(message) D3DGraphicsError(message, __FILE__, __LINE__)
 #define THROW_D3D_GRAPHICS_ERROR(message) THROW(GENERATE_D3D_GRAPHICS_ERROR(message))

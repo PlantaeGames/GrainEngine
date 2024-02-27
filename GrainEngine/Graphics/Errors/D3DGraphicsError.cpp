@@ -1,6 +1,6 @@
 #include "D3DGraphicsError.h"
 
-namespace GrainEngine::Graphics::D3D::Errors
+namespace GrainEngine::Graphics::Errors
 {
 #ifdef _DEBUG
 	bool D3DGraphicsError::DXGIInfoQueue::CheckMessages() const noexcept
