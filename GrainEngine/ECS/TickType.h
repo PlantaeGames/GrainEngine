@@ -8,6 +8,8 @@ namespace GrainEngine::ECS
 		Awake,
 		Start,
 		Update,
+		PreRender,
+		PostRender,
 		End
 	};
 }

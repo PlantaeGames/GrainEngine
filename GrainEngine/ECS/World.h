@@ -3,9 +3,12 @@
 #include <string>
 
 #include "EntityManager.h"
+#include "Graphics/Renderer.h"
 
 namespace GrainEngine::ECS
 {
+	using namespace GrainEngine::Graphics;
+
 	class World
 	{
 	public:
@@ -24,6 +27,7 @@ namespace GrainEngine::ECS
 		}
 
 		void Tick(TickType tickType);
+		void RenderTick(const Renderer& renderer, TickType tickType);
 
 		EntityManager& GetEntityManager() const noexcept
 		{

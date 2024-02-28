@@ -26,10 +26,10 @@ namespace GrainEngine::Graphics
 		void AddState(PipelineState&& pipelineState) noexcept;
 		void RemoveState(unsigned long long id);
 
+		void PrepareRenderPass();
 		void DoRenderPass();
 
 	private:
-		void PrepareRenderPass();
 		void RenderPass(const PipelineState& pipelineState);
 
 		void SetFixedStages();

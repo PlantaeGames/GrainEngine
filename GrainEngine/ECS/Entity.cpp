@@ -2,6 +2,21 @@
 
 namespace GrainEngine::ECS
 {
+	void Entity::RenderTick(const Renderer& renderer, TickType tickType)
+	{
+		switch (tickType)
+		{
+		case TickType::PreRender:
+			PreRenderTick(renderer);
+			break;
+		case TickType::PostRender:
+			PostRenderTick(renderer);
+			break;
+		default:
+			break;
+		}
+	}
+
 	void Entity::Tick(ManagedObject<Entity>& pMEntity, TickType tickType)
 	{
 		switch (tickType)
@@ -46,6 +61,20 @@ namespace GrainEngine::ECS
 		for (auto& pMComponent : _pMComponents)
 		{
 			pMComponent->Update(pMEntity);
+		}
+	}
+	void Entity::PreRenderTick(const Renderer& renderer)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->PreRender(renderer);
+		}
+	}
+	void Entity::PostRenderTick(const Renderer& renderer)
+	{
+		for (auto& pMComponent : _pMComponents)
+		{
+			pMComponent->PostRender(renderer);
 		}
 	}
 	void Entity::EndTick(ManagedObject<Entity>& pMEntity)

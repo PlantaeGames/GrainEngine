@@ -11,6 +11,7 @@ namespace GrainEngine::ECS::Errors
 
 	class ComponentNotFoundError : public GrainEngine::Errors::Error
 	{
+	public:
 		ComponentNotFoundError(const std::string& message, const std::string& fileName, unsigned int lineNumber);
 		~ComponentNotFoundError() noexcept override = default;
 	};

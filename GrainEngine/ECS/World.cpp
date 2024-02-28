@@ -12,4 +12,9 @@ namespace GrainEngine::ECS
 	{
 		_entityManager.Tick(tickType);
 	}
+
+	void World::RenderTick(const Renderer& renderer, TickType tickType)
+	{
+		_entityManager.RenderTick(renderer, tickType);
+	}
 }

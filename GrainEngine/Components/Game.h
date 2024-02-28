@@ -1,15 +1,17 @@
 #pragma once
 
 #include "ECS/WorldManager.h"
+#include "Graphics/Renderer.h"
 
 namespace GrainEngine::Components
 {
 	using namespace GrainEngine::ECS;
+	using namespace GrainEngine::Graphics;
 
 	class Game
 	{
 	public:
-		Game();
+		Game(HWND hWnd);
 		~Game() noexcept = default;
 
 		Game(const Game& otherInstance) = delete;
@@ -20,6 +22,8 @@ namespace GrainEngine::Components
 
 		void Start();
 		void Update();
+		void PrepareRender();
+		void Render();
 		void End();
 
 		WorldManager& GetWorldManager() const noexcept
@@ -28,6 +32,11 @@ namespace GrainEngine::Components
 		}
 
 	private:
+		void PreRender();
+		void PostRender();
+
+	private:
 		mutable WorldManager _worldManager;
+		mutable Renderer _renderer;
 	};
 }

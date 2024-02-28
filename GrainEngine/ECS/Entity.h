@@ -14,8 +14,10 @@ namespace GrainEngine::ECS
 {
 #define COMPONENT_NOT_FOUND_ERROR_MESSAGE "Component Not Found."
 
-	using namespace Components;
-	using namespace Errors;
+	using namespace GrainEngine::Graphics;
+	using namespace GrainEngine::ECS::Components;
+	using namespace GrainEngine::ECS::Errors;
+	using namespace GrainEngine::Errors;
 
 	class Entity
 	{
@@ -42,7 +44,9 @@ namespace GrainEngine::ECS
 				if (dynamic_cast<t_T*>(pMCComponent.GetPtr()) == nullptr)
 					continue;
 
-				return ManagedObject<t_T>().Hold<IComponent>(pMCComponent);
+				auto result = ManagedObject<t_T>();
+				result.Hold<IComponent>(pMCComponent);
+				return result;
 			}
 
 			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
@@ -92,11 +96,14 @@ namespace GrainEngine::ECS
 		}
 
 		void Tick(ManagedObject<Entity>& pMEntity, TickType tickType);
+		void RenderTick(const Renderer& renderer, TickType tickType);
 
 	private:
 		void AwakeTick(ManagedObject<Entity>& pMEntity);
 		void StartTick(ManagedObject<Entity>& pMEntity);
 		void UpdateTick(ManagedObject<Entity>& pMEntity);
+		void PreRenderTick(const Renderer& renderer);
+		void PostRenderTick(const Renderer& renderer);
 		void EndTick(ManagedObject<Entity>& pMEntity);
 
 	public:

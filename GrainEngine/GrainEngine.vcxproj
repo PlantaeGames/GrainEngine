@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Components\Engine.h" />
+    <ClInclude Include="ECS\Components\Mesh.h" />
     <ClInclude Include="ECS\EntityManager.h" />
     <ClInclude Include="Components\InputManager.h" />
     <ClInclude Include="Components\MainWindow.h" />
@@ -181,15 +182,19 @@
     <ClInclude Include="ECS\Errors\WorldNotFoundError.h" />
     <ClInclude Include="ECS\GarbageCollector.h" />
     <ClInclude Include="ECS\ManagedObject.h" />
+    <ClInclude Include="ECS\Components\MeshRenderer.h" />
     <ClInclude Include="ECS\Tag.h" />
     <ClInclude Include="ECS\WorldManager.h" />
     <ClInclude Include="Graphics\Buffer.h" />
+    <ClInclude Include="Graphics\ConstantBuffer.h" />
+    <ClInclude Include="Graphics\DepthBuffer.h" />
     <ClInclude Include="Graphics\Device.h" />
     <ClInclude Include="Graphics\DXFactory.h" />
     <ClInclude Include="Graphics\Errors\BufferEmptyGraphicsError.h" />
     <ClInclude Include="Graphics\Errors\BufferNotEmptyGraphicsError.h" />
     <ClInclude Include="Graphics\Errors\InvalidRenderTargetGraphicsError.h" />
     <ClInclude Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.h" />
+    <ClInclude Include="Graphics\GraphicsObject.h" />
     <ClInclude Include="Graphics\InputLayout.h" />
     <ClInclude Include="Graphics\Pipeline.h" />
     <ClInclude Include="Graphics\PipelineState.h" />
@@ -237,6 +242,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Engine.cpp" />
+    <ClCompile Include="ECS\Components\Mesh.cpp" />
+    <ClCompile Include="ECS\Components\MeshRenderer.cpp" />
     <ClCompile Include="ECS\EntityManager.cpp" />
     <ClCompile Include="Components\InputManager.cpp" />
     <ClCompile Include="Components\MainWindow.cpp" />
@@ -250,12 +257,15 @@
     <ClCompile Include="ECS\Errors\WorldNotFoundError.cpp" />
     <ClCompile Include="ECS\WorldManager.cpp" />
     <ClCompile Include="Graphics\Buffer.cpp" />
+    <ClCompile Include="Graphics\ConstantBuffer.cpp" />
+    <ClCompile Include="Graphics\DepthBuffer.cpp" />
     <ClCompile Include="Graphics\Device.cpp" />
     <ClCompile Include="Graphics\DXFactory.cpp" />
     <ClCompile Include="Graphics\Errors\BufferEmptyGraphicsError.cpp" />
     <ClCompile Include="Graphics\Errors\BufferNotEmptyGraphicsError.cpp" />
     <ClCompile Include="Graphics\Errors\InvalidRenderTargetGraphicsError.cpp" />
     <ClCompile Include="Graphics\Errors\PipelineStateNotFoundGraphicsError.cpp" />
+    <ClCompile Include="Graphics\GraphicsObject.cpp" />
     <ClCompile Include="Graphics\InputLayout.cpp" />
     <ClCompile Include="Graphics\Pipeline.cpp" />
     <ClCompile Include="Graphics\PipelineState.cpp" />

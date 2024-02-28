@@ -6,12 +6,15 @@
 #include "Entity.h"
 #include "TickType.h"
 #include "ECS/Errors/EntityNotFoundError.h"
+#include "Graphics/Renderer.h"
 
 namespace GrainEngine::ECS
 {
 #define ENTITY_NOT_FOUND_ERROR_MESSAGE "Entity Not Found."
 
-	using namespace Errors;
+	using namespace GrainEngine::Errors;
+	using namespace GrainEngine::ECS::Errors;
+	using namespace GrainEngine::Graphics;
 
 	class EntityManager
 	{
@@ -31,11 +34,14 @@ namespace GrainEngine::ECS
 		void RemoveEntity(ManagedObject<Entity>& pMEntity);
 
 		void Tick(TickType tickType);
+		void RenderTick(const Renderer& renderer, TickType tickType);
 
 	private:
 		void StartTick();
 		void UpdateTick();
 		void EndTick();
+		void PreRenderTick(const Renderer& renderer);
+		void PostRenderTick(const Renderer& renderer);
 
 	private:
 		std::vector<ManagedObject<Entity>> _pMEntities;

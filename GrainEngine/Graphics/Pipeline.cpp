@@ -14,8 +14,6 @@ namespace GrainEngine::Graphics
 
 	void Pipeline::DoRenderPass()
 	{
-		PrepareRenderPass();
-
 		for (auto& state : _states)
 		{
 			RenderPass(state);
@@ -68,7 +66,7 @@ namespace GrainEngine::Graphics
 		_states(),
 		_swapChain(hWnd),
 		_viewPort(GetWindowBounds(hWnd)),
-		_inputLayout(VertexShader("Shaders\\Default\\VertexShader.cso").GetBinary())
+		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary())
 	{
 		SetFixedStages();
 	}

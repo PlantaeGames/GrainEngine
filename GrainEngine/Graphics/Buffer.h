@@ -24,10 +24,10 @@ namespace GrainEngine::Graphics
 
 		virtual void Bind() override = 0;
 
-		void New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		void Release();
 
 	protected:
+		void New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		bool CheckValid() const noexcept;
 
 	protected:

@@ -31,6 +31,11 @@ namespace GrainEngine::Graphics
 
 	void RenderTargetView::Clear()
 	{
+		if (CheckValid() == false)
+		{
+			THROW_INVALID_RENDER_TARGET_GRAPHICS_ERROR(INVALID_RENDER_TARGET_GRAPHICS_ERROR_MESSAGE);
+		}
+
 		const float color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		_pDeviceContext->ClearRenderTargetView(_pTargetView.Get(), color);
 	}

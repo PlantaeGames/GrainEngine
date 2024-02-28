@@ -1,9 +1,12 @@
 #pragma once
 
 #include "ManagedObject.h"
+#include "Graphics/Renderer.h"
 
 namespace GrainEngine::ECS
 {
+	using namespace GrainEngine::Graphics;
+
 	class Entity;
 
 	class IComponent
@@ -25,6 +28,8 @@ namespace GrainEngine::ECS
 		virtual void Awake(ManagedObject<Entity>& pMEntity) {}
 		virtual void Start(ManagedObject<Entity>& pMEntity) {}
 		virtual void Update(ManagedObject<Entity>& pMEntity) {}
+		virtual void PreRender(const Renderer& renderer) {}
+		virtual void PostRender(const Renderer& renderer) {}
 		virtual void End(ManagedObject<Entity>& pMEntity) {}
 
 	protected:

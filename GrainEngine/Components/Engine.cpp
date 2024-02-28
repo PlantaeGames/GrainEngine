@@ -5,14 +5,11 @@ namespace GrainEngine::Components
 	void Engine::Tick()
 	{
 		_game.Update();
-
-		_renderer.DrawTriangle();
 	}
 
 	void Engine::PrepareTick()
 	{
-		_renderer.Clear();
-
+		_game.PrepareRender();
 		_pRTime->Tick();
 		_pRInputManager->Update();
 
@@ -29,7 +26,7 @@ namespace GrainEngine::Components
 
 	void Engine::EndTick()
 	{
-		_renderer.Present();
+		_game.Render();
 	}
 
 	unsigned int Engine::Run()
@@ -92,10 +89,9 @@ namespace GrainEngine::Components
 	}
 
 	Engine::Engine(): 
-		_game(),
 		_mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT),
+		_game(_mainWindow.GetHandle()),
 		_msg(),
-		_renderer(_mainWindow.GetHandle()),
 		_pRTime(Time::GetInstance()),
 		_pRInputManager(InputManager::GetInstance())
 	{}

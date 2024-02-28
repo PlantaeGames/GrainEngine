@@ -4,7 +4,6 @@
 #include "Components/MainWindow.h"
 #include "Components/Time.h"
 #include "Errors/Error.h"
-#include "Graphics/D3DRenderer.h"
 #include "Components/Game.h"
 #include "Misc/RefPtr.h"
 #include "ECS/GarbageCollector.h"
@@ -17,15 +16,13 @@ namespace GrainEngine::Components
 
 	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Misc;
-	using namespace Graphics;
 
 	class Engine
 	{
 	private:
-		Game _game;
 		MainWindow _mainWindow;
+		Game _game;
 		MSG _msg;
-		D3DRenderer _renderer;
 		mutable RefPtr<Time> _pRTime;
 		mutable RefPtr<InputManager> _pRInputManager;
 

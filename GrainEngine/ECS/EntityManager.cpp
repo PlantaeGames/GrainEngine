@@ -56,6 +56,22 @@ namespace GrainEngine::ECS
 		THROW_ENTITY_NOT_FOUND_ERROR(ENTITY_NOT_FOUND_ERROR_MESSAGE);
 	}
 
+	void EntityManager::RenderTick(const Renderer& renderer, TickType tickType)
+	{
+		switch (tickType)
+		{
+		case TickType::PreRender:
+			PreRenderTick(renderer);
+			break;
+		case TickType::PostRender:
+			PostRenderTick(renderer);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	void EntityManager::Tick(TickType tickType)
 	{
 		switch (tickType)
@@ -75,6 +91,22 @@ namespace GrainEngine::ECS
 
 			default:
 				break;
+		}
+	}
+
+	void EntityManager::PreRenderTick(const Renderer& renderer)
+	{
+		for (auto& pMEntity : _pMEntities)
+		{
+			pMEntity->RenderTick(renderer, TickType::PreRender);
+		}
+	}
+
+	void EntityManager::PostRenderTick(const Renderer& renderer)
+	{
+		for (auto& pMEntity : _pMEntities)
+		{
+			pMEntity->RenderTick(renderer, TickType::PostRender);
 		}
 	}
 
