@@ -26,11 +26,11 @@ namespace GrainEngine::ECS
 		}
 
 		virtual void Awake(ManagedObject<Entity>& pMEntity) = 0;
-		virtual void Start(ManagedObject<Entity>& pMEntity) {}
-		virtual void Update(ManagedObject<Entity>& pMEntity) {}
+		virtual void Start() {}
+		virtual void Update() {}
 		virtual void PreRender(const Renderer& renderer) {}
 		virtual void PostRender(const Renderer& renderer) {}
-		virtual void End(ManagedObject<Entity>& pMEntity) {}
+		virtual void End() {}
 
 	protected:
 		IComponent()

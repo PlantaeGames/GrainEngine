@@ -53,8 +53,10 @@ namespace GrainEngine::Graphics
 
 	void Pipeline::SetFixedStages()
 	{
+		_swapChain.Bind();
 		_viewPort.Bind();
 		_inputLayout.Bind();
+		_topology.Bind();
 	}
 
 	Rect Pipeline::GetWindowBounds(HWND hWnd)
@@ -72,7 +74,8 @@ namespace GrainEngine::Graphics
 		_states(),
 		_swapChain(hWnd),
 		_viewPort(GetWindowBounds(hWnd)),
-		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary())
+		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
+		_topology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 		SetFixedStages();
 	}

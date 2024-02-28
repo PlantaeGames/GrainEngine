@@ -2,6 +2,11 @@
 
 namespace GrainEngine::Graphics
 {
+	void Swapchain::Bind()
+	{
+		_backView.Bind();
+	}
+
 	void Swapchain::Present()
 	{
 		CHECK_THROW_D3D_ERROR_INFO(
@@ -47,6 +52,7 @@ namespace GrainEngine::Graphics
 	}
 
 	Swapchain::Swapchain(HWND hWnd) :
+		PipelineComponent(),
 		_backView()
 	{
 		Create(hWnd);

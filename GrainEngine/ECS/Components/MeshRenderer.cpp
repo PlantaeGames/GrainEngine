@@ -17,6 +17,8 @@ namespace GrainEngine::ECS::Components
 				pMesh->GetVertices().Get(),
 				pMesh->GetVerticesCount()
 			));
+
+		_registered = true;
 	}
 
 	void MeshRenderer::Awake(ManagedObject<Entity>& pMEntity)
@@ -24,7 +26,7 @@ namespace GrainEngine::ECS::Components
 		_pMParent = pMEntity;
 	}
 
-	void MeshRenderer::End(ManagedObject<Entity>& pMEntity)
+	void MeshRenderer::End()
 	{
 		// un registering on renderer
 

@@ -17,24 +17,21 @@ namespace GrainEngine::ECS
 		}
 	}
 
-	void Entity::Tick(ManagedObject<Entity>& pMEntity, TickType tickType)
+	void Entity::Tick(TickType tickType)
 	{
 		switch (tickType)
 		{
 		case TickType::None:
 			break;
 
-		case TickType::Awake:
-			AwakeTick(pMEntity);
-			break;
 		case TickType::Start:
-			StartTick(pMEntity);
+			StartTick();
 			break;
 		case TickType::Update:
-			UpdateTick(pMEntity);
+			UpdateTick();
 			break;
 		case TickType::End:
-			EndTick(pMEntity);
+			EndTick();
 			break;
 
 		default:
@@ -42,25 +39,22 @@ namespace GrainEngine::ECS
 		}
 	}
 
-	void Entity::AwakeTick(ManagedObject<Entity>& pMEntity)
+	void Entity::Awake(ManagedObject<Entity>& pMEntity)
+	{
+		_pMSelf = pMEntity;
+	}
+	void Entity::StartTick()
 	{
 		for (auto& pMComponent : _pMComponents)
 		{
-			pMComponent->Awake(pMEntity);
+			pMComponent->Start();
 		}
 	}
-	void Entity::StartTick(ManagedObject<Entity>& pMEntity)
+	void Entity::UpdateTick()
 	{
 		for (auto& pMComponent : _pMComponents)
 		{
-			pMComponent->Start(pMEntity);
-		}
-	}
-	void Entity::UpdateTick(ManagedObject<Entity>& pMEntity)
-	{
-		for (auto& pMComponent : _pMComponents)
-		{
-			pMComponent->Update(pMEntity);
+			pMComponent->Update();
 		}
 	}
 	void Entity::PreRenderTick(const Renderer& renderer)
@@ -77,12 +71,21 @@ namespace GrainEngine::ECS
 			pMComponent->PostRender(renderer);
 		}
 	}
-	void Entity::EndTick(ManagedObject<Entity>& pMEntity)
+	void Entity::EndTick()
 	{
 		for (auto& pMComponent : _pMComponents)
 		{
-			pMComponent->End(pMEntity);
+			pMComponent->End();
 		}
+	}
+
+	void Entity::AwakeComponent(ManagedObject<IComponent>& pMComponent)
+	{
+		pMComponent->Awake(_pMSelf);
+	}
+	void Entity::EndComponent(ManagedObject<IComponent>& pMComponent)
+	{
+		pMComponent->End();
 	}
 
 	Entity::Entity() :

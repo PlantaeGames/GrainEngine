@@ -4,6 +4,7 @@
 #include "DXFactory.h"
 #include "Device.h"
 #include "RenderTargetView.h"
+#include "PipelineComponent.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -13,12 +14,13 @@ namespace GrainEngine::Graphics
 	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Graphics::Errors;
 
-	class Swapchain
+	class Swapchain : public PipelineComponent
 	{
 	public:
 		Swapchain(HWND hWnd);
 		~Swapchain() noexcept = default;
 
+		void Bind() override;
 		void ClearScreen();
 		void Present();
 

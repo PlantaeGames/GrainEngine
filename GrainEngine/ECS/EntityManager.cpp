@@ -22,7 +22,7 @@ namespace GrainEngine::ECS
 		_pMEntities.push_back(ManagedObject<Entity>().New());
 		auto& pMEntity = _pMEntities.back();
 
-		pMEntity->Tick(pMEntity, TickType::Awake);
+		AwakeEntity(pMEntity);
 
 		return pMEntity;
 	}
@@ -47,13 +47,23 @@ namespace GrainEngine::ECS
 			if (current->Equals(pMEntity))
 				continue;
 
-			current->GetPtr()->Tick(*current, TickType::End);
+			EndEntity(*current);
 			_pMEntities.erase(current);
 
 			return;
 		}
 
 		THROW_ENTITY_NOT_FOUND_ERROR(ENTITY_NOT_FOUND_ERROR_MESSAGE);
+	}
+
+	void EntityManager::AwakeEntity(ManagedObject<Entity>& pMEntity)
+	{
+		pMEntity->Awake(pMEntity);
+	}
+
+	void EntityManager::EndEntity(ManagedObject<Entity>& pMEntity)
+	{
+		pMEntity->Tick(TickType::End);
 	}
 
 	void EntityManager::RenderTick(const Renderer& renderer, TickType tickType)
@@ -114,7 +124,7 @@ namespace GrainEngine::ECS
 	{
 		for (auto& pMEntity : _pMEntities)
 		{
-			pMEntity->Tick(pMEntity, TickType::Start);
+			pMEntity->Tick(TickType::Start);
 		}
 	}
 
@@ -122,7 +132,7 @@ namespace GrainEngine::ECS
 	{
 		for (auto& pMEntity : _pMEntities)
 		{
-			pMEntity->Tick(pMEntity, TickType::Update);
+			pMEntity->Tick(TickType::Update);
 		}
 	}
 
@@ -130,7 +140,7 @@ namespace GrainEngine::ECS
 	{
 		for (auto& pMEntity : _pMEntities)
 		{
-			pMEntity->Tick(pMEntity, TickType::End);
+			pMEntity->Tick(TickType::End);
 		}
 	}
 

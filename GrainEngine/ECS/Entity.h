@@ -71,7 +71,10 @@ namespace GrainEngine::ECS
 		template<typename t_T>
 		ManagedObject<t_T> AddComponent()
 		{
-			_pMComponents.push_back(ManagedObject<IComponent>().New<t_T>());
+			auto pMtemp = ManagedObject<IComponent>().New<t_T>();
+			_pMComponents.push_back(pMtemp);
+
+			AwakeComponent(pMtemp);
 			
 			ManagedObject<t_T> pMComponent = {};
 			pMComponent.Hold<IComponent>(_pMComponents.back());
@@ -87,6 +90,7 @@ namespace GrainEngine::ECS
 				if (dynamic_cast<t_T*>(current->GetPtr()) == nullptr)
 					continue;
 
+				EndComponent(*current);
 				_pMComponents.erase(current);
 
 				return;
@@ -95,18 +99,23 @@ namespace GrainEngine::ECS
 			THROW_COMPONENT_NOT_FOUND_ERROR(COMPONENT_NOT_FOUND_ERROR_MESSAGE);
 		}
 
-		void Tick(ManagedObject<Entity>& pMEntity, TickType tickType);
+		void Tick(TickType tickType);
 		void RenderTick(const Renderer& renderer, TickType tickType);
 
+		void Awake(ManagedObject<Entity>& pMEntity);
+
 	private:
-		void AwakeTick(ManagedObject<Entity>& pMEntity);
-		void StartTick(ManagedObject<Entity>& pMEntity);
-		void UpdateTick(ManagedObject<Entity>& pMEntity);
+		void StartTick();
+		void UpdateTick();
 		void PreRenderTick(const Renderer& renderer);
 		void PostRenderTick(const Renderer& renderer);
-		void EndTick(ManagedObject<Entity>& pMEntity);
+		void EndTick();
+
+		void AwakeComponent(ManagedObject<IComponent>& pMComponent);
+		void EndComponent(ManagedObject<IComponent>& pMComponent);
 
 	public:
+		ManagedObject<Entity> _pMSelf;
 		std::string name;
 		Tag tag;
 		ManagedObject<Transform> pMTransform;

@@ -8,6 +8,7 @@
 #include "PipelineState.h"
 #include "ViewPort.h"
 #include "InputLayout.h"
+#include "PrimitiveTopology.h"
 #include "Graphics/Errors/PipelineStateNotFoundGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -41,5 +42,6 @@ namespace GrainEngine::Graphics
 		Swapchain _swapChain;
 		ViewPort _viewPort;
 		InputLayout _inputLayout;
+		PrimitiveTopology _topology;
 	};
 }

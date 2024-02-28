@@ -27,7 +27,7 @@ namespace GrainEngine::ECS::Components
 
 		void Awake(ManagedObject<Entity>& pMEntity) override;
 		void PreRender(const Renderer& renderer) override;
-		void End(ManagedObject<Entity>& pMEntity) override;
+		void End() override;
 
 	private:
 		bool _registered = false;

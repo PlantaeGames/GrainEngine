@@ -43,6 +43,9 @@ namespace GrainEngine::ECS
 		void PreRenderTick(const Renderer& renderer);
 		void PostRenderTick(const Renderer& renderer);
 
+		void AwakeEntity(ManagedObject<Entity>& pMEntity);
+		void EndEntity(ManagedObject<Entity>& pMEntity);
+
 	private:
 		std::vector<ManagedObject<Entity>> _pMEntities;
 	};

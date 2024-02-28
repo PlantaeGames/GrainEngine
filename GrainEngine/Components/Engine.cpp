@@ -41,7 +41,7 @@ namespace GrainEngine::Components
 		
 		auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
 		entity->AddComponent<Mesh>();
-		//entity->AddComponent<MeshRenderer>();
+		entity->AddComponent<MeshRenderer>();
 
 		_game.Start();
 
