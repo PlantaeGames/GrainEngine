@@ -8,6 +8,10 @@
 #include "Misc/RefPtr.h"
 #include "ECS/GarbageCollector.h"
 
+#include "ECS/ManagedObject.h"
+#include "ECS/Components/Mesh.h"
+#include "ECS/Components/MeshRenderer.h"
+
 namespace GrainEngine::Components
 {
 #define WINDOW_NAME L"GrainEngine"
@@ -15,6 +19,8 @@ namespace GrainEngine::Components
 #define WINDOW_HEIGHT 600
 
 	using namespace GrainEngine::Errors;
+	using namespace GrainEngine::ECS;
+	using namespace GrainEngine::ECS::Components;
 	using namespace GrainEngine::Misc;
 
 	class Engine

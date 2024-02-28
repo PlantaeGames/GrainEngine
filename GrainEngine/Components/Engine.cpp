@@ -39,7 +39,9 @@ namespace GrainEngine::Components
 
 		// adding test enties in game
 		
-		_game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+		auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+		entity->AddComponent<Mesh>();
+		entity->AddComponent<MeshRenderer>();
 
 		//
 

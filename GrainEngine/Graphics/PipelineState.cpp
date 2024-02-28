@@ -1,5 +1,7 @@
 #include "PipelineState.h"
 
+#include "Pipeline.h"
+
 namespace GrainEngine::Graphics
 {
 	PipelineState::PipelineState(unsigned long long id,
@@ -7,7 +9,8 @@ namespace GrainEngine::Graphics
 		const Vertex* pVertices, unsigned int verticesCount) :
 		_id(id),
 		_material(vSFile, pSFile),
-		_vertexBuffer()
+		_vertexBuffer(),
+		_verticesCount(verticesCount)
 	{
 		_vertexBuffer.Create(pVertices, verticesCount);
 	}

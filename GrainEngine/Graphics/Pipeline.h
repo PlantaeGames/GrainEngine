@@ -30,7 +30,7 @@ namespace GrainEngine::Graphics
 		void DoRenderPass();
 
 	private:
-		void RenderPass(const PipelineState& pipelineState);
+		void RenderPass(PipelineState& pipelineState);
 
 		void SetFixedStages();
 

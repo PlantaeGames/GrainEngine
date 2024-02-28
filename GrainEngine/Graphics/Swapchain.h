@@ -20,6 +20,7 @@ namespace GrainEngine::Graphics
 		~Swapchain() noexcept = default;
 
 		void ClearScreen();
+		void Present();
 
 	private:
 		void Create(HWND hWnd);

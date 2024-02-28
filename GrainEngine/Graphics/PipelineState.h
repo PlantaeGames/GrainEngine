@@ -13,6 +13,8 @@ namespace GrainEngine::Graphics
 
 	class PipelineState
 	{
+		friend class Pipeline;
+
 	public:
 		PipelineState(unsigned long long id,
 			const std::string& vSFile, const std::string& pSFile,
@@ -33,5 +35,6 @@ namespace GrainEngine::Graphics
 		unsigned long long _id = 0u;
 		Material _material;
 		VertexBuffer _vertexBuffer;
+		unsigned int _verticesCount;
 	};
 }

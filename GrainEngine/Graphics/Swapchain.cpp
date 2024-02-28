@@ -2,6 +2,13 @@
 
 namespace GrainEngine::Graphics
 {
+	void Swapchain::Present()
+	{
+		CHECK_THROW_D3D_ERROR_INFO(
+			_pSwapchain->Present(1u, 0u);
+		);
+	}
+
 	void Swapchain::ClearScreen()
 	{
 		_backView.Clear();

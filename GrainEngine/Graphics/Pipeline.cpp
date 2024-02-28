@@ -3,13 +3,19 @@
 namespace GrainEngine::Graphics
 {
 
-	void Pipeline::RenderPass(const PipelineState& pipelineState)
+	void Pipeline::RenderPass(PipelineState& pipelineState)
 	{
-		// switch stae by binding pipeline components.
+		// switch state by binding pipeline components.
+		pipelineState._vertexBuffer.Bind();
+		pipelineState._material.Bind();
+
+		auto count = pipelineState._verticesCount;
 
 		QUEUE_CHECK_THROW_D3D_ERROR_INFO(
-			Device::GetInstance().GetDeviceContext()->Draw(0u, 0u);
+			Device::GetInstance().GetDeviceContext()->Draw(count, 0u);
 		);
+
+		_swapChain.Present();
 	}
 
 	void Pipeline::DoRenderPass()
