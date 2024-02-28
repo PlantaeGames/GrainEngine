@@ -32,6 +32,7 @@ namespace GrainEngine::ECS::Components
 			return;
 	}
 
-	MeshRenderer::MeshRenderer()
+	MeshRenderer::MeshRenderer() :
+		IComponent()
 	{}
 }

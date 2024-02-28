@@ -25,7 +25,7 @@ namespace GrainEngine::ECS
 			return rhs._id == _id;
 		}
 
-		virtual void Awake(ManagedObject<Entity>& pMEntity) {}
+		virtual void Awake(ManagedObject<Entity>& pMEntity) = 0;
 		virtual void Start(ManagedObject<Entity>& pMEntity) {}
 		virtual void Update(ManagedObject<Entity>& pMEntity) {}
 		virtual void PreRender(const Renderer& renderer) {}

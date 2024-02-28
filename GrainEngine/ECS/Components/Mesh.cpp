@@ -2,12 +2,15 @@
 
 namespace GrainEngine::ECS::Components
 {
-	Mesh::Mesh() 
+	Mesh::Mesh() :
+		IComponent()
 	{
 		_pVertices = std::make_unique<Vertex[]>(_verticesCount);
 
-		_pVertices[0] = { 0.0f, 0.5f };
-		_pVertices[1] = { 0.5f, -0.5f };
-		_pVertices[2] = { -0.5f, -0.5f };
+		(_pVertices.get())[0] = { 0.0f, 0.5f };
+		(_pVertices.get())[1] = { 0.5f, -0.5f };
+		(_pVertices.get())[2] = { -0.5f, -0.5f };
 	}
+
+	Mesh::~Mesh() noexcept {}
 }

@@ -10,6 +10,7 @@
 #include "ECS/ManagedObject.h"
 #include "ECS/Entity.h"
 #include "ECS/Components/Mesh.h"
+#include "ECS/Components/Transform.h"
 
 namespace GrainEngine::ECS::Components
 {
@@ -18,7 +19,7 @@ namespace GrainEngine::ECS::Components
 	using namespace GrainEngine::Misc;
 	using namespace GrainEngine::Graphics;
 
-	class MeshRenderer : IComponent
+	class MeshRenderer : public IComponent
 	{
 	public:
 		MeshRenderer();

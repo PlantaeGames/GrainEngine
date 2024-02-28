@@ -5,6 +5,7 @@
 #include "ECS/IComponent.h"
 #include "Structures/Vertex.h"
 #include "Misc/RefPtr.h"
+#include "ECS/ManagedObject.h"
 
 namespace GrainEngine::ECS::Components
 {
@@ -12,11 +13,11 @@ namespace GrainEngine::ECS::Components
 	using namespace GrainEngine::Structures;
 	using namespace GrainEngine::Misc;
 
-	class Mesh : IComponent
+	class Mesh : public IComponent
 	{
 	public:
 		Mesh();
-		~Mesh() noexcept override = default;
+		~Mesh() noexcept override;
 
 		RefPtr<Vertex> GetVertices() noexcept
 		{
@@ -28,8 +29,10 @@ namespace GrainEngine::ECS::Components
 			return _verticesCount;
 		}
 
+		void Awake(ManagedObject<Entity>& pMEntity) override {};
+
 	private:
 		std::unique_ptr<Vertex[]> _pVertices;
-		unsigned int _verticesCount = 0u;
+		unsigned int _verticesCount = 3u;
 	};
 }

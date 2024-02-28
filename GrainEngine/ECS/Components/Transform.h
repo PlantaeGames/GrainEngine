@@ -16,8 +16,7 @@ namespace GrainEngine::ECS::Components
 		Transform();
 		~Transform() noexcept override;
 
-		void Start(ManagedObject<Entity>& pMEntity) override;
-		void Update(ManagedObject<Entity>& pMEntity) override;
+		void Awake(ManagedObject<Entity>& pMEntity) override {}
 
 	public:
 		Vector3 position;
