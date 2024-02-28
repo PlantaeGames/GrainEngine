@@ -7,12 +7,13 @@ namespace GrainEngine::Utilities
 	class Random
 	{
 	private:
-		static std::mt19937 _randomEngine;
-		static std::random_device _randomEngineKey;
+		std::random_device _randomEngineKey;
+		std::mt19937 _randomEngine;
 	public:
-		static int NextInt(int min, int max) noexcept;
-		static float NextFloat(float min, float max) noexcept;
-	private:
-		Random() = default;
+		Random();
+		~Random() noexcept = default;
+
+		int NextInt(int min, int max) noexcept;
+		float NextFloat(float min, float max) noexcept;
 	};
 }

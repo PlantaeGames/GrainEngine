@@ -26,7 +26,9 @@ namespace GrainEngine::Errors
 
 		void Print(const std::string& message) const;
 		void ResetCursor() const noexcept;
+		void Clear() const noexcept;
 	private:
+		void CLS() const noexcept;
 		DebugConsole();
 
 		void CreateConsoleWindow();

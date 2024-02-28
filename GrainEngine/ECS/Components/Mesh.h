@@ -6,12 +6,14 @@
 #include "Structures/Vertex.h"
 #include "Misc/RefPtr.h"
 #include "ECS/ManagedObject.h"
+#include "Utilities/Random.h"
 
 namespace GrainEngine::ECS::Components
 {
 	using namespace GrainEngine::ECS;
 	using namespace GrainEngine::Structures;
 	using namespace GrainEngine::Misc;
+	using namespace GrainEngine::Utilities;
 
 	class Mesh : public IComponent
 	{

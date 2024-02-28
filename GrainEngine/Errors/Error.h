@@ -93,5 +93,6 @@ namespace GrainEngine::Errors
 		Error& operator=(Error&& rhs) noexcept = default;
 		static void Log(const std::string& message) noexcept;
 		static void ResetLogCursor() noexcept;
+		static void ClearLog() noexcept;
 	};
 }

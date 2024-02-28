@@ -9,7 +9,6 @@ namespace GrainEngine::Components
 
 	void Engine::PrepareTick()
 	{
-		_game.PrepareRender();
 		_pRTime->Tick();
 		_pRInputManager->Update();
 
@@ -26,6 +25,7 @@ namespace GrainEngine::Components
 
 	void Engine::EndTick()
 	{
+		_game.PrepareRender();
 		_game.Render();
 	}
 
@@ -37,15 +37,13 @@ namespace GrainEngine::Components
 		const auto& mouse = _pRInputManager->GetDevice<Mouse>();
 		const auto& keyboard = _pRInputManager->GetDevice<Keyboard>();
 
-		// adding test enties in game
+		// adding test entities in game
 		
 		auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
 		entity->AddComponent<Mesh>();
 		entity->AddComponent<MeshRenderer>();
 
 		_game.Start();
-
-		_game.PrepareRender();
 
 		while (_running)
 		{
@@ -61,14 +59,23 @@ namespace GrainEngine::Components
 			
 			Tick();
 
+			if (keyboard.GetKey(Key::Up))
+			{
+				auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+				entity->AddComponent<Mesh>();
+				entity->AddComponent<MeshRenderer>();
+			}
+
 			///  -----------------
 			///	  | ENGINE CODE |
 			///  -----------------
 			
 			EndTick();
 
+			Error::ResetLogCursor();
+
 			Error::Log("CURRENT MANAGED OBJECTS UNDER GC ARE: " + std::to_string(GarbageCollector::GetInstance().GetManagedObjectsCount()) + "\n");
-			//Error::Log("FPS: " + std::to_string(_pRTime->FPS()) + " \n");
+			Error::Log("FPS: " + std::to_string(_pRTime->FPS()) + " \n");
 		}
 
 		_game.End();
