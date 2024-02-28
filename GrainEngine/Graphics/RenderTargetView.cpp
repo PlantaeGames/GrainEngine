@@ -15,7 +15,7 @@ namespace GrainEngine::Graphics
 		}
 
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pDevice->CreateRenderTargetView(pBuffer.Get(), nullptr, &_pTargetView);
+			_pDevice->CreateRenderTargetView(pBuffer.Get(), nullptr, &_pTargetView)
 		);
 	}
 

@@ -21,7 +21,7 @@ namespace GrainEngine::Graphics
 				&_pDevice,
 				nullptr,
 				&_pDeviceContext
-			);
+			)
 		);
 	}
 

@@ -15,7 +15,7 @@ namespace GrainEngine::Graphics
 		};
 
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pDevice->CreateInputLayout(inputElementDescriptions, std::size(inputElementDescriptions),
+			_pDevice->CreateInputLayout(inputElementDescriptions, (UINT)std::size(inputElementDescriptions),
 				pVertexShaderBinary->GetBufferPointer(), pVertexShaderBinary->GetBufferSize(),
 				&_pInputLayout)
 		);

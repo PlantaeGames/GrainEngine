@@ -10,7 +10,7 @@ namespace GrainEngine::Graphics
 	void Swapchain::Present()
 	{
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pSwapchain->Present(1u, 0u);
+			_pSwapchain->Present(1u, 0u)
 		);
 	}
 
@@ -41,11 +41,11 @@ namespace GrainEngine::Graphics
 
 		CHECK_THROW_D3D_ERROR_INFO(
 			DXFactory::GetInstance().GetFactory()->
-				CreateSwapChain(Device::GetInstance().GetDevice().Get(), &swapchainDesc, &_pSwapchain);
+				CreateSwapChain(Device::GetInstance().GetDevice().Get(), &swapchainDesc, &_pSwapchain)
 		);
 
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pSwapchain->GetBuffer(0u, __uuidof(ID3D11Resource), &_pBackBuffer);
+			_pSwapchain->GetBuffer(0u, __uuidof(ID3D11Resource), &_pBackBuffer)
 		);
 
 		_backView.New(_pBackBuffer);

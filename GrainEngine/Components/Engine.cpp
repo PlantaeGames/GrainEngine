@@ -9,7 +9,7 @@ namespace GrainEngine::Components
 
 	void Engine::PrepareTick()
 	{
-		//_game.PrepareRender();
+		_game.PrepareRender();
 		_pRTime->Tick();
 		_pRInputManager->Update();
 
