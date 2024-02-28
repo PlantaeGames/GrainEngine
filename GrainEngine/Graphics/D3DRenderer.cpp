@@ -81,7 +81,7 @@ namespace GrainEngine::Graphics
 		_pDeviceContext->OMSetRenderTargets(1u, _pBackTarget.GetAddressOf(), nullptr);
 
 		// setting input assembler
-		_pDeviceContext->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		// binding view port
 		D3D11_VIEWPORT viewPort = { 0 };

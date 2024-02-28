@@ -67,7 +67,7 @@ namespace GrainEngine::Graphics
 			THROW_LAST_ERROR();
 		}
 
-		return { 0.0f, 0.0f, (float)(rect.right - rect.left), (float) (rect.bottom - rect.top)};
+		return { (float)(rect.right - rect.left), (float)(rect.bottom - rect.top), 0.0f, 0.0f};
 	}
 
 	Pipeline::Pipeline(HWND hWnd) :
@@ -75,7 +75,7 @@ namespace GrainEngine::Graphics
 		_swapChain(hWnd),
 		_viewPort(GetWindowBounds(hWnd)),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
-		_topology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+		_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 		SetFixedStages();
 	}

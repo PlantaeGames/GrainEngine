@@ -9,7 +9,7 @@ namespace GrainEngine::Components
 
 	void Engine::PrepareTick()
 	{
-		_game.PrepareRender();
+		//_game.PrepareRender();
 		_pRTime->Tick();
 		_pRInputManager->Update();
 
@@ -44,6 +44,8 @@ namespace GrainEngine::Components
 		entity->AddComponent<MeshRenderer>();
 
 		_game.Start();
+
+		_game.PrepareRender();
 
 		while (_running)
 		{
