@@ -41,6 +41,12 @@ namespace GrainEngine::Components
 		}
 
 		template<typename t_InputDevice>
+		t_InputDevice& GetDevice()
+		{
+			return *static_cast<t_InputDevice*>(FindDevice<t_InputDevice>().get());
+		}
+
+		template<typename t_InputDevice>
 		void RegisterDevice() noexcept
 		{
 			AddDevice<t_InputDevice>();

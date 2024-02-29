@@ -9,6 +9,7 @@
 #include "ViewPort.h"
 #include "InputLayout.h"
 #include "PrimitiveTopology.h"
+#include "PerspectivePoint.h"
 #include "Graphics/Errors/PipelineStateNotFoundGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -30,6 +31,11 @@ namespace GrainEngine::Graphics
 		void PrepareRenderPass();
 		void DoRenderPass();
 
+		PerspectivePoint& GetPerspectivePoint() noexcept
+		{
+			return _perspectivePoint;
+		}
+
 	private:
 		void RenderPass(PipelineState& pipelineState);
 
@@ -43,5 +49,6 @@ namespace GrainEngine::Graphics
 		ViewPort _viewPort;
 		InputLayout _inputLayout;
 		PrimitiveTopology _topology;
+		PerspectivePoint _perspectivePoint;
 	};
 }

@@ -18,6 +18,11 @@ namespace GrainEngine::Graphics
 		PipelineState& Add(GraphicsObject&& graphicsObject) const noexcept;
 		void Remove(unsigned long long id) const;
 
+		PerspectivePoint& GetPerspectivePoint() const noexcept
+		{
+			return _pipeline.GetPerspectivePoint();
+		}
+
 	private:
 		mutable Pipeline _pipeline;
 	};

@@ -30,7 +30,7 @@ namespace GrainEngine::Graphics
 			return _pBinary;
 		}
 
-		void UpdateTransform(const float** ppTransform);
+		void UpdateTransform(float transform[3][3]);
 
 	private:
 		/// <summary>
@@ -41,6 +41,6 @@ namespace GrainEngine::Graphics
 	private:
 
 		ComPtr<ID3D11VertexShader> _pVertexShader;
-		ConstantBuffer _constantBuffer;
+		ConstantBuffer _transformBuffer;
 	};
 }

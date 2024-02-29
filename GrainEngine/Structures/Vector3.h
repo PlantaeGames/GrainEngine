@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace GrainEngine::Structures
 {
 	class Vector2;
@@ -12,6 +14,8 @@ namespace GrainEngine::Structures
 		Vector3(float x, float y, float z);
 
 		explicit operator Vector2() const noexcept;
+
+		std::string ToString() const noexcept;
 
 		Vector3 Up() const noexcept;
 		Vector3 Down() const noexcept;

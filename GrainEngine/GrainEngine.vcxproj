@@ -167,7 +167,9 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ECS\Scripts\Movement.h" />
     <ClInclude Include="Components\Engine.h" />
+    <ClInclude Include="ECS\Components\Camera.h" />
     <ClInclude Include="ECS\Components\Mesh.h" />
     <ClInclude Include="ECS\EntityManager.h" />
     <ClInclude Include="Components\InputManager.h" />
@@ -186,6 +188,7 @@
     <ClInclude Include="ECS\Tag.h" />
     <ClInclude Include="ECS\WorldManager.h" />
     <ClInclude Include="Graphics\Buffer.h" />
+    <ClInclude Include="Graphics\PerspectivePoint.h" />
     <ClInclude Include="Graphics\ConstantBuffer.h" />
     <ClInclude Include="Graphics\ConstantBufferBindPosition.h" />
     <ClInclude Include="Graphics\DepthBuffer.h" />
@@ -242,7 +245,9 @@
     <ClInclude Include="ECS\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ECS\Scripts\Movement.cpp" />
     <ClCompile Include="Components\Engine.cpp" />
+    <ClCompile Include="ECS\Components\Camera.cpp" />
     <ClCompile Include="ECS\Components\Mesh.cpp" />
     <ClCompile Include="ECS\Components\MeshRenderer.cpp" />
     <ClCompile Include="ECS\EntityManager.cpp" />
@@ -258,6 +263,7 @@
     <ClCompile Include="ECS\Errors\WorldNotFoundError.cpp" />
     <ClCompile Include="ECS\WorldManager.cpp" />
     <ClCompile Include="Graphics\Buffer.cpp" />
+    <ClCompile Include="Graphics\PerspectivePoint.cpp" />
     <ClCompile Include="Graphics\ConstantBuffer.cpp" />
     <ClCompile Include="Graphics\DepthBuffer.cpp" />
     <ClCompile Include="Graphics\Device.cpp" />

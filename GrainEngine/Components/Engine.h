@@ -11,6 +11,8 @@
 #include "ECS/ManagedObject.h"
 #include "ECS/Components/Mesh.h"
 #include "ECS/Components/MeshRenderer.h"
+#include "ECS/Scripts/Movement.h"
+#include "ECS/Components/Camera.h"
 
 namespace GrainEngine::Components
 {
@@ -22,6 +24,7 @@ namespace GrainEngine::Components
 	using namespace GrainEngine::ECS;
 	using namespace GrainEngine::ECS::Components;
 	using namespace GrainEngine::Misc;
+	using namespace GrainEngine::ECS::Scripts;
 
 	class Engine
 	{

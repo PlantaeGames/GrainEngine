@@ -40,23 +40,28 @@ namespace GrainEngine::Misc
 			return *this;
 		}
 
-		RefPtr<t_T>& operator= (const t_T* ptr)
+		RefPtr<t_T>& operator= (const t_T* ptr)  noexcept
 		{
 			_ptr = ptr;
 			return *this;
 		}
 
-		t_T& operator* ()
+		t_T& operator* () const noexcept
 		{
 			return *Get();
 		}
 
-		t_T* operator-> ()
+		const t_T* operator-> () const noexcept
 		{
 			return Get();
 		}
 
-		t_T* Get()
+		t_T* operator-> () noexcept
+		{
+			return Get();
+		}
+
+		t_T* Get() const noexcept
 		{
 			return _ptr;
 		}
@@ -68,6 +73,6 @@ namespace GrainEngine::Misc
 		}
 
 	private:
-		t_T* _ptr = nullptr;
+		mutable t_T* _ptr = nullptr;
 	};
 }

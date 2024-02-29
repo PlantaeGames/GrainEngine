@@ -2,7 +2,6 @@
 
 namespace GrainEngine::Graphics
 {
-
 	void Pipeline::RenderPass(PipelineState& pipelineState)
 	{
 		// switch state by binding pipeline components.
@@ -20,6 +19,8 @@ namespace GrainEngine::Graphics
 
 	void Pipeline::DoRenderPass()
 	{
+		_perspectivePoint.Update();
+
 		for (auto& state : _states)
 		{
 			RenderPass(state);
@@ -58,6 +59,7 @@ namespace GrainEngine::Graphics
 		_viewPort.Bind();
 		_inputLayout.Bind();
 		_topology.Bind();
+		_perspectivePoint.Bind();
 	}
 
 	Rect Pipeline::GetWindowBounds(HWND hWnd)
@@ -76,7 +78,8 @@ namespace GrainEngine::Graphics
 		_swapChain(hWnd),
 		_viewPort(GetWindowBounds(hWnd)),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
-		_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+		_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST),
+		_perspectivePoint()
 	{
 		SetFixedStages();
 	}

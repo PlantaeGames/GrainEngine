@@ -39,9 +39,13 @@ namespace GrainEngine::Components
 
 		// adding test entities in game
 		
-		auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
-		entity->AddComponent<Mesh>();
-		entity->AddComponent<MeshRenderer>();
+		auto triangle = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+		triangle->AddComponent<Mesh>();
+		triangle->AddComponent<MeshRenderer>();
+		triangle->AddComponent<Movement>();
+
+		auto camera = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+		camera->AddComponent<Camera>();
 
 		_game.Start();
 
@@ -59,12 +63,12 @@ namespace GrainEngine::Components
 			
 			Tick();
 
-			if (keyboard.GetKey(Key::Up))
-			{
-				auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
-				entity->AddComponent<Mesh>();
-				entity->AddComponent<MeshRenderer>();
-			}
+			//if (keyboard.GetKey(Key::Up))
+			//{
+			//	auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+			//	entity->AddComponent<Mesh>();
+			//	entity->AddComponent<MeshRenderer>();
+			//}
 
 			///  -----------------
 			///	  | ENGINE CODE |

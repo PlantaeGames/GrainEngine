@@ -16,6 +16,11 @@ namespace GrainEngine::Structures
 		return Vector2(x, y);
 	}
 
+	std::string Vector3::ToString() const noexcept
+	{
+		return std::string("X:" + std::to_string(x) + ", " + "Y:" + std::to_string(y) + ", " + "Z:" + std::to_string(z));
+	}
+
 	Vector3 Vector3::Up() const noexcept
 	{
 		return Vector3(0.0f, 1.0f, 0.0f);

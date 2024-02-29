@@ -6,7 +6,7 @@ namespace GrainEngine::ECS::Components
 	{
 		if (_registered)
 		{
-			const float transform[3][3] =
+			float transform[3][3] =
 			{
 				{_pMParent->pMTransform->position.x, _pMParent->pMTransform->position.y, _pMParent->pMTransform->position.z},
 				{_pMParent->pMTransform->rotation.x, _pMParent->pMTransform->rotation.y, _pMParent->pMTransform->rotation.z},
@@ -14,7 +14,7 @@ namespace GrainEngine::ECS::Components
 			};
 
 			// update Transform
-			_pRPipelineState->GetMaterial().GetVertexShader().UpdateTransform( transform );
+			_pRPipelineState->GetMaterial().GetVertexShader().UpdateTransform(transform);
 		}
 
 		// registering on renderer
