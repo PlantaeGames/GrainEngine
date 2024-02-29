@@ -11,6 +11,7 @@
 #include "ECS/Entity.h"
 #include "ECS/Components/Mesh.h"
 #include "ECS/Components/Transform.h"
+#include "Misc/RefPtr.h"
 
 namespace GrainEngine::ECS::Components
 {
@@ -30,7 +31,9 @@ namespace GrainEngine::ECS::Components
 		void End() override;
 
 	private:
-		bool _registered = false;
 		ManagedObject<Entity> _pMParent;
+		bool _registered = false;
+
+		RefPtr<PipelineState> _pRPipelineState;
 	};
 }

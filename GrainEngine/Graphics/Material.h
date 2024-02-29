@@ -17,8 +17,13 @@ namespace GrainEngine::Graphics
 
 		void Bind() override;
 
+		VertexShader& GetVertexShader() const noexcept
+		{
+			return _vertexShader;
+		}
+
 	private:
-		VertexShader _vertexShader;
+		mutable VertexShader _vertexShader;
 		PixelShader _pixelShader;
 	};
 }

@@ -4,6 +4,7 @@
 
 #include "WinD3D.h"
 #include "Shader.h"
+#include "ConstantBuffer.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -29,6 +30,8 @@ namespace GrainEngine::Graphics
 			return _pBinary;
 		}
 
+		void UpdateTransform(const float** ppTransform);
+
 	private:
 		/// <summary>
 		/// Loads the Shader on GPU.
@@ -36,6 +39,8 @@ namespace GrainEngine::Graphics
 		void LoadToGPU();
 
 	private:
+
 		ComPtr<ID3D11VertexShader> _pVertexShader;
+		ConstantBuffer _constantBuffer;
 	};
 }

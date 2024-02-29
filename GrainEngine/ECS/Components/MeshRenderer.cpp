@@ -4,18 +4,29 @@ namespace GrainEngine::ECS::Components
 {
 	void MeshRenderer::PreRender(const Renderer& renderer)
 	{
+		if (_registered)
+		{
+			const float transform[3][3] =
+			{
+				{_pMParent->pMTransform->position.x, _pMParent->pMTransform->position.y, _pMParent->pMTransform->position.z},
+				{_pMParent->pMTransform->rotation.x, _pMParent->pMTransform->rotation.y, _pMParent->pMTransform->rotation.z},
+				{_pMParent->pMTransform->scale.x, _pMParent->pMTransform->scale.y, _pMParent->pMTransform->scale.z}
+			};
+
+			// update Transform
+			_pRPipelineState->GetMaterial().GetVertexShader().UpdateTransform( transform );
+		}
+
 		// registering on renderer
 		if (_registered)
 			return;
 
 		auto pMesh = _pMParent->GetComponent<Mesh>();
 
-		renderer.Add(
+		_pRPipelineState = renderer.Add(
 			GraphicsObject(_id, 
-				"Shaders\\Default\\Vertex.cso",
-				"Shaders\\Default\\Pixel.cso",
-				pMesh->GetVertices().Get(),
-				pMesh->GetVerticesCount()
+				Material("Shaders\\Default\\Vertex.cso", "Shaders\\Default\\Pixel.cso"),
+				pMesh->GetVertices().Get(), pMesh->GetVerticesCount()
 			));
 
 		_registered = true;

@@ -187,6 +187,7 @@
     <ClInclude Include="ECS\WorldManager.h" />
     <ClInclude Include="Graphics\Buffer.h" />
     <ClInclude Include="Graphics\ConstantBuffer.h" />
+    <ClInclude Include="Graphics\ConstantBufferBindPosition.h" />
     <ClInclude Include="Graphics\DepthBuffer.h" />
     <ClInclude Include="Graphics\Device.h" />
     <ClInclude Include="Graphics\DXFactory.h" />

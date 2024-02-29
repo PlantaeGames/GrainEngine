@@ -16,9 +16,8 @@ namespace GrainEngine::Graphics
 		friend class Pipeline;
 
 	public:
-		PipelineState(unsigned long long id,
-			const std::string& vSFile, const std::string& pSFile,
-			const Vertex* pVertices, unsigned int verticesCount);
+		PipelineState(unsigned long long id, const Material& material,
+			const Vertex* pVerticies, unsigned int verticesCount);
 		~PipelineState() noexcept = default;
 
 		bool operator== (const PipelineState& rhs) const noexcept
@@ -31,9 +30,14 @@ namespace GrainEngine::Graphics
 			return _id;
 		}
 
-	private:
+		Material& GetMaterial() const noexcept
+		{
+			return _material;
+		}
+
+	public:
 		unsigned long long _id = 0u;
-		Material _material;
+		mutable Material _material;
 		VertexBuffer _vertexBuffer;
 		unsigned int _verticesCount;
 	};

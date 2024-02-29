@@ -24,7 +24,7 @@ namespace GrainEngine::Graphics
 		Pipeline(HWND hWnd);
 		~Pipeline() noexcept = default;
 
-		void AddState(PipelineState&& pipelineState) noexcept;
+		PipelineState& AddState(PipelineState&& pipelineState) noexcept;
 		void RemoveState(unsigned long long id);
 
 		void PrepareRenderPass();

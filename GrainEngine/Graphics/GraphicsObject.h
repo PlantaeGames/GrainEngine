@@ -12,8 +12,7 @@ namespace GrainEngine::Graphics
 	class GraphicsObject
 	{
 	public:
-		GraphicsObject(unsigned long long id,
-			const std::string& vSFile, const std::string& pSFile,
+		GraphicsObject(unsigned long long id, const Material& material,
 			const Vertex* pVerticies, unsigned int verticesCount);
 		~GraphicsObject() noexcept = default;
 

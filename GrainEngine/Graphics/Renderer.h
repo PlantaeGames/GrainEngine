@@ -15,7 +15,7 @@ namespace GrainEngine::Graphics
 		void Render();
 		void PrepareRender();
 
-		void Add(GraphicsObject&& graphicsObject) const noexcept;
+		PipelineState& Add(GraphicsObject&& graphicsObject) const noexcept;
 		void Remove(unsigned long long id) const;
 
 	private:

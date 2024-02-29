@@ -31,9 +31,10 @@ namespace GrainEngine::Graphics
 		_swapChain.ClearScreen();
 	}
 
-	void Pipeline::AddState(PipelineState&& pipelineState) noexcept
+	PipelineState& Pipeline::AddState(PipelineState&& pipelineState) noexcept
 	{
 		_states.push_back(pipelineState);
+		return _states.back();
 	}
 
 	void Pipeline::RemoveState(unsigned long long id)

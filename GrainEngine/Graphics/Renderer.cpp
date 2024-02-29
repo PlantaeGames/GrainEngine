@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void Renderer::Add(GraphicsObject&& graphicsObject) const noexcept
+	PipelineState& Renderer::Add(GraphicsObject&& graphicsObject) const noexcept
 	{
-		_pipeline.AddState(graphicsObject.GetState());
+		return _pipeline.AddState(graphicsObject.GetState());
 	}
 
 	void Renderer::Remove(unsigned long long id) const

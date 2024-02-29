@@ -2,6 +2,11 @@
 
 namespace GrainEngine::Graphics
 {
+	void VertexShader::UpdateTransform(const float** ppTransform)
+	{
+
+	}
+
 	void VertexShader::Bind()
 	{
 		_pDeviceContext->VSSetShader(_pVertexShader.Get(), nullptr, 0);
@@ -18,8 +23,11 @@ namespace GrainEngine::Graphics
 
 	VertexShader::VertexShader(const std::string& fileName) :
 		Shader(fileName),
-		_pVertexShader()
+		_pVertexShader(),
+		_constantBuffer()
 	{
 		LoadToGPU();
+
+		_constantBuffer.Create(_pVertexShader);
 	}
 }
