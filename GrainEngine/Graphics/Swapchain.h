@@ -5,6 +5,7 @@
 #include "Device.h"
 #include "RenderTargetView.h"
 #include "PipelineComponent.h"
+#include "Errors/Error.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -31,5 +32,8 @@ namespace GrainEngine::Graphics
 		ComPtr<IDXGISwapChain> _pSwapchain;
 		ComPtr<ID3D11Resource> _pBackBuffer;
 		RenderTargetView _backView;
+
+		unsigned int _windowWidth = 0u;
+		unsigned int _windowHeight = 0u;
 	};
 }

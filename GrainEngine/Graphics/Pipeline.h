@@ -4,6 +4,7 @@
 
 #include "Windows.h"
 #include "Swapchain.h"
+#include "DepthState.h"
 #include "Device.h"
 #include "PipelineState.h"
 #include "ViewPort.h"
@@ -46,6 +47,7 @@ namespace GrainEngine::Graphics
 	private:
 		std::vector<PipelineState> _states;
 		Swapchain _swapChain;
+		DepthState _depthState;
 		ViewPort _viewPort;
 		InputLayout _inputLayout;
 		PrimitiveTopology _topology;

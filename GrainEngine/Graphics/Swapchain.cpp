@@ -48,7 +48,16 @@ namespace GrainEngine::Graphics
 			_pSwapchain->GetBuffer(0u, __uuidof(ID3D11Resource), &_pBackBuffer)
 		);
 
-		_backView.New(_pBackBuffer);
+
+		RECT size = { 0 };
+		if (GetWindowRect(hWnd, &size) == false)
+		{
+			THROW_LAST_ERROR();
+		}
+
+		_windowWidth = size.right - size.left;
+		_windowHeight = size.bottom - size.top;
+		_backView.Create(_pBackBuffer, _windowWidth, _windowHeight);
 	}
 
 	Swapchain::Swapchain(HWND hWnd) :

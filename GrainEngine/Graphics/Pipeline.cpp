@@ -57,6 +57,7 @@ namespace GrainEngine::Graphics
 	void Pipeline::SetFixedStages()
 	{
 		_swapChain.Bind();
+		_depthState.Bind();
 		_viewPort.Bind();
 		_inputLayout.Bind();
 		_topology.Bind();
@@ -77,6 +78,7 @@ namespace GrainEngine::Graphics
 	Pipeline::Pipeline(HWND hWnd) :
 		_states(),
 		_swapChain(hWnd),
+		_depthState(),
 		_viewPort(GetWindowBounds(hWnd)),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
 		_topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP),

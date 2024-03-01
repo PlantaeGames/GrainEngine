@@ -4,7 +4,17 @@ namespace GrainEngine::Graphics
 {
 	void RenderTargetView::Bind()
 	{
-		_pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), nullptr);
+		_pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), _depthTexture.GetView().Get());
+	}
+
+	void RenderTargetView::Create(const ComPtr<ID3D11Resource>& pBuffer, unsigned int width, unsigned int height)
+	{
+		New(pBuffer);
+
+		_depthTexture.Create(width, height);
+
+		_depthWidth = width;
+		_depthHeight = height;
 	}
 
 	void RenderTargetView::New(const ComPtr<ID3D11Resource>& pBuffer)
@@ -38,6 +48,9 @@ namespace GrainEngine::Graphics
 
 		const float color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		_pDeviceContext->ClearRenderTargetView(_pTargetView.Get(), color);
+
+		_depthTexture.Release();
+		_depthTexture.Create(_depthWidth, _depthHeight);
 	}
 
 	bool RenderTargetView::CheckValid() const noexcept
@@ -45,9 +58,11 @@ namespace GrainEngine::Graphics
 		return _pTargetView.Get() != nullptr;
 	}
 
-	RenderTargetView::RenderTargetView(const ComPtr<ID3D11Resource>& pBuffer) :
-		PipelineComponent()
+	RenderTargetView::RenderTargetView(const ComPtr<ID3D11Resource>& pBuffer, unsigned int width, unsigned int height) :
+		PipelineComponent(),
+		_pTargetView(),
+		_depthTexture()
 	{
-		New(pBuffer);
+		Create(pBuffer, width, height);
 	}
 }
