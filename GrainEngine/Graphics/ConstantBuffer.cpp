@@ -29,10 +29,10 @@ namespace GrainEngine::Graphics
 		case ConstantBufferBindPosition::None:
 			break;
 		case ConstantBufferBindPosition::VertexShader:
-			_pDeviceContext->VSSetConstantBuffers(0u, _slot, _pBuffer.GetAddressOf());
+			_pDeviceContext->VSSetConstantBuffers(_slot, 1u, _pBuffer.GetAddressOf());
 			break;
 		case ConstantBufferBindPosition::PixelShader:
-			_pDeviceContext->PSSetConstantBuffers(0u, _slot, _pBuffer.GetAddressOf());
+			_pDeviceContext->PSSetConstantBuffers(_slot, 1u, _pBuffer.GetAddressOf());
 			break;
 
 		default:
