@@ -5,6 +5,7 @@
 #include "WinD3D.h"
 #include "Shader.h"
 #include "ConstantBuffer.h"
+#include "TransformConstantBuffer.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -30,7 +31,7 @@ namespace GrainEngine::Graphics
 			return _pBinary;
 		}
 
-		void UpdateTransform(float transform[3][3]);
+		void UpdateTransform(TransformConstantBuffer transformConstantBuffer);
 
 	private:
 		/// <summary>

@@ -188,6 +188,7 @@
     <ClInclude Include="ECS\Tag.h" />
     <ClInclude Include="ECS\WorldManager.h" />
     <ClInclude Include="Graphics\Buffer.h" />
+    <ClInclude Include="Graphics\PerspectiveConstantBuffer.h" />
     <ClInclude Include="Graphics\PerspectivePoint.h" />
     <ClInclude Include="Graphics\ConstantBuffer.h" />
     <ClInclude Include="Graphics\ConstantBufferBindPosition.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Graphics\PrimitiveTopology.h" />
     <ClInclude Include="Graphics\RenderTargetView.h" />
     <ClInclude Include="Graphics\Swapchain.h" />
+    <ClInclude Include="Graphics\TransformConstantBuffer.h" />
     <ClInclude Include="Graphics\VertexBuffer.h" />
     <ClInclude Include="Graphics\VertexShader.h" />
     <ClInclude Include="Graphics\ViewPort.h" />

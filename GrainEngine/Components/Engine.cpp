@@ -49,6 +49,8 @@ namespace GrainEngine::Components
 
 		_game.Start();
 
+		Error::ClearLog();
+
 		while (_running)
 		{
 			///  -----------------
@@ -77,6 +79,7 @@ namespace GrainEngine::Components
 			EndTick();
 
 			Error::ResetLogCursor();
+			//Error::ClearLog();
 
 			Error::Log("CURRENT MANAGED OBJECTS UNDER GC ARE: " + std::to_string(GarbageCollector::GetInstance().GetManagedObjectsCount()) + "\n");
 			Error::Log("FPS: " + std::to_string(_pRTime->FPS()) + " \n");

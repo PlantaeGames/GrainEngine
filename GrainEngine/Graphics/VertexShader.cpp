@@ -2,9 +2,9 @@
 
 namespace GrainEngine::Graphics
 {
-	void VertexShader::UpdateTransform(float transform[3][3])
+	void VertexShader::UpdateTransform(TransformConstantBuffer transformConstantBuffer)
 	{
-		_transformBuffer.Update(reinterpret_cast<char*>(transform));
+		_transformBuffer.Update(reinterpret_cast<char*>(&transformConstantBuffer));
 	}
 
 	void VertexShader::Bind()
@@ -29,13 +29,12 @@ namespace GrainEngine::Graphics
 	{
 		LoadToGPU();
 
-		float transform[3][3] =
-		{
-			{0.0f, 0.0f, 0.0f},
-			{0.0f, 0.0f, 0.0f},
-			{1.0f, 1.0f, 1.0f}
-		};
+		TransformConstantBuffer transform = {};
+		transform.position = { 0.0f, 0.0f, 0.0f };
+		transform.rotation = { 0.0f, 0.0f, 0.0f };
+		transform.scale = { 0.0f, 0.0f, 0.0f };
 
-		_transformBuffer.Create(0u, reinterpret_cast<char*>(transform));
+		_transformBuffer.Create(0u, sizeof(TransformConstantBuffer), 0u,
+			reinterpret_cast<char*>(&transform));
 	}
 }

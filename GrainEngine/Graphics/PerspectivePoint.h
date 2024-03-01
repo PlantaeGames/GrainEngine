@@ -2,6 +2,7 @@
 
 #include "WinD3D.h"
 #include "ConstantBuffer.h"
+#include "PerspectiveConstantBuffer.h"
 #include "PipelineComponent.h"
 #include "Structures/Vector3.h"
 

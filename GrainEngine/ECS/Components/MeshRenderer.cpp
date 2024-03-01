@@ -6,13 +6,11 @@ namespace GrainEngine::ECS::Components
 	{
 		if (_registered)
 		{
-			float transform[3][3] =
-			{
-				{_pMParent->pMTransform->position.x, _pMParent->pMTransform->position.y, _pMParent->pMTransform->position.z},
-				{_pMParent->pMTransform->rotation.x, _pMParent->pMTransform->rotation.y, _pMParent->pMTransform->rotation.z},
-				{_pMParent->pMTransform->scale.x, _pMParent->pMTransform->scale.y, _pMParent->pMTransform->scale.z}
-			};
-
+			TransformConstantBuffer transform = {};
+			transform.position = { _pMParent->pMTransform->position.x, _pMParent->pMTransform->position.y, _pMParent->pMTransform->position.z };
+			transform.rotation = { _pMParent->pMTransform->rotation.x, _pMParent->pMTransform->rotation.y, _pMParent->pMTransform->rotation.z };
+			transform.scale = { _pMParent->pMTransform->scale.x, _pMParent->pMTransform->scale.y, _pMParent->pMTransform->scale.z };
+			
 			// update Transform
 			_pRPipelineState->GetMaterial().GetVertexShader().UpdateTransform(transform);
 		}

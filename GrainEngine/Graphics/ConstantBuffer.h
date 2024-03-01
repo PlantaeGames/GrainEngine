@@ -23,13 +23,13 @@ namespace GrainEngine::Graphics
 
 		void Bind() override;
 
-		void Create(unsigned int slot, const char* pInitialData);
+		void Create(unsigned int slot, unsigned int size, unsigned int stride, const char* pInitialData);
 		void Update(char* pData);
 
 	private:
-		UINT _stride = sizeof(Vector3);
+		UINT _stride = 0u;
 		UINT _offset = 0u;
-		UINT _size = (_stride * 3u);
+		UINT _size = 0u;
 		ConstantBufferBindPosition _bindPos;
 		UINT _slot = 0u;
 	};

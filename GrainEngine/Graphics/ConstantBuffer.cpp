@@ -40,8 +40,11 @@ namespace GrainEngine::Graphics
 		}
 	}
 
-	void ConstantBuffer::Create(unsigned int slot, const char* pInitialData)
+	void ConstantBuffer::Create(unsigned int slot, unsigned int size, unsigned int stride, const char* pInitialData)
 	{
+		_size = (UINT) size;
+		_stride = (UINT) stride;
+
 		D3D11_BUFFER_DESC description = { 0 };
 		D3D11_SUBRESOURCE_DATA initialData = { 0 };
 

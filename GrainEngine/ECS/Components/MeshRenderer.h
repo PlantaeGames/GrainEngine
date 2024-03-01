@@ -11,6 +11,7 @@
 #include "ECS/Entity.h"
 #include "ECS/Components/Mesh.h"
 #include "ECS/Components/Transform.h"
+#include "Graphics/TransformConstantBuffer.h"
 #include "Misc/RefPtr.h"
 
 namespace GrainEngine::ECS::Components

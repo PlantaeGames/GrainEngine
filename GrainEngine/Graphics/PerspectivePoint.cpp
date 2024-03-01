@@ -4,14 +4,12 @@ namespace GrainEngine::Graphics
 {
 	void PerspectivePoint::Update() const
 	{
-		float transform[3][3] =
-		{
-			{position.x, position.y, position.z},
-			{rotation.x, rotation.y, rotation.z},
-			{scale.x, scale.y, scale.z}
-		};
+		PerspectiveConstantBuffer perspective = {};
+		perspective.position = { 0.0f, 0.0f, 0.0f };
+		perspective.rotation = { 0.0f, 0.0f, 0.0f };
+		perspective.scale = { 0.0f, 0.0f, 0.0f };
 
-		_perspectiveBuffer.Update(reinterpret_cast<char*>(transform));
+		_perspectiveBuffer.Update(reinterpret_cast<char*>(&perspective));
 	}
 
 	void PerspectivePoint::Bind()
@@ -25,13 +23,12 @@ namespace GrainEngine::Graphics
 		rotation(0.0f, 0.0f, 0.0f),
 		scale(1.0f, 1.0f, 1.0f)
 	{
-		float transform[3][3] =
-		{
-			{position.x, position.y, position.z},
-			{rotation.x, rotation.y, rotation.z},
-			{scale.x, scale.y, scale.z}
-		};
+		PerspectiveConstantBuffer perspective = {};
+		perspective.position = { 0.0f, 0.0f, 0.0f };
+		perspective.rotation = { 0.0f, 0.0f, 0.0f };
+		perspective.scale = { 0.0f, 0.0f, 0.0f };
 
-		_perspectiveBuffer.Create(1u, reinterpret_cast<char*>(transform));
+		_perspectiveBuffer.Create(0u, sizeof(PerspectiveConstantBuffer), 0u,
+			reinterpret_cast<char*>(&perspective));
 	}
 }
