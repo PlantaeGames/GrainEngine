@@ -11,6 +11,7 @@ namespace GrainEngine::Graphics
 
 	class PerspectivePoint : public PipelineComponent
 	{
+
 	public:
 		PerspectivePoint();
 		~PerspectivePoint() noexcept = default;
