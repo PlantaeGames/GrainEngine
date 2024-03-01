@@ -234,6 +234,7 @@
     <ClInclude Include="Patterns\Singleton.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Structures\Color.h" />
     <ClInclude Include="Structures\Point.h" />
     <ClInclude Include="Misc\RefPtr.h" />
     <ClInclude Include="Structures\Rect.h" />

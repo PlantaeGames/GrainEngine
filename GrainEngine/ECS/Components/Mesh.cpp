@@ -13,35 +13,35 @@ namespace GrainEngine::ECS::Components
         //(_pVertices.get())[2] = { -1.0f, -1.0f, 0.0f };
         //(_pVertices.get())[3] = { 1.0f, -1.0f, 0.0f };
 
-        (_pVertices.get())[0] = { -0.5f, 0.5f, -0.5f };
-        (_pVertices.get())[1] = { 0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[2] = { -0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[3] = { 0.5f,  0.5f, -0.5f };
+        (_pVertices.get())[0] = { -0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
+        (_pVertices.get())[1] = { 0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
+        (_pVertices.get())[2] = { -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
+        (_pVertices.get())[3] = { 0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
 
-        (_pVertices.get())[4] = { 0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[5] = { 0.5f,  0.5f,  0.5f };
-        (_pVertices.get())[6] = { 0.5f, -0.5f,  0.5f };
-        (_pVertices.get())[7] = { 0.5f,  0.5f, -0.5f };
+        (_pVertices.get())[4] = { 0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[5] = { 0.5f,  0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[6] = { 0.5f, -0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[7] = { 0.5f,  0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f };
 
-        (_pVertices.get())[8] = { -0.5f,  0.5f,  0.5f };
-        (_pVertices.get())[9] = { -0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[10] = { -0.5f, -0.5f,  0.5f };
-        (_pVertices.get())[11] = { -0.5f,  0.5f, -0.5f };
+        (_pVertices.get())[8] = { -0.5f,  0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[9] = { -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[10] = { -0.5f, -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[11] = { -0.5f,  0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f };
 
-        (_pVertices.get())[12] = { 0.5f,  0.5f,  0.5f };
-        (_pVertices.get())[13] = { -0.5f, -0.5f,  0.5f };
-        (_pVertices.get())[14] = { 0.5f, -0.5f,  0.5f };
-        (_pVertices.get())[15] = { -0.5f,  0.5f,  0.5f };
+        (_pVertices.get())[12] = { 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[13] = { -0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[14] = { 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f };
+        (_pVertices.get())[15] = { -0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f };
 
-        (_pVertices.get())[16] = { -0.5f,  0.5f, -0.5f };
-        (_pVertices.get())[17] = { 0.5f,  0.5f,  0.5f };
-        (_pVertices.get())[18] = { 0.5f,  0.5f, -0.5f };
-        (_pVertices.get())[19] = { -0.5f,  0.5f,  0.5f };
+        (_pVertices.get())[16] = { -0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[17] = { 0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[18] = { 0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 1.0f };
+        (_pVertices.get())[19] = { -0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 1.0f, 1.0f };
 
-        (_pVertices.get())[20] = { 0.5f, -0.5f,  0.5f };
-        (_pVertices.get())[21] = { -0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[22] = { 0.5f, -0.5f, -0.5f };
-        (_pVertices.get())[23] = { -0.5f, -0.5f,  0.5f };
+        (_pVertices.get())[20] = { 0.5f, -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f };
+        (_pVertices.get())[21] = { -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 1.0f };
+        (_pVertices.get())[22] = { 0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 1.0f };
+        (_pVertices.get())[23] = { -0.5f, -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f };
 
         (_pIndices.get())[0] = 0;
         (_pIndices.get())[1] = 1;

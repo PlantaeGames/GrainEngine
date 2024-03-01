@@ -11,7 +11,8 @@ namespace GrainEngine::Graphics
 	{
 		const D3D11_INPUT_ELEMENT_DESC inputElementDescriptions[] =
 		{
-			{ "Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA }
+			{ "Position", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA },
+			{ "Color", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12u, D3D11_INPUT_PER_VERTEX_DATA }
 		};
 
 		CHECK_THROW_D3D_ERROR_INFO(

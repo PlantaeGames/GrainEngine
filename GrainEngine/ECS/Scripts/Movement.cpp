@@ -8,12 +8,12 @@ namespace GrainEngine::ECS::Scripts
 
 		if (_pRKeyboard->GetKey(_upKey))
 		{
-			_pMParent->pMTransform->position.y += _speed * deltaTime;
+			_pMParent->pMTransform->position.z += _speed * deltaTime;
 		}
 
 		if (_pRKeyboard->GetKey(_downKey))
 		{
-			_pMParent->pMTransform->position.y -= _speed * deltaTime;
+			_pMParent->pMTransform->position.z -= _speed * deltaTime;
 
 		}
 

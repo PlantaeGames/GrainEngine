@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Color.h"
+
 namespace GrainEngine::Structures
 {
-	class Vertex
+	struct Vertex
 	{
 	public:
 		Vertex(float x, float y)
@@ -19,10 +21,29 @@ namespace GrainEngine::Structures
 			this->z = z;
 		}
 
+		Vertex(float x, float y, float z, float r, float g, float b)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+
+			this->color = Color(r, g, b);
+		}
+
+		Vertex(float x, float y, float z, float r, float g, float b, float a)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+
+			this->color = Color(r, g, b, a);
+		}
+
 		Vertex() {}
 	public:
 		float x = 0.0f;
 		float y = 0.0f;
-		float z = 0.0;
+		float z = 0.0f;
+		Color color;
 	};
 }
