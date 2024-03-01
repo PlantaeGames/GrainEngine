@@ -6,24 +6,27 @@
 #include "Structures/Vertex.h"
 #include "Misc/RefPtr.h"
 #include "ECS/ManagedObject.h"
-#include "Utilities/Random.h"
 
 namespace GrainEngine::ECS::Components
 {
 	using namespace GrainEngine::ECS;
 	using namespace GrainEngine::Structures;
 	using namespace GrainEngine::Misc;
-	using namespace GrainEngine::Utilities;
 
 	class Mesh : public IComponent
 	{
 	public:
 		Mesh();
-		~Mesh() noexcept override;
+		~Mesh() noexcept override = default;
 
 		RefPtr<Vertex> GetVertices() noexcept
 		{
 			return RefPtr<Vertex>(_pVertices.get());
+		}
+
+		RefPtr<unsigned int> GetIndices() noexcept
+		{
+			return RefPtr<unsigned int>(_pIndices.get());
 		}
 
 		unsigned int GetVerticesCount() const noexcept
@@ -31,10 +34,17 @@ namespace GrainEngine::ECS::Components
 			return _verticesCount;
 		}
 
+		unsigned int GetIndicesCount() const noexcept
+		{
+			return _indicesCount;
+		}
+
 		void Awake(ManagedObject<Entity>& pMEntity) override {};
 
 	private:
 		std::unique_ptr<Vertex[]> _pVertices;
-		unsigned int _verticesCount = 3u;
+		std::unique_ptr<unsigned int[]> _pIndices;
+		unsigned int _verticesCount = 24u;
+		unsigned int _indicesCount = 36u;
 	};
 }

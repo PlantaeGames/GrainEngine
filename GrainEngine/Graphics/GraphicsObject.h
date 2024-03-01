@@ -13,7 +13,8 @@ namespace GrainEngine::Graphics
 	{
 	public:
 		GraphicsObject(unsigned long long id, const Material& material,
-			const Vertex* pVerticies, unsigned int verticesCount);
+			const Vertex* pVerticies, unsigned int verticesCount,
+			const unsigned int* pIndices, unsigned int indicesCount);
 		~GraphicsObject() noexcept = default;
 
 		PipelineState&& GetState() noexcept

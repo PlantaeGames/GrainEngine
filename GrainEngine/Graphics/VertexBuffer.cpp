@@ -9,7 +9,7 @@ namespace GrainEngine::Graphics
 			THROW_BUFFER_EMPTY_GRAPHICS_ERROR(BUFFER_EMPTY_GRAPHICS_ERROR_MESSAGE);
 		}
 
-		_pDeviceContext->IASetVertexBuffers(0u, 1u, _pBuffer.GetAddressOf(), &stride, &offset);
+		_pDeviceContext->IASetVertexBuffers(0u, 1u, _pBuffer.GetAddressOf(), &_stride, &_offset);
 	}
 
 	void VertexBuffer::Create(const Vertex* pVertices, unsigned int numberOfVertices)
@@ -18,8 +18,8 @@ namespace GrainEngine::Graphics
 		D3D11_SUBRESOURCE_DATA initialData = { 0 };
 
 		description.Usage = D3D11_USAGE_DEFAULT;
-		description.ByteWidth = stride * numberOfVertices;
-		description.StructureByteStride = stride;
+		description.ByteWidth = _stride * numberOfVertices;
+		description.StructureByteStride = _stride;
 		description.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		description.CPUAccessFlags = 0u;
 		description.MiscFlags = 0u;

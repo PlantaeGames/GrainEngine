@@ -32,7 +32,7 @@ namespace GrainEngine::Graphics
 		TransformConstantBuffer transform = {};
 		transform.position = { 0.0f, 0.0f, 0.0f };
 		transform.rotation = { 0.0f, 0.0f, 0.0f };
-		transform.scale = { 0.0f, 0.0f, 0.0f };
+		transform.scale = { 1.0f, 1.0f, 1.0f };
 
 		_transformBuffer.Create(0u, sizeof(TransformConstantBuffer), 0u,
 			reinterpret_cast<char*>(&transform));

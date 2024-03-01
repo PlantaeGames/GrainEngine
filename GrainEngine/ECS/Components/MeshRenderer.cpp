@@ -24,7 +24,8 @@ namespace GrainEngine::ECS::Components
 		_pRPipelineState = renderer.Add(
 			GraphicsObject(_id, 
 				Material("Shaders\\Default\\Vertex.cso", "Shaders\\Default\\Pixel.cso"),
-				pMesh->GetVertices().Get(), pMesh->GetVerticesCount()
+				pMesh->GetVertices().Get(), pMesh->GetVerticesCount(),
+				pMesh->GetIndices().Get(), pMesh->GetIndicesCount()
 			));
 
 		_registered = true;

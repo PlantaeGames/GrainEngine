@@ -6,6 +6,7 @@
 #include "Material.h"
 #include "VertexBuffer.h"
 #include "Structures/Vertex.h"
+#include "IndexBuffer.h"
 
 namespace GrainEngine::Graphics
 {
@@ -17,7 +18,8 @@ namespace GrainEngine::Graphics
 
 	public:
 		PipelineState(unsigned long long id, const Material& material,
-			const Vertex* pVerticies, unsigned int verticesCount);
+			const Vertex* pVerticies, unsigned int verticesCount,
+			const unsigned int* pIndices, unsigned int indicesCount);
 		~PipelineState() noexcept = default;
 
 		bool operator== (const PipelineState& rhs) const noexcept
@@ -39,6 +41,8 @@ namespace GrainEngine::Graphics
 		unsigned long long _id = 0u;
 		mutable Material _material;
 		VertexBuffer _vertexBuffer;
+		IndexBuffer _indexBuffer;
 		unsigned int _verticesCount;
+		unsigned int _indicesCount;
 	};
 }

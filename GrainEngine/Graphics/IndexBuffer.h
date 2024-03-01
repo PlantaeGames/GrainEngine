@@ -11,18 +11,18 @@ namespace GrainEngine::Graphics
 	using namespace GrainEngine::Errors;
 	using namespace GrainEngine::Graphics::Errors;
 
-	class VertexBuffer : public Buffer
+	class IndexBuffer : public Buffer
 	{
 	public:
-		VertexBuffer();
-		~VertexBuffer() noexcept override = default;
+		IndexBuffer() = default;
+		~IndexBuffer() noexcept override = default;
 
 		void Bind() override;
 
-		void Create(const Vertex* pVertices, unsigned int numberOfVertices);
+		void Create(const unsigned int* pIndices, unsigned int indicesCount);
 
 	private:
-		UINT _stride = sizeof(Vertex);
+		UINT _stride = sizeof(unsigned int);
 		UINT _offset = 0u;
 	};
 }

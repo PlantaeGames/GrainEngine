@@ -6,12 +6,13 @@ namespace GrainEngine::Graphics
 	{
 		// switch state by binding pipeline components.
 		pipelineState._vertexBuffer.Bind();
+		pipelineState._indexBuffer.Bind();
 		pipelineState._material.Bind();
 
-		auto count = pipelineState._verticesCount;
+		auto count = pipelineState._indicesCount;
 
 		QUEUE_CHECK_THROW_D3D_ERROR_INFO(
-			Device::GetInstance().GetDeviceContext()->Draw(count, 0u);
+			Device::GetInstance().GetDeviceContext()->DrawIndexed(count, 0u, 0);
 		);
 
 		_swapChain.Present();
@@ -78,7 +79,7 @@ namespace GrainEngine::Graphics
 		_swapChain(hWnd),
 		_viewPort(GetWindowBounds(hWnd)),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
-		_topology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST),
+		_topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP),
 		_perspectivePoint()
 	{
 		SetFixedStages();

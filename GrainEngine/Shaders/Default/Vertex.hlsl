@@ -35,8 +35,8 @@ Output main(float3 _position : Position)
     
     // perspective transformation
  
-    output.out_Position.x = output.out_Position.x / camPosition.z;
-    output.out_Position.y = output.out_Position.y / camPosition.z;
+    //output.out_Position.x = output.out_Position.x / output.out_Position.z;
+    //output.out_Position.y = output.out_Position.y / output.out_Position.z;
     
     //output.out_Position = float4(position.x, position.y, position.z, 1.0f);
     
