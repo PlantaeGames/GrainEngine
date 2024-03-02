@@ -8,8 +8,11 @@ namespace GrainEngine::Graphics
 
 	struct PerspectiveConstantBuffer
 	{
+		__declspec(align(16))
 		Vector3 position;
+		__declspec(align(16))
 		Vector3 rotation;
+		__declspec(align(16))
 		Vector3 scale;
 	};
 }

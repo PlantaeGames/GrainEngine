@@ -48,10 +48,8 @@ namespace GrainEngine::Graphics
 		D3D11_BUFFER_DESC description = { 0 };
 		D3D11_SUBRESOURCE_DATA initialData = { 0 };
 
-		UINT alignment = (_size * 2) - ((_size * 2) % 16);
-
 		description.Usage = D3D11_USAGE_DYNAMIC;
-		description.ByteWidth = alignment;
+		description.ByteWidth = size;
 		description.StructureByteStride = _stride;
 		description.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		description.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;

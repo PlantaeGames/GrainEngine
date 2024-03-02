@@ -81,7 +81,7 @@ namespace GrainEngine::Graphics
 		_depthState(),
 		_viewPort(GetWindowBounds(hWnd)),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
-		_topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP),
+		_topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST),
 		_perspectivePoint()
 	{
 		SetFixedStages();

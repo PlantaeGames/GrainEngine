@@ -6,6 +6,28 @@ namespace GrainEngine::ECS::Scripts
 	{
 		float deltaTime = Time::GetInstance().GetDeltaTime();
 
+		if (_pRKeyboard->GetKey(Key::A))
+		{
+			_pMParent->pMTransform->rotation.z += _speed * deltaTime;
+		}
+
+		if (_pRKeyboard->GetKey(Key::D))
+		{
+			_pMParent->pMTransform->rotation.z -= _speed * deltaTime;
+
+		}
+
+		if (_pRKeyboard->GetKey(Key::W))
+		{
+			_pMParent->pMTransform->position.y += _speed * deltaTime;
+		}
+
+		if (_pRKeyboard->GetKey(Key::S))
+		{
+			_pMParent->pMTransform->position.y -= _speed * deltaTime;
+
+		}
+
 		if (_pRKeyboard->GetKey(_upKey))
 		{
 			_pMParent->pMTransform->position.z += _speed * deltaTime;
@@ -27,7 +49,8 @@ namespace GrainEngine::ECS::Scripts
 			_pMParent->pMTransform->position.x -= _speed * deltaTime;
 		}
 
-		Error::Log(_pMParent->pMTransform->position.ToString());
+		Error::Log("Position: " + _pMParent->pMTransform->position.ToString() + "\n");
+		Error::Log("Rotation: " + _pMParent->pMTransform->rotation.ToString());
 	}
 
 	void Movement::Awake(ManagedObject<Entity>& pMEntity)
