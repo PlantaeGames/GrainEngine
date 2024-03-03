@@ -14,8 +14,6 @@ namespace GrainEngine::Graphics
 		QUEUE_CHECK_THROW_D3D_ERROR_INFO(
 			Device::GetInstance().GetDeviceContext()->DrawIndexed(count, 0u, 0);
 		);
-
-		_swapChain.Present();
 	}
 
 	void Pipeline::DoRenderPass()
@@ -26,6 +24,8 @@ namespace GrainEngine::Graphics
 		{
 			RenderPass(state);
 		}
+
+		_swapChain.Present();
 	}
 
 	void Pipeline::PrepareRenderPass()

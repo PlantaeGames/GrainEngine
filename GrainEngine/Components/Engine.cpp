@@ -75,6 +75,7 @@ namespace GrainEngine::Components
 				entity->AddComponent<MeshRenderer>();
 
 				entity->pMTransform->position = {random.NextFloat(-5, 5), random.NextFloat(-5, 5), random.NextFloat(-5, 5)};
+				entity->pMTransform->scale = { 2,2,2 };
 			}
 
 			///  -----------------
