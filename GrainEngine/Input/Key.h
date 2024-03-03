@@ -15,6 +15,8 @@ namespace GrainEngine::Input
 		S = 0x53,
 		A = 0x41,
 		D = 0x44,
+		E = 0x45,
+		Q = 0x51,
 
 		// mouse
 		MouseRight = VK_RBUTTON,

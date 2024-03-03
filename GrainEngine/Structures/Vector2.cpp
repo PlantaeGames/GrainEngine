@@ -15,6 +15,24 @@ namespace GrainEngine::Structures
 		return Vector3(x, y, 0.0f);
 	}
 
+	Vector2::operator Point() const noexcept
+	{
+		return Point(x, y);
+	}
+
+	Vector2& Vector2::operator- (const Point& point) noexcept
+	{
+		x -= point.y;
+		y -= point.y;
+
+		return *this;
+	}
+
+	Vector2 Vector2::Normalized() noexcept
+	{
+		return Vector2(x / std::abs(x), y / std::abs(y));
+	}
+
 	Vector2 Vector2::Up() const noexcept
 	{
 		return Vector2(0.0f, 1.0f);

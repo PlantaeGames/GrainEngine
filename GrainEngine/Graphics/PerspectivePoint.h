@@ -27,5 +27,9 @@ namespace GrainEngine::Graphics
 		Vector3 position;
 		Vector3 rotation;
 		Vector3 scale;
+		float aspectRatio;
+		float fov;
+		float nearPlane;
+		float farPlane;
 	};
 }

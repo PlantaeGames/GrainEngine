@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Point.h"
+
 namespace GrainEngine::Structures
 {
 	class Vector3;
@@ -10,7 +12,11 @@ namespace GrainEngine::Structures
 		Vector2() = default;
 		Vector2(float x, float y);
 
-		explicit operator Vector3() const noexcept;
+		operator Vector3() const noexcept;
+		operator Point() const noexcept;
+		Vector2& operator- (const Point& point) noexcept;
+
+		Vector2 Normalized() noexcept;
 
 		Vector2 Up() const noexcept;
 		Vector2 Down() const noexcept;

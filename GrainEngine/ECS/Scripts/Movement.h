@@ -5,6 +5,8 @@
 #include "Components/Time.h"
 #include "Input/Key.h"
 #include "Input/Keyboard.h"
+#include "Input/Mouse.h"
+#include "Structures/Vector2.h"
 #include "Components/InputManager.h"
 
 namespace GrainEngine::ECS::Scripts
@@ -12,6 +14,7 @@ namespace GrainEngine::ECS::Scripts
 	using namespace GrainEngine::ECS;
 	using namespace GrainEngine::Input;
 	using namespace GrainEngine::Components;
+	using namespace GrainEngine::Structures;
 
 	class Movement : public IComponent
 	{
@@ -27,10 +30,8 @@ namespace GrainEngine::ECS::Scripts
 		float _speed = 1.0f;
 
 		RefPtr<Keyboard> _pRKeyboard;
+		RefPtr<Mouse> _pRMouse;
 
-		Key _upKey = Key::Up;
-		Key _downKey = Key::Down;
-		Key _rightKey = Key::Right;
-		Key _leftKey = Key::Left;
+		Vector2 _mouseDir;
 	};
 }

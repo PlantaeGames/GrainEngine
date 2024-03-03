@@ -14,5 +14,13 @@ namespace GrainEngine::Graphics
 		Vector3 rotation;
 		__declspec(align(16))
 		Vector3 scale;
+		//__declspec(align(16))
+		float aspectRatio;
+		//__declspec(align(16))
+		float fov;
+		//__declspec(align(16))
+		float farPlane;
+		//__declspec(align(16))
+		float nearPlane;
 	};
 }

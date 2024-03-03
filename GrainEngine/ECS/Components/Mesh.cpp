@@ -8,10 +8,13 @@ namespace GrainEngine::ECS::Components
 		_pVertices = std::make_unique<Vertex[]>(_verticesCount);
         _pIndices = std::make_unique<unsigned int[]>(_indicesCount);
 
-        //(_pVertices.get())[0] = { -1.0f, 1.0f, 0.0f };
-        //(_pVertices.get())[1] = { 1.0f, 1.0f, 0.0f };
-        //(_pVertices.get())[2] = { -1.0f, -1.0f, 0.0f };
-        //(_pVertices.get())[3] = { 1.0f, -1.0f, 0.0f };
+        //(_pVertices.get())[0] = { 0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f };
+        //(_pVertices.get())[1] = { 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f};
+        //(_pVertices.get())[2] = { -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f };
+
+        //(_pIndices.get())[0] = 0;
+        //(_pIndices.get())[1] = 1;
+        //(_pIndices.get())[2] = 2;
 
         (_pVertices.get())[0] = { -0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
         (_pVertices.get())[1] = { 0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f };
