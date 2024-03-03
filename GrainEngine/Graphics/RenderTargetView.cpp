@@ -51,7 +51,7 @@ namespace GrainEngine::Graphics
 		const float color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		_pDeviceContext->ClearRenderTargetView(_pTargetView.Get(), color);
 
-		_pDeviceContext->ClearDepthStencilView(_depthTexture.GetView().Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
+		_pDeviceContext->ClearDepthStencilView(_depthTexture.GetView().Get(), D3D11_CLEAR_DEPTH, 0.0f, 0u);
 	}
 
 	bool RenderTargetView::CheckValid() const noexcept
