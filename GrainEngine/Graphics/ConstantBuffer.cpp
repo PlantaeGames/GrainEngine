@@ -11,7 +11,6 @@ namespace GrainEngine::Graphics
 			_pDeviceContext->Map(_pBuffer.Get(), 0u, D3D11_MAP_WRITE_DISCARD, 0u, &resource)
 		);
 
-		// updating
 		std::memcpy(resource.pData, pData, _size);
 
 		_pDeviceContext->Unmap(_pBuffer.Get(), 0u);

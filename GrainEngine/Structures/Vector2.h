@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Point.h"
-
 namespace GrainEngine::Structures
 {
 	class Vector3;
+	class Point;
 
 	class Vector2
 	{

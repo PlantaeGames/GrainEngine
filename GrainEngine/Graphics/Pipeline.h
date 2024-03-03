@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <list>
 
 #include "Windows.h"
 #include "Swapchain.h"
@@ -45,7 +45,7 @@ namespace GrainEngine::Graphics
 		Rect GetWindowBounds(HWND hWnd);
 
 	private:
-		std::vector<PipelineState> _states;
+		std::list<PipelineState> _states;
 		Swapchain _swapChain;
 		DepthState _depthState;
 		ViewPort _viewPort;

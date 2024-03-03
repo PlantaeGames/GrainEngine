@@ -12,13 +12,18 @@ namespace GrainEngine::Input
 		_cursorPosition()
 	{}
 
-	void Mouse::UpdateMousePosition(const HWND _handle) noexcept
+	Point Mouse::GetCursorDirection() const noexcept
+	{
+		return _cursorDir;
+	}
+
+	void Mouse::UpdateMousePosition(const HWND handle) noexcept
 	{
 		POINT point = { 0 };
 		if (GetCursorPos(&point) == false)
 			return;
 
-		if (ScreenToClient(_handle, &point))
+		if (ScreenToClient(handle, &point))
 		{
 			_cursorPosition.x = point.x;
 			_cursorPosition.y = point.y;
@@ -57,8 +62,20 @@ namespace GrainEngine::Input
 		}
 	}
 
+	void Mouse::UpdateMouseDeltaPosition() noexcept
+	{
+		POINT point = { 0 };
+		if (GetCursorPos(&point) == false)
+			return;
+
+		_cursorDir = (Point(point.x, point.y) - _cursorLastPositionUnRel).Normalized();
+
+		_cursorLastPositionUnRel = Point(point.x, point.y);
+	}
+
 	void Mouse::Update() noexcept
 	{
+		UpdateMouseDeltaPosition();
 		InputDevice::Clear();
 	}
 

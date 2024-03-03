@@ -5,9 +5,13 @@ namespace GrainEngine::ECS::Scripts
 	void Movement::Update()
 	{
 		float deltaTime = Time::GetInstance().GetDeltaTime();
+		Vector2 _mouseDir = _pRMouse->GetCursorDirection();
 
-		_pMParent->pMTransform->rotation.x += _mouseDir.y * deltaTime * 100;
-		_pMParent->pMTransform->rotation.y += _mouseDir.y * deltaTime * 100;
+		if (_pRMouse->GetKey(Key::MouseLeft))
+		{
+			_pMParent->pMTransform->rotation.z += _mouseDir.y * deltaTime * 100;
+			_pMParent->pMTransform->rotation.x += _mouseDir.x * deltaTime * 100;
+		}
 
 		if (_pRKeyboard->GetKey(Key::Q))
 		{
@@ -39,12 +43,6 @@ namespace GrainEngine::ECS::Scripts
 		{
 			_pMParent->pMTransform->position.x -= _speed * deltaTime;
 		}
-
-		_mouseDir = (_mouseDir - _pRMouse->GetCursorPosition()).Normalized();
-
-		Error::Log("Position: " + _pMParent->pMTransform->position.ToString() + "\n");
-		Error::Log("Rotion: " + _pMParent->pMTransform->rotation.ToString() + "\n");
-		Error::Log("Scale: " + _pMParent->pMTransform->scale.ToString());
 	}
 
 	void Movement::Awake(ManagedObject<Entity>& pMEntity)

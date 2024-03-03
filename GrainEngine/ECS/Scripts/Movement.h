@@ -31,7 +31,5 @@ namespace GrainEngine::ECS::Scripts
 
 		RefPtr<Keyboard> _pRKeyboard;
 		RefPtr<Mouse> _pRMouse;
-
-		Vector2 _mouseDir;
 	};
 }

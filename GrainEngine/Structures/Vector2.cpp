@@ -1,6 +1,7 @@
 #include "Vector2.h"
 
 #include "Vector3.h"
+#include "Point.h"
 
 namespace GrainEngine::Structures
 {
@@ -17,20 +18,20 @@ namespace GrainEngine::Structures
 
 	Vector2::operator Point() const noexcept
 	{
-		return Point(x, y);
+		return Point((int)x, (int)y);
 	}
 
 	Vector2& Vector2::operator- (const Point& point) noexcept
 	{
-		x -= point.y;
-		y -= point.y;
+		x -= (int)point.y;
+		y -= (int)point.y;
 
 		return *this;
 	}
 
 	Vector2 Vector2::Normalized() noexcept
 	{
-		return Vector2(x / std::abs(x), y / std::abs(y));
+		return Vector2(x / x == 0 ? 1 : std::abs(x), y / y == 0 ? 1 : std::abs(y));
 	}
 
 	Vector2 Vector2::Up() const noexcept

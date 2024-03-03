@@ -6,11 +6,14 @@
 
 #include "Structures/Point.h"
 #include "Key.h"
+#include "Structures/Rect.h"
 #include "Input/InputDevice.h"
+#include "Errors/Error.h"
 
 namespace GrainEngine::Input
 {
-	using namespace Structures;
+	using namespace GrainEngine::Errors;
+	using namespace GrainEngine::Structures;
 
 	class Mouse : public InputDevice
 	{
@@ -31,9 +34,13 @@ namespace GrainEngine::Input
 
 		void Update() noexcept override;
 		Point GetCursorPosition() const noexcept;
+		void UpdateMouseDeltaPosition() noexcept;
+		Point GetCursorDirection() const noexcept;
 	private:
-		void UpdateMousePosition(const HWND _handle) noexcept;
+		void UpdateMousePosition(const HWND handle) noexcept;
 	private:
 		Point _cursorPosition;
+		Point _cursorLastPositionUnRel;
+		Point _cursorDir;
 	};
 }

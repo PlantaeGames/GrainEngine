@@ -32,33 +32,47 @@ Output main(float3 _position : Position, float4 _color : Color)
     coordinates.z = _position.z;
     coordinates.w = 1;
     
+    float3 rotations = 0;
+    rotations.x = rotation.x;
+    rotations.y = rotation.y;
+    rotations.z = rotation.z;
+    
+    // camera respective
+    coordinates.x -= camPosition.x;
+    coordinates.y -= camPosition.y;
+    coordinates.z -= camPosition.z;
+    
+    rotations.x -= camRotation.x;
+    rotations.y -= camRotation.y;
+    rotations.z -= camRotation.z;
+    
     // rotation
     //  rotation rotation
     row_major matrix zRotationMatrix = 0;
-    zRotationMatrix[1][1] = cos(radians(rotation.z));
-    zRotationMatrix[1][2] = -sin(radians(rotation.z));
-    zRotationMatrix[2][1] = sin(radians(rotation.z));
-    zRotationMatrix[2][2] = cos(radians(rotation.z));
+    zRotationMatrix[1][1] = cos(radians(rotations.z));
+    zRotationMatrix[1][2] = -sin(radians(rotations.z));
+    zRotationMatrix[2][1] = sin(radians(rotations.z));
+    zRotationMatrix[2][2] = cos(radians(rotations.z));
     
     zRotationMatrix[0][0] = 1;
     zRotationMatrix[3][3] = 1;
     
     // x rotation
     row_major matrix xRotationMatrix = 0;
-    xRotationMatrix[0][0] = cos(radians(rotation.x));
-    xRotationMatrix[0][2] = sin(radians(rotation.x));
-    xRotationMatrix[2][0] = -sin(radians(rotation.x));
-    xRotationMatrix[2][2] = cos(radians(rotation.x));
+    xRotationMatrix[0][0] = cos(radians(rotations.x));
+    xRotationMatrix[0][2] = sin(radians(rotations.x));
+    xRotationMatrix[2][0] = -sin(radians(rotations.x));
+    xRotationMatrix[2][2] = cos(radians(rotations.x));
     
     xRotationMatrix[1][1] = 1;
     xRotationMatrix[3][3] = 1;
     
     // y rotation
     row_major matrix yRotationMatrix = 0;
-    yRotationMatrix[0][0] = cos(radians(rotation.y));
-    yRotationMatrix[0][1] = -sin(radians(rotation.y));
-    yRotationMatrix[1][0] = sin(radians(rotation.y));
-    yRotationMatrix[1][1] = cos(radians(rotation.y));
+    yRotationMatrix[0][0] = cos(radians(rotations.y));
+    yRotationMatrix[0][1] = -sin(radians(rotations.y));
+    yRotationMatrix[1][0] = sin(radians(rotations.y));
+    yRotationMatrix[1][1] = cos(radians(rotations.y));
     
     yRotationMatrix[2][2] = 1;
     yRotationMatrix[3][3] = 1;
@@ -88,11 +102,6 @@ Output main(float3 _position : Position, float4 _color : Color)
     translationMatrix[3][3] = 1;
     
     coordinates = mul(translationMatrix, coordinates);
-    
-    // camera respective
-    coordinates.x -= camPosition.x;
-    coordinates.y -= camPosition.y;
-    coordinates.z -= camPosition.z;
    
     // perspective transformation  
     // creating perspective transformaopm matrix

@@ -13,6 +13,7 @@
 #include "ECS/Components/MeshRenderer.h"
 #include "ECS/Scripts/Movement.h"
 #include "ECS/Components/Camera.h"
+#include "Utilities/Random.h"
 
 namespace GrainEngine::Components
 {
@@ -25,6 +26,7 @@ namespace GrainEngine::Components
 	using namespace GrainEngine::ECS::Components;
 	using namespace GrainEngine::Misc;
 	using namespace GrainEngine::ECS::Scripts;
+	using namespace GrainEngine::Utilities;
 
 	class Engine
 	{

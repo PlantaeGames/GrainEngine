@@ -42,10 +42,13 @@ namespace GrainEngine::Components
 		auto triangle = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
 		triangle->AddComponent<Mesh>();
 		triangle->AddComponent<MeshRenderer>();
-		triangle->AddComponent<Movement>();
+
 
 		auto camera = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
 		camera->AddComponent<Camera>();
+		camera->AddComponent<Movement>();
+
+		auto random = Random();
 
 		_game.Start();
 
@@ -65,12 +68,14 @@ namespace GrainEngine::Components
 			
 			Tick();
 
-			//if (keyboard.GetKey(Key::Up))
-			//{
-			//	auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
-			//	entity->AddComponent<Mesh>();
-			//	entity->AddComponent<MeshRenderer>();
-			//}
+			if (keyboard.GetKeyDown(Key::Up))
+			{
+				auto entity = _game.GetWorldManager().GetActiveWorld().GetEntityManager().CreateEntity();
+				entity->AddComponent<Mesh>();
+				entity->AddComponent<MeshRenderer>();
+
+				entity->pMTransform->position = {random.NextFloat(-5, 5), random.NextFloat(-5, 5), random.NextFloat(-5, 5)};
+			}
 
 			///  -----------------
 			///	  | ENGINE CODE |
