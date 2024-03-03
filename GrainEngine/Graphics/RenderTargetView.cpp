@@ -4,7 +4,9 @@ namespace GrainEngine::Graphics
 {
 	void RenderTargetView::Bind()
 	{
-		_pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), _depthTexture.GetView().Get());
+		QUEUE_CHECK_THROW_D3D_ERROR_INFO(
+			_pDeviceContext->OMSetRenderTargets(1u, _pTargetView.GetAddressOf(), _depthTexture.GetView().Get())
+		);
 	}
 
 	void RenderTargetView::Create(const ComPtr<ID3D11Resource>& pBuffer, unsigned int width, unsigned int height)

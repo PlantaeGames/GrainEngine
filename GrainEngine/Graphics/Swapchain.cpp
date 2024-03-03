@@ -10,7 +10,7 @@ namespace GrainEngine::Graphics
 	void Swapchain::Present()
 	{
 		CHECK_THROW_D3D_ERROR_INFO(
-			_pSwapchain->Present(0u, 0u)
+			_pSwapchain->Present(1u, 0u)
 		);
 	}
 
@@ -57,7 +57,7 @@ namespace GrainEngine::Graphics
 
 		_windowWidth = size.right - size.left;
 		_windowHeight = size.bottom - size.top;
-		_backView.Create(_pBackBuffer, _windowWidth, _windowHeight);
+		_backView.Create(_pBackBuffer, 800, 600);
 	}
 
 	Swapchain::Swapchain(HWND hWnd) :
