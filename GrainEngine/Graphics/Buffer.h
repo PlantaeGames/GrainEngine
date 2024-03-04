@@ -23,14 +23,15 @@ namespace GrainEngine::Graphics
 		virtual ~Buffer() noexcept override = default;
 
 		virtual void Bind() override = 0;
-
 		void Release();
 
 	protected:
+		void Update(char* pData);
 		void New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData);
 		bool CheckValid() const noexcept;
 
 	protected:
 		ComPtr<ID3D11Buffer> _pBuffer;
+		unsigned long long _size = 0u;
 	};
 }

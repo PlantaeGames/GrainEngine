@@ -5,15 +5,7 @@ namespace GrainEngine::Graphics
 {
 	void ConstantBuffer::Update(char* pData)
 	{
-		D3D11_MAPPED_SUBRESOURCE resource = { 0 };
-		
-		CHECK_THROW_D3D_ERROR_INFO(
-			_pDeviceContext->Map(_pBuffer.Get(), 0u, D3D11_MAP_WRITE_DISCARD, 0u, &resource)
-		);
-
-		std::memcpy(resource.pData, pData, _size);
-
-		_pDeviceContext->Unmap(_pBuffer.Get(), 0u);
+		Buffer::Update(pData);
 	}
 
 	void ConstantBuffer::Bind()
@@ -57,8 +49,6 @@ namespace GrainEngine::Graphics
 		initialData.pSysMem = pInitialData;
 
 		New(description, initialData);
-
-		_slot = (UINT) slot;
 	}
 
 	ConstantBuffer::ConstantBuffer(ConstantBufferBindPosition bindPos) :

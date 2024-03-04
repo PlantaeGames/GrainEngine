@@ -2,6 +2,19 @@
 
 namespace GrainEngine::Graphics
 {
+	void Buffer::Update(char* pData)
+	{
+		D3D11_MAPPED_SUBRESOURCE resource = { 0 };
+
+		CHECK_THROW_D3D_ERROR_INFO(
+			_pDeviceContext->Map(_pBuffer.Get(), 0u, D3D11_MAP_WRITE_DISCARD, 0u, &resource)
+		);
+
+		std::memcpy(resource.pData, pData, _size);
+
+		_pDeviceContext->Unmap(_pBuffer.Get(), 0u);
+	}
+
 	void Buffer::New(const D3D11_BUFFER_DESC description, const D3D11_SUBRESOURCE_DATA initialData)
 	{
 		if (CheckValid() == true)
@@ -14,6 +27,8 @@ namespace GrainEngine::Graphics
 		CHECK_THROW_D3D_ERROR_INFO(
 			_pDevice->CreateBuffer(&description, &initialData, _pBuffer.GetAddressOf())
 		);
+
+		_size = description.ByteWidth;
 	}
 
 	void Buffer::Release()

@@ -29,7 +29,6 @@ namespace GrainEngine::Graphics
 	private:
 		UINT _stride = 0u;
 		UINT _offset = 0u;
-		UINT _size = 0u;
 		ConstantBufferBindPosition _bindPos;
 		UINT _slot = 0u;
 	};
