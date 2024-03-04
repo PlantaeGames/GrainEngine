@@ -8,6 +8,7 @@
 #include <windows.h>
 
 #include "Errors/Error.h"
+#include "Structures/Rect.h"
 
 namespace GrainEngine::Graphics
 {
@@ -18,7 +19,8 @@ namespace GrainEngine::Graphics
 
 #define UI_EXITCODE 1
 
-	using namespace Errors;
+	using namespace GrainEngine::Errors;
+	using namespace GrainEngine::Structures;
 
 	/// <summary>
 	/// Representing a window to be used with renderer.
@@ -86,6 +88,7 @@ namespace GrainEngine::Graphics
 		/// Changes the window state to hidden.
 		/// </summary>
 		void Hide() const noexcept;
+		Rect GetBounds() const;
 		/// <summary>
 		/// Obtains Handle of the Window.
 		/// </summary>

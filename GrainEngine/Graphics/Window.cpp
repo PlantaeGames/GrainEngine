@@ -104,16 +104,8 @@ namespace GrainEngine::Graphics
 		_name = nameCopyLocation;
 
 		// creating window
-		RECT size = { 0 };
-		if (GetWindowRect(oldInstance._handle, &size) == false)
-		{
-			// error
-			THROW_ERROR(WINDOW_GET_RECT_ERROR);
-		}
-		unsigned int x = size.left;
-		unsigned int y = size.top;
-
-		Create(x, y, size.right - size.left, size.bottom - size.top);
+		auto rect = GetBounds();
+		Create(rect.topLeftX, rect.topLeftY, rect.width, rect.height);
 	}
 
 	Window& Window::operator=(const Window& rhs)
@@ -143,6 +135,20 @@ namespace GrainEngine::Graphics
 	{
 		Swap(rhs);
 		return *this;
+	}
+
+	Rect Window::GetBounds() const
+	{
+		RECT size = { 0 };
+		if (GetClientRect(_handle, &size) == false)
+		{
+			// error
+			THROW_LAST_ERROR();
+		}
+		unsigned int x = size.left;
+		unsigned int y = size.top;
+
+		return Rect(size.right - size.left, size.bottom - size.top, x, y);
 	}
 
 	void Window::Create(unsigned int x, unsigned int y, unsigned int width, unsigned int height)

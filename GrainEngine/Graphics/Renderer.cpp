@@ -22,7 +22,7 @@ namespace GrainEngine::Graphics
 		_pipeline.DoRenderPass();
 	}
 
-	Renderer::Renderer(HWND hWnd) :
-		_pipeline(hWnd)
+	Renderer::Renderer(const Window* pWindow) :
+		_pipeline(pWindow)
 	{}
 }

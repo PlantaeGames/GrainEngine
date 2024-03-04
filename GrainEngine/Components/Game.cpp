@@ -41,8 +41,8 @@ namespace GrainEngine::Components
 		_worldManager.GetActiveWorld().Tick(TickType::End);
 	}
 
-	Game::Game(HWND hWnd) :
+	Game::Game(const Window* pWindow) :
 		_worldManager(),
-		_renderer(hWnd)
+		_renderer(pWindow)
 	{}
 }

@@ -9,7 +9,7 @@ namespace GrainEngine::Graphics
 	class Renderer
 	{
 	public:
-		Renderer(HWND hWnd);
+		Renderer(const Window* pWindow);
 		~Renderer() noexcept = default;
 
 		void Render();

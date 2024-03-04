@@ -6,6 +6,7 @@
 #include "RenderTargetView.h"
 #include "PipelineComponent.h"
 #include "Errors/Error.h"
+#include "Window.h"
 #include "Graphics/Errors/D3DGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -18,7 +19,7 @@ namespace GrainEngine::Graphics
 	class Swapchain : public PipelineComponent
 	{
 	public:
-		Swapchain(HWND hWnd);
+		Swapchain(const Window* pWindow);
 		~Swapchain() noexcept = default;
 
 		void Bind() override;
@@ -26,7 +27,7 @@ namespace GrainEngine::Graphics
 		void Present();
 
 	private:
-		void Create(HWND hWnd);
+		void Create(const Window* pWindow);
 
 	private:
 		ComPtr<IDXGISwapChain> _pSwapchain;

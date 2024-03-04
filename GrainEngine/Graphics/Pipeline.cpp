@@ -64,22 +64,11 @@ namespace GrainEngine::Graphics
 		_perspectivePoint.Bind();
 	}
 
-	Rect Pipeline::GetWindowBounds(HWND hWnd)
-	{
-		RECT rect = { 0 };
-		if (!GetWindowRect(hWnd, &rect))
-		{
-			THROW_LAST_ERROR();
-		}
-
-		return { (float)(rect.right - rect.left), (float)(rect.bottom - rect.top), 0.0f, 0.0f};
-	}
-
-	Pipeline::Pipeline(HWND hWnd) :
+	Pipeline::Pipeline(const Window* pWindow) :
 		_states(),
-		_swapChain(hWnd),
+		_swapChain(pWindow),
 		_depthState(),
-		_viewPort(GetWindowBounds(hWnd)),
+		_viewPort(pWindow->GetBounds()),
 		_inputLayout(VertexShader("Shaders\\Default\\Vertex.cso").GetBinary()),
 		_topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST),
 		_perspectivePoint()

@@ -19,7 +19,7 @@ namespace GrainEngine::Graphics
 		_backView.Clear();
 	}
 
-	void Swapchain::Create(HWND hWnd)
+	void Swapchain::Create(const Window* pWindow)
 	{
 		// swapchain properties
 		DXGI_SWAP_CHAIN_DESC swapchainDesc = { 0 };
@@ -37,7 +37,7 @@ namespace GrainEngine::Graphics
 		swapchainDesc.SampleDesc.Count = 1;
 		swapchainDesc.SampleDesc.Quality = 0;		// no anti analysis
 		swapchainDesc.Flags = 0;
-		swapchainDesc.OutputWindow = hWnd;
+		swapchainDesc.OutputWindow = pWindow->GetHandle();
 
 		CHECK_THROW_D3D_ERROR_INFO(
 			DXFactory::GetInstance().GetFactory()->
@@ -49,21 +49,14 @@ namespace GrainEngine::Graphics
 		);
 
 
-		RECT size = { 0 };
-		if (GetWindowRect(hWnd, &size) == false)
-		{
-			THROW_LAST_ERROR();
-		}
-
-		_windowWidth = size.right - size.left;
-		_windowHeight = size.bottom - size.top;
-		_backView.Create(_pBackBuffer, 800, 600);
+		auto rect = pWindow->GetBounds();
+		_backView.Create(_pBackBuffer, rect.width, rect.height);
 	}
 
-	Swapchain::Swapchain(HWND hWnd) :
+	Swapchain::Swapchain(const Window* pWindow) :
 		PipelineComponent(),
 		_backView()
 	{
-		Create(hWnd);
+		Create(pWindow);
 	}
 }

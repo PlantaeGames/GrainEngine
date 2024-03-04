@@ -114,7 +114,7 @@ namespace GrainEngine::Components
 
 	Engine::Engine(): 
 		_mainWindow(WINDOW_NAME, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT),
-		_game(_mainWindow.GetHandle()),
+		_game(dynamic_cast<Window*>(&_mainWindow)),
 		_msg(),
 		_pRTime(Time::GetInstance()),
 		_pRInputManager(InputManager::GetInstance())

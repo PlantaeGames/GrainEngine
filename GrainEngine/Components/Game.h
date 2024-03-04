@@ -11,7 +11,7 @@ namespace GrainEngine::Components
 	class Game
 	{
 	public:
-		Game(HWND hWnd);
+		Game(const Window* pWindow);
 		~Game() noexcept = default;
 
 		Game(const Game& otherInstance) = delete;

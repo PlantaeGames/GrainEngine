@@ -11,6 +11,7 @@
 #include "InputLayout.h"
 #include "PrimitiveTopology.h"
 #include "PerspectivePoint.h"
+#include "Window.h"
 #include "Graphics/Errors/PipelineStateNotFoundGraphicsError.h"
 
 namespace GrainEngine::Graphics
@@ -23,7 +24,7 @@ namespace GrainEngine::Graphics
 	class Pipeline
 	{
 	public:
-		Pipeline(HWND hWnd);
+		Pipeline(const Window* window);
 		~Pipeline() noexcept = default;
 
 		PipelineState& AddState(PipelineState&& pipelineState) noexcept;
@@ -39,10 +40,7 @@ namespace GrainEngine::Graphics
 
 	private:
 		void RenderPass(PipelineState& pipelineState);
-
 		void SetFixedStages();
-
-		Rect GetWindowBounds(HWND hWnd);
 
 	private:
 		std::list<PipelineState> _states;
